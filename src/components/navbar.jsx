@@ -9,8 +9,9 @@ const Navbar = () => {
       <nav>
         <h2 className="logo">pebbles</h2>
         <ul>
-          <li>Users</li>
-          <Link to="/"> Click me</Link>
+          <li>
+            <Link to="/">User</Link>
+          </li>
         </ul>
       </nav>
     </header>

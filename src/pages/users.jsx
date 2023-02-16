@@ -1,8 +1,20 @@
+import { useEffect } from "react";
 import "../style/users.css";
+import { useNavigate } from "react-router-dom";
 import { user } from "react-icons-kit/ikons/user";
 import { Icon } from "react-icons-kit";
+import { isAuthenticated } from "../utils/helpers";
 
 const Users = () => {
+  const navigate = useNavigate();
+
+  const authenticated = isAuthenticated();
+
+  useEffect(() => {
+    if (!authenticated) {
+      navigate("/sign-in");
+    }
+  }, [authenticated]);
   return (
     <section className="users">
       <div className="total_host">

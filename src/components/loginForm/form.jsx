@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Icon } from "react-icons-kit";
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { isAuthenticated } from "../../utils/helpers";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [err, setErr] = useState("");
   const [token, setToken] = useState("");
+  const [id, setId] = useState("");
+  console.log(id);
   console.log(err);
   console.log(formErrors);
   console.log(formValues);
@@ -24,6 +27,22 @@ const LoginForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleSaveAuth = (id, token) => {
+    // Run your logic for localStorage
+    // Once your logic is complete/ Navigate
+    localStorage.setItem("id", JSON.stringify(id));
+    localStorage.setItem("token", JSON.stringify(token));
+
+    const authToken = localStorage.getItem("id");
+    const ID = localStorage.getItem("token");
+
+    if (authToken && ID !== "") {
+      console.log("NOT EMPTY!!!");
+      navigate("/");
+    }
+    return;
   };
 
   const handleSubmit = (e) => {
@@ -39,7 +58,12 @@ const LoginForm = () => {
         .then((response) => {
           console.log(response);
           setToken(response.data.data.token);
-          navigate("/");
+          setId(response.data.data.userDetails._id);
+          const authToken = response.data.data.token;
+          const authID = response.data.data.userDetails._id;
+
+          handleSaveAuth(authID, authToken);
+          // navigate("/");
         })
         .catch((error) => {
           console.log(error);
@@ -50,6 +74,13 @@ const LoginForm = () => {
     }
   };
 
+  const authenticated = isAuthenticated();
+
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/");
+    }
+  }, [authenticated]);
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -87,7 +118,6 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       {err && <p className="api-error">{err}</p>}
-
       <label htmlFor="email">Email</label>
       <input
         value={formValues.email}
