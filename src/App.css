@@ -1,0 +1,16 @@
+img {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.wrapper_route {
+    flex-grow: 1;
+}

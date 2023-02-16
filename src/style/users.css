@@ -1,0 +1,26 @@
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 2rem clamp(1rem, 4vw, 10rem);
+}
+
+.users>div {
+    padding: 1rem;
+    flex-grow: 1;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users h2 {
+    color: hsl(254, 11%, 45%);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.users h3 {
+    font-size: 1.3rem;
+    color: hsl(254, 11%, 35%);
+}
