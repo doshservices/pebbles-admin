@@ -6,7 +6,7 @@ import IndividualHost from "../hosts/individualHost";
 const Dashboard = () => {
   return (
     <section className="dashboard">
-      {/* <Users /> */}
+      <Users />
       <BuisnessHost />
       <IndividualHost />
     </section>

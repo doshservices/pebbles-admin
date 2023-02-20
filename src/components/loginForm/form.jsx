@@ -17,10 +17,7 @@ const LoginForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [err, setErr] = useState("");
-  const [token, setToken] = useState("");
-  const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
-  console.log(id);
   console.log(err);
   console.log(formErrors);
   console.log(formValues);
@@ -31,13 +28,13 @@ const LoginForm = () => {
   };
 
   const handleSaveAuth = (id, token) => {
-    // Run your logic for localStorage
-    // Once your logic is complete/ Navigate
+    // logic for localStorage
+    // Once logic is complete/ Navigate
     localStorage.setItem("Pebbles__Super_Admin___iD", JSON.stringify(id));
     localStorage.setItem("Pebbles__Super_Admin___toKen", JSON.stringify(token));
 
-    const authToken = localStorage.getItem("Pebbles__Super_Admin___iD");
-    const ID = localStorage.getItem("Pebbles__Super_Admin___toKen");
+    const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
+    const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
 
     if (authToken && ID !== "") {
       console.log("NOT EMPTY!!!");
@@ -60,8 +57,6 @@ const LoginForm = () => {
         .then((response) => {
           setLoading(false);
           console.log(response);
-          setToken(response.data.data.token);
-          setId(response.data.data.userDetails._id);
           const authToken = response.data.data.token;
           const authID = response.data.data.userDetails._id;
 

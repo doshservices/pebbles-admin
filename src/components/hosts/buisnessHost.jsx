@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import { isAuthenticated } from "../../utils/helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./host.css";
 
 const BuisnessHost = () => {
   const navigate = useNavigate();
+  const authToken = JSON.parse(
+    localStorage.getItem("Pebbles__Super_Admin___toKen")
+  );
 
   const [details, setDetails] = useState("");
   console.log(details);
@@ -15,7 +19,7 @@ const BuisnessHost = () => {
     await axios
       .get(buisUrl, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U1MTRhNmJkZTVjODAwMWIyYjVlOTAiLCJpc1ZlcmlmaWVkIjpmYWxzZSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjc2OTAzMTgzLCJleHAiOjE2Nzk0OTUxODN9.TW-wrX6feCVXfdM24Ta6g87w3gcgqIx9s_UwyGw8qSQ`,
+          Authorization: `Bearer ${authToken}`,
         },
       })
       .then((res) => {
