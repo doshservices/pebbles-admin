@@ -4,9 +4,35 @@ import { useNavigate } from "react-router-dom";
 import { user } from "react-icons-kit/ikons/user";
 import { Icon } from "react-icons-kit";
 import { isAuthenticated } from "../utils/helpers";
+import axios from "axios";
 
 const Users = () => {
   const navigate = useNavigate();
+  const id = localStorage.getItem("Pebbles__Super_Admin___iD");
+  const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
+  console.log(authToken);
+
+  // const buisUrl = process.env.BUISNESS_HOST_URL;
+  const buisUrl =
+    "https://pubblessignature-production.up.railway.app/api/users";
+
+  const fetchData = async () => {
+    await axios
+      .get(buisUrl, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U1MTRhNmJkZTVjODAwMWIyYjVlOTAiLCJpc1ZlcmlmaWVkIjpmYWxzZSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjc2OTAzMTgzLCJleHAiOjE2Nzk0OTUxODN9.TW-wrX6feCVXfdM24Ta6g87w3gcgqIx9s_UwyGw8qSQ`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const authenticated = isAuthenticated();
 
@@ -15,6 +41,7 @@ const Users = () => {
       navigate("/sign-in");
     }
   }, [authenticated]);
+
   return (
     <section className="users">
       <div className="total_host">

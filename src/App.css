@@ -6,15 +6,6 @@ button {
     cursor: pointer;
 }
 
-.wrapper {
-    display: flex;
-    /* justify-content: space-between; */
-}
-
-.wrapper_route {
-    flex-grow: 1;
-}
-
 a {
     text-decoration: none;
 }

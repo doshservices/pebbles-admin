@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Icon } from "react-icons-kit";
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { isAuthenticated } from "../../utils/helpers";
+import axios from "axios";
+import { Spinner } from "../spinner/spinner";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const api = process.env.REACT_APP_BASE_URL;
   const initialValues = {
     loginId: "",
     password: "",
@@ -19,6 +19,7 @@ const LoginForm = () => {
   const [err, setErr] = useState("");
   const [token, setToken] = useState("");
   const [id, setId] = useState("");
+  const [loading, setLoading] = useState(false);
   console.log(id);
   console.log(err);
   console.log(formErrors);
@@ -32,11 +33,11 @@ const LoginForm = () => {
   const handleSaveAuth = (id, token) => {
     // Run your logic for localStorage
     // Once your logic is complete/ Navigate
-    localStorage.setItem("id", JSON.stringify(id));
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("Pebbles__Super_Admin___iD", JSON.stringify(id));
+    localStorage.setItem("Pebbles__Super_Admin___toKen", JSON.stringify(token));
 
-    const authToken = localStorage.getItem("id");
-    const ID = localStorage.getItem("token");
+    const authToken = localStorage.getItem("Pebbles__Super_Admin___iD");
+    const ID = localStorage.getItem("Pebbles__Super_Admin___toKen");
 
     if (authToken && ID !== "") {
       console.log("NOT EMPTY!!!");
@@ -44,9 +45,10 @@ const LoginForm = () => {
     }
     return;
   };
-
+  const api = process.env.REACT_APP_BASE_URL;
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const checkTextFields = validate(formValues);
 
     if (JSON.stringify(checkTextFields) === "{}") {
@@ -56,6 +58,7 @@ const LoginForm = () => {
           password: formValues.password,
         })
         .then((response) => {
+          setLoading(false);
           console.log(response);
           setToken(response.data.data.token);
           setId(response.data.data.userDetails._id);
@@ -63,11 +66,11 @@ const LoginForm = () => {
           const authID = response.data.data.userDetails._id;
 
           handleSaveAuth(authID, authToken);
-          // navigate("/");
         })
         .catch((error) => {
+          setLoading(false);
           console.log(error);
-          setErr(error.response.data.message);
+          setErr(error);
         });
     } else {
       setFormErrors(checkTextFields);
@@ -81,6 +84,7 @@ const LoginForm = () => {
       navigate("/");
     }
   }, [authenticated]);
+
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -117,7 +121,8 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
-      {err && <p className="api-error">{err}</p>}
+      {loading && <Spinner />}
+      {/* <>{err && <p className="api-error">{err}</p>}</> */}
       <label htmlFor="email">Email</label>
       <input
         value={formValues.email}
@@ -128,7 +133,7 @@ const LoginForm = () => {
         placeholder="Enter your email"
         className={formErrors.email ? "input-error" : ""}
       />
-      {formErrors.email && <p className="error">{formErrors.email}</p>}
+      {/* <>{formErrors.email && <p className="error">{formErrors.email}</p>}</> */}
       <label htmlFor="password">Password</label>
       <div className="password" style={{ color: "hsl(253, 13%, 40%)" }}>
         <input
@@ -143,7 +148,9 @@ const LoginForm = () => {
           <Icon icon={icon} size={18} />
         </span>
       </div>
-      {formErrors.password && <p className="error">{formErrors.password}</p>}
+      <>
+        {/* {formErrors.password && <p className="error">{formErrors.password}</p>} */}
+      </>
       <button type="submit">Sign In</button>
     </form>
   );
