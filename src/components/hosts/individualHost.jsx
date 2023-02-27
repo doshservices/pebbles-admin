@@ -56,12 +56,12 @@ const IndividualHost = () => {
           <table>
             <tbody>
               <tr>
-                <th>Email</th>
-                <th>Firtsname</th>
-                <th>Lastname</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Phone Number</th>
+                <td>Email</td>
+                <td>Firtsname</td>
+                <td>Lastname</td>
+                <td>Status</td>
+                <td>Role</td>
+                <td>Phone Number</td>
               </tr>
               <tr>
                 <td>{details.email}</td>

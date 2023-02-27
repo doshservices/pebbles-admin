@@ -10,7 +10,6 @@ const Users = () => {
   const navigate = useNavigate();
   const id = localStorage.getItem("Pebbles__Super_Admin___iD");
   const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
-  console.log(authToken);
 
   // const buisUrl = process.env.BUISNESS_HOST_URL;
   const buisUrl =

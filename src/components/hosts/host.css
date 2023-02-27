@@ -1,6 +1,30 @@
-table,
-th,
+table {
+    width: 100%;
+}
+
+tr {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+th {
+    border: none;
+    background: hsl(252, 24%, 90%);
+    color: hsl(253, 13%, 30%);
+    font-size: 1rem;
+    font-weight: 500;
+    flex-grow: 1;
+    padding: .7rem 1rem;
+}
+
 td {
-    border: 1px solid black;
+    border-top: 1px solid hsl(253, 13%, 80%);
+    border-bottom: 1px solid hsl(253, 13%, 80%);
     border-collapse: collapse;
+    flex-grow: 1;
+    padding: .7rem 1rem;
+    color: hsl(253, 13%, 30%);
+    font-weight: 400;
 }
