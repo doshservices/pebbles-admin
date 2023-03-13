@@ -1,15 +1,13 @@
 import { useEffect } from "react";
-import "../style/users.css";
-import { useNavigate } from "react-router-dom";
 import { user } from "react-icons-kit/ikons/user";
 import { Icon } from "react-icons-kit";
 import { isAuthenticated } from "../utils/helpers";
+import { useNavigate } from "react-router-dom";
+import "../style/users.css";
 import axios from "axios";
 
 const Users = () => {
   const navigate = useNavigate();
-  const id = localStorage.getItem("Pebbles__Super_Admin___iD");
-  const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
 
   // const buisUrl = process.env.BUISNESS_HOST_URL;
   const buisUrl =

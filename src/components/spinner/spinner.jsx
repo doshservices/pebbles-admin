@@ -16,3 +16,7 @@ export const Spinner = () => {
     </div>
   );
 };
+
+export const CssLoader = () => {
+  return <div className="lds-dual-ring"></div>;
+};

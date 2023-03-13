@@ -4,8 +4,8 @@ import { Icon } from "react-icons-kit";
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { isAuthenticated } from "../../utils/helpers";
+import { CssLoader, Spinner } from "../spinner/spinner";
 import axios from "axios";
-import { Spinner } from "../spinner/spinner";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const LoginForm = () => {
     const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
 
     if (authToken && ID !== "") {
-      console.log("NOT EMPTY!!!");
+      // console.log("NOT EMPTY!!!");
       navigate("/");
     }
     return;
@@ -92,8 +92,8 @@ const LoginForm = () => {
     if (!values.password) {
       errors.password = "Password is required";
     }
-    if (values.password.length < 6) {
-      errors.password = "Password must be more than 6 characters!";
+    if (values.password.length < 4) {
+      errors.password = "Password must be more than 4 characters!";
     }
     if (values.password.length > 100000000000) {
       errors.password = "Password must not exceed 10 characters!";
@@ -116,7 +116,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
-      {loading && <Spinner />}
+      {loading && <CssLoader />}
       {/* <>{err && <p className="api-error">{err}</p>}</> */}
       <label htmlFor="email">Email</label>
       <input
@@ -128,7 +128,7 @@ const LoginForm = () => {
         placeholder="Enter your email"
         className={formErrors.email ? "input-error" : ""}
       />
-      {/* <>{formErrors.email && <p className="error">{formErrors.email}</p>}</> */}
+      <>{formErrors.email && <p className="error">{formErrors.email}</p>}</>
       <label htmlFor="password">Password</label>
       <div className="password" style={{ color: "hsl(253, 13%, 40%)" }}>
         <input
@@ -144,7 +144,7 @@ const LoginForm = () => {
         </span>
       </div>
       <>
-        {/* {formErrors.password && <p className="error">{formErrors.password}</p>} */}
+        {formErrors.password && <p className="error">{formErrors.password}</p>}
       </>
       <button type="submit">Sign In</button>
     </form>

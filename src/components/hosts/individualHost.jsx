@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { isAuthenticated } from "../../utils/helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "../spinner/spinner";
+import { CssLoader, Spinner } from "../spinner/spinner";
 import "./host.css";
 
 const IndividualHost = () => {
@@ -49,7 +49,7 @@ const IndividualHost = () => {
 
   return (
     <>
-      {loading && <Spinner />}
+      {loading && <CssLoader />}
       {details ? (
         <div>
           individualHost
