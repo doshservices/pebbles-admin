@@ -1,30 +1,80 @@
+.host {
+    padding: 1rem 3rem;
+}
+
+.host-heading {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
 table {
     width: 100%;
+    background: hsl(252, 24%, 93%);
 }
 
 tr {
-    display: flex;
-    justify-content: space-between;
     text-transform: capitalize;
     font-size: 1rem;
 }
 
 th {
-    border: none;
+    border: 1px solid hsl(252, 24%, 90%);
     background: hsl(252, 24%, 90%);
     color: hsl(253, 13%, 30%);
     font-size: 1rem;
     font-weight: 500;
-    flex-grow: 1;
-    padding: .7rem 1rem;
+    padding: .7rem;
+    text-align: left;
 }
 
 td {
-    border-top: 1px solid hsl(253, 13%, 80%);
-    border-bottom: 1px solid hsl(253, 13%, 80%);
-    border-collapse: collapse;
-    flex-grow: 1;
-    padding: .7rem 1rem;
+    /* border-top: 1px solid hsl(253, 13%, 80%);
+    border-bottom: 1px solid hsl(253, 13%, 80%); */
+    /* border-collapse: collapse; */
+    padding: .9rem 0;
     color: hsl(253, 13%, 30%);
-    font-weight: 400;
+    font-weight: 500;
+    font-size: .9rem;
+    padding: .7rem;
+}
+
+table .actions {
+    cursor: pointer;
+    background: hsl(0, 0%, 50%, .1);
+}
+
+table .actions span {
+    display: block;
+    background: hsl(253, 13%, 30%);
+    height: 2.5px;
+    width: 2.5px;
+    border-radius: 50%;
+    margin: 3px auto;
+}
+
+/* tbody tr:nth-child(odd) { */
+/* background-color: hsl(0, 0%, 950%); */
+/* } */
+
+tbody {
+    position: relative;
+}
+
+tbody .actions_options {
+    position: absolute;
+    right: 0;
+    top: 95%;
+    z-index: 1;
+    background: white;
+    border-radius: 5px;
+    padding: 0;
+}
+
+tbody .actions_options p {
+    padding: .6rem 1rem;
+    cursor: pointer;
+}
+
+tbody .actions_options p:hover {
+    background: hsl(252, 24%, 96%);
 }

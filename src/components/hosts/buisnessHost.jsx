@@ -13,7 +13,7 @@ const BuisnessHost = () => {
   const [details, setDetails] = useState("");
   console.log(details);
   const buisUrl =
-    "https://pubblessignature-production.up.railway.app/api/admin/allindividual";
+    "https://pubblessignature-production.up.railway.app/api/admin/allbusiness";
 
   const fetchData = async () => {
     await axios
@@ -24,7 +24,7 @@ const BuisnessHost = () => {
       })
       .then((res) => {
         console.log(res);
-        setDetails(res);
+        // setDetails(res.data.data.buisnessHost);
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +42,32 @@ const BuisnessHost = () => {
     }
   }, [authenticated]);
 
-  return <div>buisness</div>;
+  return (
+    <div>
+      {details ? (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Role</th>
+                <th>Status</th>
+                {/* <th>Email</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <div>No Buisness host Found</div>
+      )}
+    </div>
+  );
 };
 
 export default BuisnessHost;

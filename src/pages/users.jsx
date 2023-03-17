@@ -8,28 +8,31 @@ import axios from "axios";
 
 const Users = () => {
   const navigate = useNavigate();
+  const authToken = JSON.parse(
+    localStorage.getItem("Pebbles__Super_Admin___toKen")
+  );
 
   // const buisUrl = process.env.BUISNESS_HOST_URL;
-  const buisUrl =
-    "https://pubblessignature-production.up.railway.app/api/users";
+  // const buisUrl =
+  //   "https://pubblessignature-production.up.railway.app/api/users";
 
-  const fetchData = async () => {
-    await axios
-      .get(buisUrl, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U1MTRhNmJkZTVjODAwMWIyYjVlOTAiLCJpc1ZlcmlmaWVkIjpmYWxzZSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjc2OTAzMTgzLCJleHAiOjE2Nzk0OTUxODN9.TW-wrX6feCVXfdM24Ta6g87w3gcgqIx9s_UwyGw8qSQ`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // const fetchData = async () => {
+  //   await axios
+  //     .get(buisUrl, {
+  //       headers: {
+  //         Authorization: `Bearer ${authToken}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response.data);
+  //     });
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const authenticated = isAuthenticated();
 

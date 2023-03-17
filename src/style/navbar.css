@@ -5,11 +5,21 @@ nav {
 }
 
 nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav .logo img {
+    height: 25px;
+}
+
+nav .logo p {
     background: linear-gradient(#695FCD, #8F85F3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 nav ul {

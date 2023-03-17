@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { isAuthenticated } from "../../utils/helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { CssLoader, Spinner } from "../spinner/spinner";
+import { CssLoader } from "../spinner/spinner";
 import "./host.css";
 
 const IndividualHost = () => {
@@ -13,9 +13,10 @@ const IndividualHost = () => {
   );
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState("");
+  const [showOptions, setShowOptions] = useState(false);
   console.log(details);
   const buisUrl =
-    "https://pubblessignature-production.up.railway.app/api/users";
+    "https://pubblessignature-production.up.railway.app/api/admin/allindividual";
 
   const fetchData = async () => {
     setLoading(true);
@@ -51,31 +52,49 @@ const IndividualHost = () => {
     <>
       {loading && <CssLoader />}
       {details ? (
-        <div>
-          individualHost
+        <div className="host">
+          <h3 className="host-heading">Individual Host</h3>
           <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Firtsname</th>
+                <th>Lastname</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td>Email</td>
-                <td>Firtsname</td>
-                <td>Lastname</td>
-                <td>Status</td>
-                <td>Role</td>
-                <td>Phone Number</td>
-              </tr>
-              <tr>
-                <td>{details.email}</td>
+                {/* <td>{details.email}</td>
                 <td>{details.firstName}</td>
                 <td>{details.lastName}</td>
                 <td>{details.status}</td>
                 <td>{details.role}</td>
-                <td>{details.phoneNumber}</td>
+                <td>{details.phoneNumber}</td> */}
+                <td
+                  onClick={() => setShowOptions(!showOptions)}
+                  className="actions"
+                >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </td>
+                {showOptions && (
+                  <td className="actions_options">
+                    <p onClick={() => setShowOptions(!showOptions)}>Verify</p>
+                    <p onClick={() => setShowOptions(!showOptions)}>Suspend</p>
+                    <p onClick={() => setShowOptions(!showOptions)}>Delete</p>
+                  </td>
+                )}
               </tr>
             </tbody>
           </table>
         </div>
       ) : (
-        <p>No Host found</p>
+        <p>No Individual Host found</p>
       )}
     </>
   );
