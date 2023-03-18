@@ -13,3 +13,8 @@ a {
 li {
     list-style: none;
 }
+
+.grid-col {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}

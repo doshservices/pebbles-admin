@@ -40,7 +40,7 @@ td {
 
 table .actions {
     cursor: pointer;
-    background: hsl(0, 0%, 50%, .1);
+    /* background: hsl(0, 0%, 50%, .1); */
 }
 
 table .actions span {
@@ -62,7 +62,7 @@ tbody {
 
 tbody .actions_options {
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 95%;
     z-index: 1;
     background: white;
@@ -77,4 +77,10 @@ tbody .actions_options p {
 
 tbody .actions_options p:hover {
     background: hsl(252, 24%, 96%);
+}
+
+.api-error {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 2rem;
 }

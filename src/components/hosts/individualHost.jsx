@@ -49,7 +49,7 @@ const IndividualHost = () => {
   }, [authenticated]);
 
   return (
-    <>
+    <div>
       {loading && <CssLoader />}
       {details ? (
         <div className="host">
@@ -96,7 +96,7 @@ const IndividualHost = () => {
       ) : (
         <p>No Individual Host found</p>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,20 +1,57 @@
-nav {
-    padding: 1rem;
+.main__header_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .7rem clamp(1rem, 4vw, 10rem);
+}
+
+.main__header_nav>img {
+    height: 30px;
+}
+
+.sidenav {
+    padding: 2rem;
+}
+
+.sidenav a {
+    color: hsla(0, 0%, 18%, 0.7);
+    font-weight: 500;
+    font-size: .9rem;
+    margin-bottom: .5rem;
+    padding: .5rem 1.5rem;
+    display: block;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.active {
+    background: hsla(220, 87%, 51%, 1);
+    color: white;
+}
+
+.active span {
+    color: white;
+}
+
+.nav {
+    padding: 1.3rem;
     background: white;
     min-height: 100vh;
 }
 
-nav .logo {
+.nav .logo {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-nav .logo img {
+.nav .logo img {
     height: 25px;
 }
 
-nav .logo p {
+.nav .logo p {
     background: linear-gradient(#695FCD, #8F85F3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -22,12 +59,28 @@ nav .logo p {
     font-weight: 600;
 }
 
-nav ul {
-    margin: 1rem 0;
+.nav ul {
+    margin: 3rem 0;
 }
 
-nav a {
+.nav li {
+    margin: .5rem 0;
+    width: 200px;
+}
+
+.nav a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: hsl(253, 13%, 40%);
+    padding: .8rem 1rem;
+    border-radius: 5px;
+    display: block;
+}
+
+.nav-hosts {
+    cursor: pointer;
     font-size: 1.1rem;
     font-weight: 500;
     color: hsl(253, 13%, 40%);
+    padding: 0rem 1rem;
 }
