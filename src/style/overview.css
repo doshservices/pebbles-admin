@@ -12,11 +12,20 @@
 
 .overview .total_amount>div {
     color: white;
-    padding: 1rem;
+    padding: 1.3rem;
     flex-grow: 1;
-    flex-basis: 200px;
+    flex-basis: 180px;
     margin: auto;
     max-width: 300px;
+}
+
+.overview .total_amount>div p:nth-child(1) {
+    font-size: 1.5rem;
+    margin-bottom: .7rem;
+}
+
+.overview .total_amount>div p:nth-child(2) {
+    font-size: .9rem;
 }
 
 .overview .total_amount div:nth-child(1) {

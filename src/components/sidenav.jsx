@@ -11,7 +11,7 @@ const SideNav = () => {
         <li>
           <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}
-            to="/overview"
+            to="/"
           >
             <img src={overview} alt="overview" />
             <span>Overview</span>
@@ -20,7 +20,6 @@ const SideNav = () => {
         <li>
           <NavLink to="/bookings">
             <img src={bookings} alt="bookings" />
-
             <span>Bookings</span>
           </NavLink>
         </li>
@@ -30,13 +29,18 @@ const SideNav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/transactions">
+          <NavLink to="/buisness">
+            <span>Buisness Host</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/individual">
             <span>Individual Host</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/hosts">
-            <span>Individual Host</span>
+          <NavLink to="/transactions">
+            <span>Transaction</span>
           </NavLink>
         </li>
       </ul>

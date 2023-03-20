@@ -14,8 +14,14 @@ const BuisnessHost = () => {
 
   const [showOptions, setShowOptions] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState([]);
   const [apiError, setApiError] = useState("");
+  console.log(details);
+  console.log(details.length);
+  useEffect(() => {
+    localStorage.setItem("bzhostLen", JSON.stringify(details.length));
+  }, [details.length]);
+
   const buisUrl =
     "https://pubblessignature-production.up.railway.app/api/admin/allbusiness";
 
@@ -30,7 +36,7 @@ const BuisnessHost = () => {
       .then((res) => {
         setLoading(false);
         console.log(res);
-        setDetails(res.data.data.businessHost[0]);
+        setDetails(res.data.data.businessHost);
       })
       .catch((err) => {
         setLoading(false);
@@ -66,30 +72,37 @@ const BuisnessHost = () => {
               </tr>
             </thead>
             <tbody>
-              <td>{details.email}</td>
-              <td>{details.phoneNumber}</td>
-              <td>{details.role}</td>
-              <td>{details.status}</td>
-              {/* {details.map((detail, id) => {
-                <tr key={id}>
-                  <td>{detail.email}</td>
-                </tr>;
-              })} */}
-              <td
-                onClick={() => setShowOptions(!showOptions)}
-                className="actions"
-              >
-                <span></span>
-                <span></span>
-                <span></span>
-              </td>
-              {showOptions && (
-                <td className="actions_options">
-                  <p onClick={() => setShowOptions(!showOptions)}>Verify</p>
-                  <p onClick={() => setShowOptions(!showOptions)}>Suspend</p>
-                  <p onClick={() => setShowOptions(!showOptions)}>Delete</p>
-                </td>
-              )}
+              {details.map((detail, id) => {
+                return (
+                  <tr key={id}>
+                    <td>{detail.email}</td>
+                    <td>{detail.phoneNumber}</td>
+                    <td>{detail.role}</td>
+                    <td>{detail.status}</td>
+                    <td
+                      onClick={() => setShowOptions(!showOptions)}
+                      className="actions"
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </td>
+                    {showOptions && (
+                      <td className="actions_options">
+                        <p onClick={() => setShowOptions(!showOptions)}>
+                          Verify
+                        </p>
+                        <p onClick={() => setShowOptions(!showOptions)}>
+                          Suspend
+                        </p>
+                        <p onClick={() => setShowOptions(!showOptions)}>
+                          Delete
+                        </p>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </>

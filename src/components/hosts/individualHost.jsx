@@ -12,7 +12,7 @@ const IndividualHost = () => {
     localStorage.getItem("Pebbles__Super_Admin___toKen")
   );
   const [loading, setLoading] = useState(false);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   console.log(details);
   const buisUrl =
