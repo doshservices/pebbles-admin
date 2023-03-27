@@ -14,6 +14,68 @@ const BookingList = () => {
           <img src={dropdown} alt="dropdown" />
         </button>
       </div>
+      <section className="table-section">
+        <table>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Join Date</th>
+              <th>User Name</th>
+              <th>Address</th>
+              <th>Account Type</th>
+              <th>Status</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#0123450</td>
+              <td>10 March 2023, 08:23 AM</td>
+              <td>Shai Hulud Fred Great</td>
+              <td>2 Shai Hulud Street, Shazam</td>
+              <td>Host (Basic)</td>
+              <td>Verified</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>#0123450</td>
+              <td>10 March 2023, 08:23 AM</td>
+              <td>Shai Hulud Fred Great</td>
+              <td>2 Shai Hulud Street, Shazam</td>
+              <td>Host (Basic)</td>
+              <td>Verified</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>#0123450</td>
+              <td>10 March 2023, 08:23 AM</td>
+              <td>Shai Hulud Fred Great</td>
+              <td>2 Shai Hulud Street, Shazam</td>
+              <td>Host (Basic)</td>
+              <td>Verified</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>#0123450</td>
+              <td>10 March 2023, 08:23 AM</td>
+              <td>Shai Hulud Fred Great</td>
+              <td>2 Shai Hulud Street, Shazam</td>
+              <td>Host (Basic)</td>
+              <td>Verified</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>#0123450</td>
+              <td>10 March 2023, 08:23 AM</td>
+              <td>Shai Hulud Fred Great</td>
+              <td>2 Shai Hulud Street, Shazam</td>
+              <td>Host (Basic)</td>
+              <td>Verified</td>
+              <td>...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </section>
   );
 };

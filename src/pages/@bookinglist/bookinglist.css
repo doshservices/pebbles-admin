@@ -2,21 +2,22 @@
     padding: 2rem;
 }
 
-.booking-list>h2 {
-    color: #2D2D2D;
-    font-size: 1.5rem;
-}
-
-.booking-list>p {
-    color: #2D2D2D;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
 .booking-list-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.booking-list-heading h2 {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.booking-list-heading p {
+    color: #2D2D2D;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .booking-list-heading button {
@@ -30,4 +31,35 @@
     display: flex;
     align-items: center;
     gap: .7rem;
+}
+
+.booking-list .table-section {
+    margin: 1rem 0;
+    padding: 1rem 0;
+    overflow-x: scroll;
+}
+
+.booking-list table {
+    border-collapse: collapse;
+    min-width: 1000px;
+    margin: 25px 0;
+}
+
+.booking-list table th,
+.booking-list table td {
+    padding: 1rem;
+    /* background: #3C79F2;
+    border: none;
+    font-size: .9rem;
+    font-weight: 500;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    padding: 1rem; */
+}
+
+.booking-list table thead tr {
+    background-color: #3C79F2;
+    text-align: left;
+    color: white;
 }
