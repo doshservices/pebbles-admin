@@ -1,0 +1,33 @@
+.booking-list {
+    padding: 2rem;
+}
+
+.booking-list>h2 {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+}
+
+.booking-list>p {
+    color: #2D2D2D;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.booking-list-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-list-heading button {
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    padding: .7rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}

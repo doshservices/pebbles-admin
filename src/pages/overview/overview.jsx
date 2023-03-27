@@ -84,6 +84,7 @@ const Overview = () => {
         </div>
         <div>
           <h3>Customer Map</h3>
+          <button>Weekly</button>
         </div>
       </section>
     </section>

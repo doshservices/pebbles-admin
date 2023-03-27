@@ -7,6 +7,7 @@ import IndividualHost from './components/hosts/individualHost';
 import Overview from './pages/overview/overview';
 import { isAuthenticated } from './utils/helpers';
 import { useState, useEffect } from 'react';
+import BookingList from './pages/@bookinglist/bookinglist';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/sign-in" element={<Login />} />
             <Route path='/' element={<Overview />} />
+            <Route path='booking-list' element={<BookingList />} />
             <Route path='/buisness' element={<BuisnessHost />} />
             <Route path='/overview' element={<Overview />} />
             <Route path='/individual' element={<IndividualHost />} />

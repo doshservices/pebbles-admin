@@ -5,8 +5,8 @@
 
 main {
     position: absolute;
-    width: calc(100% - 250px);
-    left: 240px;
+    width: calc(100% - 260px);
+    left: 260px;
     min-height: 100vh;
     transition: 0.5s;
 }

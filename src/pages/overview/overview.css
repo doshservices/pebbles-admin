@@ -1,11 +1,17 @@
 .overview {
-    padding: 2rem clamp(1rem, 4vw, 10rem);
+    padding: 2rem;
 }
 
 .overview-heading {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.overview-heading p {
+    margin: .6rem 0;
 }
 
 .overview-filter {
@@ -94,7 +100,7 @@
     box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
     border-radius: 8px;
     padding: 1rem;
-    flex-basis: 400px;
+    flex-basis: 350px;
     flex-grow: 1;
     height: 200px;
     display: flex;
@@ -112,7 +118,7 @@
     padding: .7rem;
 }
 
-.overview .total>div span {
+.overview .total>div button {
     color: #155EEF;
     font-size: .85rem;
     font-weight: 500;
