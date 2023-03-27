@@ -1,3 +1,16 @@
+.App {
+    position: relative;
+    width: 100%;
+}
+
+main {
+    position: absolute;
+    width: calc(100% - 250px);
+    left: 240px;
+    min-height: 100vh;
+    transition: 0.5s;
+}
+
 img {
     max-width: 100%;
 }
@@ -12,9 +25,4 @@ a {
 
 li {
     list-style: none;
-}
-
-.grid-col {
-    display: grid;
-    grid-template-columns: max-content 1fr;
 }

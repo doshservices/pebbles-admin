@@ -1,0 +1,119 @@
+.overview {
+    padding: 2rem clamp(1rem, 4vw, 10rem);
+}
+
+.overview-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.overview-filter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.overview-filter img {
+    cursor: pointer;
+}
+
+.overview-filter h5 {
+    font-size: 1rem;
+    color: hsl(0, 0%, 20%);
+    margin-bottom: 10px;
+}
+
+.overview>p {
+    color: #2D2D2D;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: .5rem 0;
+}
+
+.overview .total_amount {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.overview .total_amount>div {
+    color: white;
+    padding: 1.3rem;
+    flex-grow: 1;
+    flex-basis: 180px;
+    margin: auto;
+    max-width: 300px;
+    box-shadow: 1px 5px 10px rgba(45, 45, 45, 0.15);
+}
+
+.overview .total_amount>div p:nth-child(1) {
+    font-size: 1.5rem;
+    margin-bottom: .7rem;
+}
+
+.overview .total_amount>div p:nth-child(2) {
+    font-size: .9rem;
+}
+
+.overview .total_amount div:nth-child(1) {
+    background: linear-gradient(102.03deg, #046BA6 0%, #0096EB 100%);
+    border-radius: 10px;
+}
+
+.overview .total_amount div:nth-child(2) {
+    background: linear-gradient(101.5deg, #0A9A50 0%, #00C861 101.34%);
+    border-radius: 10px;
+}
+
+.overview .total_amount div:nth-child(3) {
+    background: linear-gradient(101.74deg, #C69014 0%, #DBB252 102.07%);
+    border-radius: 10px;
+}
+
+.overview .total_amount div:nth-child(4) {
+    background: linear-gradient(78.39deg, #FF5B3D 2.71%, rgba(233, 78, 50, 0.79) 98.86%);
+    border-radius: 10px;
+}
+
+
+.overview .total {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.overview .total>div {
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    padding: 1rem;
+    flex-basis: 400px;
+    flex-grow: 1;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.overview .total>div button {
+    border: 2px solid #155EEF;
+    border-radius: 4px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: .7rem;
+}
+
+.overview .total>div span {
+    color: #155EEF;
+    font-size: .85rem;
+    font-weight: 500;
+}

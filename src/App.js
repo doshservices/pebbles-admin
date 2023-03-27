@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/login';
-import SideNav from './components/sidenav';
+import SideNav from './components/@navigation/sidenav';
 import BuisnessHost from './components/hosts/buisnessHost';
 import IndividualHost from './components/hosts/individualHost';
-import OverviewNav from './components/overviewNav';
 import Overview from './pages/overview/overview';
 import { isAuthenticated } from './utils/helpers';
 import { useState, useEffect } from 'react';
@@ -21,13 +20,9 @@ function App() {
   }, [authenticated]);
   return (
     <BrowserRouter>
-      {showNav && <OverviewNav />
-      }
-      <div className='grid-col'>
-        <div>
-          {showNav && <SideNav />}
-        </div>
-        <div>
+      <div className='App'>
+        <SideNav />
+        <main>
           <Routes>
             <Route path="/sign-in" element={<Login />} />
             <Route path='/' element={<Overview />} />
@@ -36,7 +31,7 @@ function App() {
             <Route path='/individual' element={<IndividualHost />} />
             <Route path='/transactions' element={<IndividualHost />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </BrowserRouter >
   );
