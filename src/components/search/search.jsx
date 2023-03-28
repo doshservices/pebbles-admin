@@ -8,7 +8,6 @@ export const Search = (props) => {
         type={props.type}
         placeholder={props.placeholder}
         name={props.name}
-        aria-autocomplete="off"
       />
       <img src={searchicon} alt="search" />
     </div>

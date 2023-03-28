@@ -29,32 +29,32 @@ export const sideNavLinks = [
     },
     {
         id: 4,
-        name: 'Guests',
-        path: '/guests',
+        name: 'Users',
+        path: '/users',
         icon: guest
     },
     {
         id: 5,
         name: 'Analytics',
-        path: '/analytics',
+        path: 'analytics',
         icon: group
     },
     {
         id: 6,
         name: 'Reviews',
-        path: '/reviews',
+        path: 'reviews',
         icon: group
     },
     {
         id: 7,
-        name: 'Guest Details',
-        path: '/guest-details',
+        name: 'User Details',
+        path: 'user-details',
         icon: group
     },
     {
         id: 8,
         name: 'Messages',
-        path: '/messages',
+        path: 'messages',
         icon: group
     }
 ]

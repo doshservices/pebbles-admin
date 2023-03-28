@@ -1,18 +1,18 @@
-import "./bookinglist.css";
+import { Search } from "../../components/search/search";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
-import { Search } from "../../components/search/search";
+import "./users.css";
 
-const BookingList = () => {
+const Users = () => {
   return (
     <>
       <Search placeholder="Search here" />
-      <section className="booking-list">
-        <div className="booking-list-heading">
+      <section className="users">
+        <div className="users-list-heading">
           <div>
-            <h2>Bookings List</h2>
-            <p>This is your bookings list data</p>
+            <h2>Users</h2>
+            <p>List of all Users</p>
           </div>
           <button>
             <span>Filter</span>
@@ -100,4 +100,4 @@ const BookingList = () => {
   );
 };
 
-export default BookingList;
+export default Users;

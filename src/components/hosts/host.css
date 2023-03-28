@@ -1,4 +1,4 @@
-.host {
+/* .host {
     padding: 1rem 3rem;
 }
 
@@ -28,9 +28,7 @@ th {
 }
 
 td {
-    /* border-top: 1px solid hsl(253, 13%, 80%);
-    border-bottom: 1px solid hsl(253, 13%, 80%); */
-    /* border-collapse: collapse; */
+
     padding: .9rem 0;
     color: hsl(253, 13%, 30%);
     font-weight: 500;
@@ -40,7 +38,6 @@ td {
 
 table .actions {
     cursor: pointer;
-    /* background: hsl(0, 0%, 50%, .1); */
 }
 
 table .actions span {
@@ -52,9 +49,6 @@ table .actions span {
     margin: 3px auto;
 }
 
-/* tbody tr:nth-child(odd) { */
-/* background-color: hsl(0, 0%, 950%); */
-/* } */
 
 tbody {
     position: relative;
@@ -83,4 +77,4 @@ tbody .actions_options p:hover {
     font-size: 1rem;
     font-weight: 500;
     margin: 2rem;
-}
+} */

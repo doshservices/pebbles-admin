@@ -1,26 +1,26 @@
-.booking-list {
+.users {
     padding: 2rem;
 }
 
-.booking-list-heading {
+.users-list-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.booking-list-heading h2 {
+.users-list-heading h2 {
     color: #2D2D2D;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-.booking-list-heading p {
+.users-list-heading p {
     color: #2D2D2D;
     font-size: 1rem;
     font-weight: 500;
 }
 
-.booking-list-heading button {
+.users-list-heading button {
     background: #FFFFFF;
     box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
     border-radius: 8px;
@@ -33,19 +33,19 @@
     gap: .7rem;
 }
 
-.booking-list .table-section {
+.users .table-section {
     margin: 1rem 0;
     padding: 1rem 0;
     overflow-x: scroll;
 }
 
-.booking-list table {
+.users table {
     border-collapse: collapse;
     min-width: 1000px;
     margin: 25px 0;
 }
 
-.booking-list table thead th {
+.users table thead th {
     padding: 1rem;
     background: transparent;
     border: none;
@@ -53,7 +53,7 @@
     font-weight: 500;
 }
 
-.booking-list table thead tr {
+.users table thead tr {
     border: none;
     background-color: #3C79F2;
     border-radius: 10px;
@@ -61,13 +61,13 @@
     color: white;
 }
 
-.booking-list table th img {
+.users table th img {
     height: 17px;
     width: 17px;
     object-fit: cover;
 }
 
-.booking-list table tbody tr td {
+.users table tbody tr td {
     padding: 1rem .5rem;
     font-size: .8rem;
 }

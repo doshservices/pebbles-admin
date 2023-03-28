@@ -1,0 +1,85 @@
+.analytics {
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.analytics-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics-filter {
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+}
+
+.analytics-filter .profile {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: hsl(0, 0%, 60%);
+}
+
+.analytics-heading h2 {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.analytics-heading p {
+    color: #2D2D2D;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.analytics-category {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.analytics-category-type {
+    background: white;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 1
+}
+
+.analytics-category-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics .category-range {
+    background: #E7E7E7;
+    border-radius: 10px;
+    display: flex;
+}
+
+.analytics .category-range button {
+    background: transparent;
+    color: rgba(45, 45, 45, 0.8);
+    border-radius: 8px;
+    padding: .7rem 1rem;
+    font-size: .9rem;
+    font-weight: 600;
+    border: none;
+    flex-grow: 1;
+}
+
+.analytics .category-range .active-btn {
+    background: #155EEF;
+    color: white;
+}
