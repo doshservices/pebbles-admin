@@ -28,14 +28,14 @@ function App() {
         <SideNav />
         <main>
           <Routes>
-            <Route path="/sign-in" element={<Login />} />
             <Route path='/' element={<Overview />} />
+            <Route path="/sign-in" element={<Login />} />
+            <Route path='overview' element={<Overview />} />
             <Route path='booking-list' element={<BookingList />} />
             <Route path='users' element={<Users />} />
             <Route path='analytics' element={<Analytics />} />
             <Route path='user-details' element={<UserDetails />} />
             {/* <Route path='/buisness' element={<BuisnessHost />} />
-            <Route path='/overview' element={<Overview />} />
             <Route path='/individual' element={<IndividualHost />} />
             <Route path='/transactions' element={<IndividualHost />} /> */}
           </Routes>
