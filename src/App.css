@@ -26,3 +26,13 @@ a {
 li {
     list-style: none;
 }
+
+@media (max-width: 650px) {
+    main {
+        position: absolute;
+        width: 100%;
+        min-height: 100vh;
+        transition: 0.5s;
+        left: 0;
+    }
+}

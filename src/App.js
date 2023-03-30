@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import { isAuthenticated } from './utils/helpers';
 // import { useState, useEffect } from 'react';
 import Login from './pages/login';
-import SideNav from './components/@navigation/sidenav';
+import SideNav from './components/@navigation/sidenav/sidenav';
 import Overview from './pages/overview/overview';
 import BookingList from './pages/@bookinglist/bookinglist';
 import Users from './pages/@users/users';
 import Analytics from './pages/@analytics/analytics';
 import UserDetails from './pages/@userdetails/userDetails';
-// import BuisnessHost from './components/hosts/buisnessHost';
-// import IndividualHost from './components/hosts/individualHost';
 
 function App() {
 
@@ -35,9 +33,6 @@ function App() {
             <Route path='users' element={<Users />} />
             <Route path='analytics' element={<Analytics />} />
             <Route path='user-details' element={<UserDetails />} />
-            {/* <Route path='/buisness' element={<BuisnessHost />} />
-            <Route path='/individual' element={<IndividualHost />} />
-            <Route path='/transactions' element={<IndividualHost />} /> */}
           </Routes>
         </main>
       </div>
