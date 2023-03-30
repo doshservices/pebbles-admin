@@ -54,8 +54,8 @@
 .hamburger {
     display: none;
     width: fit-content;
-    position: absolute;
-    z-index: 1100;
+    position: fixed;
+    z-index: 900;
     top: .7rem;
     left: 1rem;
     cursor: pointer;
