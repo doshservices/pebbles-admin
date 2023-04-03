@@ -75,7 +75,7 @@
     font-weight: 500;
 }
 
-.booking-list table tbody tr .status {
+/* .booking-list table tbody tr .status {
     background: #D5E8DD;
     border-radius: 10px;
     color: #219653;
@@ -83,4 +83,4 @@
 
 .booking-list table tbody tr .options {
     position: relative;
-}
+} */

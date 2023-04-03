@@ -2,13 +2,13 @@ import "./bookinglist.css";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
-import { Search } from "../../components/search/search";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { Search } from "../../components/search/search";
+import { Options } from "../../components/options/options";
+import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { CssLoader } from "../../components/spinner/spinner";
-import { Details, Options } from "../../components/options/options";
+import { useEffect, useState } from "react";
 
 const BookingList = () => {
   const navigate = useNavigate()
@@ -16,10 +16,12 @@ const BookingList = () => {
   const authenticated = isAuthenticated();
 
   const [details, setDetails] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [listPerPage, setListPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
   const [option, setOption] = useState(false)
   const [error, setError] = useState("");
-  // console.log(details);
+  console.log(error);
 
   const totalBookings =
     "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
@@ -49,11 +51,20 @@ const BookingList = () => {
     fetchData();
   }, []);
 
+  const lastPostIndex = currentPage * listPerPage;
+  const firstPostIndex = lastPostIndex - listPerPage;
+  const currentPosts = details.slice(firstPostIndex, lastPostIndex)
+
   useEffect(() => {
     if (!authenticated) {
       navigate("/login");
     }
   }, [authenticated]);
+
+  const handleClick = (e, data) => {
+    // setData(data);
+    // setShowModal(!showModal);
+  };
 
   return (
     <>
@@ -70,6 +81,7 @@ const BookingList = () => {
           </button>
         </div>
         <section className="table-section">
+          {loading && <CssLoader />}
           <table>
             <thead>
               <tr>
@@ -97,17 +109,16 @@ const BookingList = () => {
                 </th>
               </tr>
             </thead>
-            {loading && <CssLoader />}
             {details.map((detail) => {
               return (
-                <tbody key={detail.id}>
+                <tbody key={detail._id}>
                   <tr>
-                    <td>{detail.apartmentId?.apartmentName}</td>
-                    <td>{detail.apartmentId?.apartmentCountry}</td>
-                    <td>{detail.apartmentId?.apartmentState}</td>
-                    <td>{detail.apartmentId?.address}</td>
-                    <td>{detail.apartmentId?.typeOfApartment}</td>
-                    <td className='status'>{detail.apartmentId?.status}</td>
+                    <td>{detail.apartmentId?.apartmentName ? detail.apartmentId?.apartmentName : 'N/A'}</td>
+                    <td>{detail.apartmentId?.apartmentCountry ? detail.apartmentId?.apartmentCountry : 'N/A'}</td>
+                    <td>{detail.apartmentId?.apartmentState ? detail.apartmentId?.apartmentState : 'N/A'}</td>
+                    <td>{detail.apartmentId?.address ? detail.apartmentId?.address : 'N/A'}</td>
+                    <td>{detail.apartmentId?.typeOfApartment ? detail.apartmentId?.typeOfApartment : 'N/A'}</td>
+                    <td className='status'>{detail.apartmentId?.status ? detail.apartmentId?.status : 'N/A'}</td>
                     <td className="options" onClick={() => setOption(!option)}>
                       <img src={options} alt="options" />
                       {option && <Options />}

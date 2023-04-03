@@ -1,17 +1,59 @@
-import { Search } from "../../components/search/search";
+import "./users.css";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
+import demoDp from './assets/demo.webp'
+import axios from "axios";
+import { Search } from "../../components/search/search";
+import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
-import "./users.css";
 import { isAuthenticated } from "../../utils/helpers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Users = () => {
 
   const navigate = useNavigate()
-
   const authenticated = isAuthenticated();
+
+  const users = 'https://pubblessignature-production.up.railway.app/api/users/all';
+  const authToken = JSON.parse(
+    localStorage.getItem("Pebbles__Super_Admin___toKen")
+  );
+  const [details, setDetails] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [option, setOption] = useState(false)
+  const [error, setError] = useState("");
+  console.log(details);
+
+  const fetchData = async () => {
+    setLoading(true)
+    await axios.get(users, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      },
+    })
+      .then((res) => {
+        setLoading(false)
+        console.log(res);
+        setDetails(res.data.data.users)
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.log(err);
+        setError(err.message);
+      });
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const recordsPerPage = 5;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = details.slice(firstIndex, lastIndex)
+  const nPage = Math.ceil(details.length / recordsPerPage)
+  const numbers = [...Array(nPage + 1).keys()].slice(1)
 
   useEffect(() => {
     if (!authenticated) {
@@ -38,20 +80,27 @@ const Users = () => {
             <thead>
               <tr>
                 <th>
-                  <span>User ID</span>
+                  <span>Photo</span>
                   <img src={expand} alt="expand" />
                 </th>
                 <th>
-                  <span>Join Date</span> <img src={expand} alt="expand" />
+                  <span>Country</span>
+                  <img src={expand} alt="expand" />
                 </th>
                 <th>
-                  <span>User Name</span> <img src={expand} alt="expand" />
+                  <span>State</span> <img src={expand} alt="expand" />
                 </th>
                 <th>
-                  <span>Address</span> <img src={expand} alt="expand" />
+                  <span>City</span> <img src={expand} alt="expand" />
                 </th>
                 <th>
-                  <span>Account Type</span> <img src={expand} alt="expand" />
+                  <span>Email</span> <img src={expand} alt="expand" />
+                </th>
+                <th>
+                  <span>Phone</span> <img src={expand} alt="expand" />
+                </th>
+                <th>
+                  <span>Role</span> <img src={expand} alt="expand" />
                 </th>
                 <th>
                   <span>Status</span> <img src={expand} alt="expand" />
@@ -61,57 +110,62 @@ const Users = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>#0123450</td>
-                <td>10 March 2023, 08:23 AM</td>
-                <td>Shai Hulud Fred Great</td>
-                <td>2 Shai Hulud Street, Shazam</td>
-                <td>Host (Basic)</td>
-                <td>Verified</td>
-                <td>
-                  <img src={options} alt="options" />
-                </td>
-              </tr>
-              <tr>
-                <td>#0123450</td>
-                <td>10 March 2023, 08:23 AM</td>
-                <td>Shai Hulud Fred Great</td>
-                <td>2 Shai Hulud Street, Shazam</td>
-                <td>Host (Basic)</td>
-                <td>Verified</td>
-                <td>
-                  <img src={options} alt="options" />
-                </td>
-              </tr>
-              <tr>
-                <td>#0123450</td>
-                <td>10 March 2023, 08:23 AM</td>
-                <td>Shai Hulud Fred Great</td>
-                <td>2 Shai Hulud Street, Shazam</td>
-                <td>Host (Basic)</td>
-                <td>Verified</td>
-                <td>
-                  <img src={options} alt="options" />
-                </td>
-              </tr>
-              <tr>
-                <td>#0123450</td>
-                <td>10 March 2023, 08:23 AM</td>
-                <td>Shai Hulud Fred Great</td>
-                <td>2 Shai Hulud Street, Shazam</td>
-                <td>Host (Basic)</td>
-                <td>Verified</td>
-                <td>
-                  <img src={options} alt="options" />
-                </td>
-              </tr>
-            </tbody>
+            <CssLoader />
+            {records.map((user) => {
+              return (
+                <tbody key={user._id}>
+                  <tr>
+                    <td>
+                      <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
+                    </td>
+                    <td>{user.country ? user.country : 'N/A'}</td>
+                    <td>{user.city ? user.city : 'N/A'}</td>
+                    <td>{user.state ? user.state : 'N/A'}</td>
+                    <td>{user.email ? user.email : 'N/A'}</td>
+                    <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
+                    <td>{user.role ? user.role : 'N/A'}</td>
+                    <td>{user.status ? user.status : 'N/A'}</td>
+                    <td>
+                      <img src={options} alt="options" />
+                    </td>
+                  </tr>
+                </tbody>
+              )
+            })}
           </table>
         </section>
+        {details && <div>
+          <ul className="pagination">
+            <li className="page-item">
+              <span className="page-link" onClick={prePage}>Prev</span>
+            </li>
+            {numbers.map((n, i) => {
+              <li className={`page-item ${currentPage === n ? 'active-bg' : ''}`} key={i}>
+                <span className="page-link" onClick={() => changeCurrentPage(n)}>{n}</span>
+                {console.log(n)}
+              </li>
+            })}
+            <li className="page-item">
+              <span className="page-link" onClick={nextPage}>Next</span>
+            </li>
+          </ul>
+        </div>}
       </section>
     </>
   );
+  function prePage() {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+  function changeCurrentPage(id) {
+    setCurrentPage(id)
+  }
+  function nextPage() {
+    if (currentPage !== nPage) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
 };
 
 export default Users;

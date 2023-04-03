@@ -68,6 +68,36 @@
 }
 
 .users table tbody tr td {
-    padding: 1rem .5rem;
+    padding: .5rem;
     font-size: .8rem;
+}
+
+.users table tbody tr td .demo-dp {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.users .pagination {
+    display: flex;
+    gap: 2rem;
+}
+
+.users .pagination li {
+    padding: 10px;
+    background: white;
+    color: #3C79F2;
+    border: 2px solid #3C79F2;
+    outline: 1px solid #aac3f5;
+    outline-offset: 2px;
+    border-radius: 10px;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.users .pagination .current {
+    background: #3C79F2;
+    color: white;
 }

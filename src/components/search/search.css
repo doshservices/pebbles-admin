@@ -6,7 +6,7 @@
     padding: .7rem 1rem;
     border: 0.5px solid #AAAAAA;
     border-radius: 8px;
-    margin: 1.5rem auto;
+    margin: 1.5rem auto 0 auto;
     width: clamp(200px, 100%, 400px);
 }
 
