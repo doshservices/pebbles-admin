@@ -2,9 +2,23 @@ import { Search } from "../../components/search/search";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
+import { useNavigate } from "react-router-dom";
 import "./users.css";
+import { isAuthenticated } from "../../utils/helpers";
+import { useEffect } from "react";
 
 const Users = () => {
+
+  const navigate = useNavigate()
+
+  const authenticated = isAuthenticated();
+
+  useEffect(() => {
+    if (!authenticated) {
+      navigate("/login");
+    }
+  }, [authenticated]);
+
   return (
     <>
       <Search placeholder="Search here" />

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import "./overview.css";
-import axios from "axios";
 import dropdown from "./assets/dropdown.svg";
 import { Search } from "../../components/search/search";
 import download from "./assets/download-icon.svg";
@@ -8,40 +6,22 @@ import TotalBookings from "../../components/totalamounts/bookings/bookings";
 import TotalCheckins from "../../components/totalamounts/totalchecks/checkins";
 import Checkouts from "../../components/totalamounts/totalchecks/checkouts";
 import Revenue from "../../components/totalamounts/revenue/revenue";
+import { isAuthenticated } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Overview = () => {
-  const [details, setDetails] = useState([]);
-  // console.log(details);
-  const [apiError, setApiError] = useState("");
-  // console.log(apiError);
-  //length of all bookings
-  const buisLength = details.length;
-  // console.log(buisLength);
+  const navigate = useNavigate()
 
-  const totalBookings =
-    "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
-  const authToken = JSON.parse(
-    localStorage.getItem("Pebbles__Super_Admin___toKen")
-  );
-  const fetchData = async () => {
-    await axios
-      .get(totalBookings, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setDetails(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        setApiError(err.message);
-      });
-  };
+  const authenticated = isAuthenticated();
+
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (!authenticated) {
+      navigate("/login");
+    }
+  }, [authenticated]);
+
+
   return (
     <>
       <Search type="search" placeholder="Search" name="search" />

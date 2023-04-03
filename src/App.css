@@ -3,6 +3,14 @@
     width: 100%;
 }
 
+.auth-hide {
+    display: none;
+}
+
+.auth-show {
+    display: block;
+}
+
 main {
     position: absolute;
     width: calc(100% - 260px);

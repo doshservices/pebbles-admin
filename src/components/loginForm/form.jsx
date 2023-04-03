@@ -4,7 +4,7 @@ import { Icon } from "react-icons-kit";
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { isAuthenticated } from "../../utils/helpers";
-import { CssLoader, Spinner } from "../spinner/spinner";
+import { CssLoader } from "../spinner/spinner";
 import axios from "axios";
 
 const LoginForm = () => {

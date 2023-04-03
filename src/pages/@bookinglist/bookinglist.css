@@ -1,11 +1,12 @@
 .booking-list {
-    padding: 2rem;
+    padding: 2rem 0 2rem 2rem;
 }
 
 .booking-list-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 2rem;
 }
 
 .booking-list-heading h2 {
@@ -68,6 +69,18 @@
 }
 
 .booking-list table tbody tr td {
-    padding: 1rem .5rem;
+    padding: 1rem;
     font-size: .8rem;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.booking-list table tbody tr .status {
+    background: #D5E8DD;
+    border-radius: 10px;
+    color: #219653;
+}
+
+.booking-list table tbody tr .options {
+    position: relative;
 }

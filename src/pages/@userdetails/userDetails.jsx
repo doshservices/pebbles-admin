@@ -1,11 +1,22 @@
 import { Search } from "../../components/search/search";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dropdown from "./assets/dropdown.svg";
 import profile from "./assets/user-profile.png";
 import "./userdetails.css";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../utils/helpers";
 
 const UserDetails = () => {
   const [typeRange, setTypeRange] = useState("Monthly");
+  const navigate = useNavigate()
+
+  const authenticated = isAuthenticated();
+
+  useEffect(() => {
+    if (!authenticated) {
+      navigate("/login");
+    }
+  }, [authenticated]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import "./sidenav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { addedServicesUrl, sideNavLinks } from "./navlinks";
 import logo from "../../../assets/logo.svg";
@@ -15,6 +15,7 @@ export const Hamburger = (props) => {
 };
 
 const SideNav = () => {
+
   const ref = useRef();
   const [showNav, setShowNav] = useState(false);
   useOnClickOutside(ref, () => setShowNav(false));
@@ -37,11 +38,20 @@ const SideNav = () => {
     }, [ref, handler]);
   }
 
+  const changeRoute = useNavigate()
+  const clearStorage = (e) => {
+    localStorage.removeItem('Pebbles__Super_Admin___iD')
+    localStorage.removeItem('Pebbles__Super_Admin___toKen')
+    changeRoute('/login')
+  }
+
   return (
     <>
       <Hamburger onClick={() => setShowNav(!showNav)} />
       <nav ref={ref} className={showNav ? "sidenav hide-side-nav" : "sidenav"}>
-        <img src={logo} alt="logo" className="logo" />
+        <Link to='/' onClick={() => setShowNav(!showNav)}>
+          <img src={logo} alt="logo" className="logo" />
+        </Link>
         <h3>Admin Dashboard</h3>
         {sideNavLinks.map((link) => {
           return (
@@ -75,6 +85,10 @@ const SideNav = () => {
               </ul>
             );
           })}
+          <button className="logout" onClick={clearStorage}>
+            <img height='20px' src={require('../icons/logout.png')} alt="logout" />
+            <span>Logout</span>
+          </button>
         </div>
       </nav>
     </>

@@ -2,7 +2,7 @@ export const sideNavLinks = [
     {
         id: 1,
         name: 'Overview',
-        path: 'overview',
+        path: '/',
         icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 2V4H12V2H16ZM6 2V8H2V2H6ZM16 10V16H12V10H16ZM6 14V16H2V14H6ZM18 0H10V6H18V0ZM8 0H0V10H8V0ZM18 8H10V18H18V8ZM8 12H0V18H8V12Z" fill="#2D2D2D" fillOpacity="0.7" />
         </svg>
@@ -17,15 +17,15 @@ export const sideNavLinks = [
         </svg>
 
     },
-    // {
-    //     id: 3,
-    //     name: 'Booking Details',
-    //     path: 'booking-details',
-    //     icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //         <path d="M14 8V0H4V4H0V18H8V14H10V18H18V8H14ZM4 16H2V14H4V16ZM4 12H2V10H4V12ZM4 8H2V6H4V8ZM8 12H6V10H8V12ZM8 8H6V6H8V8ZM8 4H6V2H8V4ZM12 12H10V10H12V12ZM12 8H10V6H12V8ZM12 4H10V2H12V4ZM16 16H14V14H16V16ZM16 12H14V10H16V12Z" fill="#2D2D2D" fillOpacity="0.7" />
-    //     </svg>
+    {
+        id: 3,
+        name: 'Booking Details',
+        path: 'booking-details',
+        icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 8V0H4V4H0V18H8V14H10V18H18V8H14ZM4 16H2V14H4V16ZM4 12H2V10H4V12ZM4 8H2V6H4V8ZM8 12H6V10H8V12ZM8 8H6V6H8V8ZM8 4H6V2H8V4ZM12 12H10V10H12V12ZM12 8H10V6H12V8ZM12 4H10V2H12V4ZM16 16H14V14H16V16ZM16 12H14V10H16V12Z" fill="#2D2D2D" fillOpacity="0.7" />
+        </svg>
 
-    // },
+    },
     {
         id: 4,
         name: 'Users',
@@ -37,6 +37,16 @@ export const sideNavLinks = [
     },
     {
         id: 5,
+        name: 'User Details',
+        path: 'user-details',
+        icon: <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 14V13.35C2 13.01 2.16 12.69 2.41 12.54C4.1 11.53 6.03 11 8 11C8.03 11 8.05 11 8.08 11.01C8.18 10.31 8.38 9.64 8.67 9.03C8.45 9.01 8.23 9 8 9C5.58 9 3.32 9.67 1.39 10.82C0.51 11.34 0 12.32 0 13.35V16H9.26C8.84 15.4 8.51 14.72 8.29 14H2Z" fill="#2D2D2D" fillOpacity="0.7" />
+            <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 2C9.1 2 10 2.9 10 4C10 5.1 9.1 6 8 6C6.9 6 6 5.1 6 4C6 2.9 6.9 2 8 2Z" fill="#2D2D2D" fillOpacity="0.7" />
+            <path d="M18.75 12C18.75 11.78 18.72 11.58 18.69 11.37L19.83 10.36L18.83 8.63L17.38 9.12C17.06 8.85 16.7 8.64 16.3 8.49L16 7H14L13.7 8.49C13.3 8.64 12.94 8.85 12.62 9.12L11.17 8.63L10.17 10.36L11.31 11.37C11.28 11.58 11.25 11.78 11.25 12C11.25 12.22 11.28 12.42 11.31 12.63L10.17 13.64L11.17 15.37L12.62 14.88C12.94 15.15 13.3 15.36 13.7 15.51L14 17H16L16.3 15.51C16.7 15.36 17.06 15.15 17.38 14.88L18.83 15.37L19.83 13.64L18.69 12.63C18.72 12.42 18.75 12.22 18.75 12ZM15 14C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10C16.1 10 17 10.9 17 12C17 13.1 16.1 14 15 14Z" fill="#2D2D2D" fillOpacity="0.7" />
+        </svg>
+    },
+    {
+        id: 6,
         name: 'Analytics',
         path: 'analytics',
         icon: <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,20 +57,9 @@ export const sideNavLinks = [
 
     },
     {
-        id: 6,
+        id: 7,
         name: 'Reviews',
         path: 'reviews',
-        icon: <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 14V13.35C2 13.01 2.16 12.69 2.41 12.54C4.1 11.53 6.03 11 8 11C8.03 11 8.05 11 8.08 11.01C8.18 10.31 8.38 9.64 8.67 9.03C8.45 9.01 8.23 9 8 9C5.58 9 3.32 9.67 1.39 10.82C0.51 11.34 0 12.32 0 13.35V16H9.26C8.84 15.4 8.51 14.72 8.29 14H2Z" fill="#2D2D2D" fillOpacity="0.7" />
-            <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 2C9.1 2 10 2.9 10 4C10 5.1 9.1 6 8 6C6.9 6 6 5.1 6 4C6 2.9 6.9 2 8 2Z" fill="#2D2D2D" fillOpacity="0.7" />
-            <path d="M18.75 12C18.75 11.78 18.72 11.58 18.69 11.37L19.83 10.36L18.83 8.63L17.38 9.12C17.06 8.85 16.7 8.64 16.3 8.49L16 7H14L13.7 8.49C13.3 8.64 12.94 8.85 12.62 9.12L11.17 8.63L10.17 10.36L11.31 11.37C11.28 11.58 11.25 11.78 11.25 12C11.25 12.22 11.28 12.42 11.31 12.63L10.17 13.64L11.17 15.37L12.62 14.88C12.94 15.15 13.3 15.36 13.7 15.51L14 17H16L16.3 15.51C16.7 15.36 17.06 15.15 17.38 14.88L18.83 15.37L19.83 13.64L18.69 12.63C18.72 12.42 18.75 12.22 18.75 12ZM15 14C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10C16.1 10 17 10.9 17 12C17 13.1 16.1 14 15 14Z" fill="#2D2D2D" fillOpacity="0.7" />
-        </svg>
-
-    },
-    {
-        id: 7,
-        name: 'User Details',
-        path: 'user-details',
         icon: <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 14V13.35C2 13.01 2.16 12.69 2.41 12.54C4.1 11.53 6.03 11 8 11C8.03 11 8.05 11 8.08 11.01C8.18 10.31 8.38 9.64 8.67 9.03C8.45 9.01 8.23 9 8 9C5.58 9 3.32 9.67 1.39 10.82C0.51 11.34 0 12.32 0 13.35V16H9.26C8.84 15.4 8.51 14.72 8.29 14H2Z" fill="#2D2D2D" fillOpacity="0.7" />
             <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 2C9.1 2 10 2.9 10 4C10 5.1 9.1 6 8 6C6.9 6 6 5.1 6 4C6 2.9 6.9 2 8 2Z" fill="#2D2D2D" fillOpacity="0.7" />

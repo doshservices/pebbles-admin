@@ -71,9 +71,23 @@
     background: hsla(0, 0%, 18%, 0.7);
 }
 
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    background: hsl(220, 87%, 69%);
+    font-weight: 600;
+    font-size: .9rem;
+    margin-bottom: 1.3rem;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+}
+
 @media (max-width: 650px) {
     .sidenav {
-        padding: 3.5rem 1.5rem 2rem 1.5rem;
         position: fixed;
         width: 260px;
         height: 100%;
