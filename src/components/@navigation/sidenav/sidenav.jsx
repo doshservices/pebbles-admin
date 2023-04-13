@@ -1,8 +1,9 @@
 import "./sidenav.css";
+import logo from "../../../assets/logo.svg";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { addedServicesUrl, sideNavLinks } from "./navlinks";
-import logo from "../../../assets/logo.svg";
+import { isAuthenticated } from "../../../utils/helpers";
 
 export const Hamburger = (props) => {
   return (
@@ -43,10 +44,18 @@ const SideNav = () => {
     localStorage.removeItem('Pebbles__Super_Admin___iD')
     localStorage.removeItem('Pebbles__Super_Admin___toKen')
     changeRoute('/login')
+    window.location.reload(true)
   }
+  const authenticated = isAuthenticated();
+  const [returnNav, setReturnNav] = useState('return-nav')
+  useEffect(() => {
+    if (!authenticated) {
+      setReturnNav('not-return-nav')
+    }
+  }, [authenticated]);
 
   return (
-    <>
+    <div className={returnNav}>
       <Hamburger onClick={() => setShowNav(!showNav)} />
       <nav ref={ref} className={showNav ? "sidenav hide-side-nav" : "sidenav"}>
         <Link to='/' onClick={() => setShowNav(!showNav)}>
@@ -91,7 +100,7 @@ const SideNav = () => {
           </button>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

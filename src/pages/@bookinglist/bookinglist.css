@@ -66,6 +66,7 @@
     height: 17px;
     width: 17px;
     object-fit: cover;
+    transform: translate(0, 4px);
 }
 
 .booking-list table tbody tr td {
@@ -73,6 +74,13 @@
     font-size: .8rem;
     text-transform: capitalize;
     font-weight: 500;
+    max-width: 180px;
+}
+
+.booking-list table tbody tr .options {
+    position: relative;
+    cursor: pointer;
+    padding-left: 2rem !important;
 }
 
 /* .booking-list table tbody tr .status {
@@ -80,7 +88,4 @@
     border-radius: 10px;
     color: #219653;
 }
-
-.booking-list table tbody tr .options {
-    position: relative;
-} */
+ */

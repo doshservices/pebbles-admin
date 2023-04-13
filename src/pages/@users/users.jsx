@@ -2,7 +2,7 @@ import "./users.css";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
-import demoDp from './assets/demo.webp'
+import demoDp from './assets/demo.webp';
 import axios from "axios";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
@@ -52,8 +52,8 @@ const Users = () => {
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = details.slice(firstIndex, lastIndex)
-  const nPage = Math.ceil(details.length / recordsPerPage)
-  const numbers = [...Array(nPage + 1).keys()].slice(1)
+  const npage = Math.ceil(details.length / recordsPerPage)
+  const numbers = [...Array(npage + 1).keys()].slice(1)
 
   useEffect(() => {
     if (!authenticated) {
@@ -76,6 +76,7 @@ const Users = () => {
           </button>
         </div>
         <section className="table-section">
+          {loading && <CssLoader />}
           <table>
             <thead>
               <tr>
@@ -110,7 +111,6 @@ const Users = () => {
                 </th>
               </tr>
             </thead>
-            <CssLoader />
             {records.map((user) => {
               return (
                 <tbody key={user._id}>
@@ -139,10 +139,9 @@ const Users = () => {
             <li className="page-item">
               <span className="page-link" onClick={prePage}>Prev</span>
             </li>
-            {numbers.map((n, i) => {
-              <li className={`page-item ${currentPage === n ? 'active-bg' : ''}`} key={i}>
-                <span className="page-link" onClick={() => changeCurrentPage(n)}>{n}</span>
-                {console.log(n)}
+            {numbers.map((number, i) => {
+              <li className={`page-item ${currentPage === number ? 'active-bg' : ''}`} key={i}>
+                <span className="page-link" onClick={() => changeCurrentPage(number)}>{number}</span>
               </li>
             })}
             <li className="page-item">
@@ -162,7 +161,7 @@ const Users = () => {
     setCurrentPage(id)
   }
   function nextPage() {
-    if (currentPage !== nPage) {
+    if (currentPage !== npage) {
       setCurrentPage(currentPage + 1)
     }
   }

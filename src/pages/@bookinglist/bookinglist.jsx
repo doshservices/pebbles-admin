@@ -16,10 +16,7 @@ const BookingList = () => {
   const authenticated = isAuthenticated();
 
   const [details, setDetails] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1)
-  const [listPerPage, setListPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
-  const [option, setOption] = useState(false)
   const [error, setError] = useState("");
   console.log(error);
 
@@ -51,20 +48,36 @@ const BookingList = () => {
     fetchData();
   }, []);
 
-  const lastPostIndex = currentPage * listPerPage;
-  const firstPostIndex = lastPostIndex - listPerPage;
-  const currentPosts = details.slice(firstPostIndex, lastPostIndex)
-
   useEffect(() => {
     if (!authenticated) {
       navigate("/login");
     }
   }, [authenticated]);
 
+  const [option, setOption] = useState({})
+  // console.log(Object.keys(option));
+
+
   const handleClick = (e, data) => {
-    // setData(data);
-    // setShowModal(!showModal);
+    const update = { ...option }
+    update[data._id] = !option[data._id]
+    setOption(update)
   };
+  const viewDetails = () => {
+    // sessionStorage.setItem("detail_un_id", JSON.stringify(Object.keys(option[0])));
+    // navigate('/booking-detail')
+  }
+
+  // const deleteApartment = () => {
+  //   console.log('deleted');
+  // }
+  const suspendApartment = () => {
+    // const id = sessionStorage.setItem("detail_un_id", JSON.stringify(Object.keys(option)));
+    // const newId = JSON.stringify(id)
+    // console.log(newId);
+    // const ids = sessionStorage.getItem("detail_un_id")
+    // console.log(ids);
+  }
 
   return (
     <>
@@ -81,53 +94,59 @@ const BookingList = () => {
           </button>
         </div>
         <section className="table-section">
+          <p>{error.message}</p>
           {loading && <CssLoader />}
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <span>Apartment Name</span>
-                  <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Country</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>State</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Address</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Type</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Status</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Options</span>
-                </th>
-              </tr>
-            </thead>
-            {details.map((detail) => {
-              return (
-                <tbody key={detail._id}>
-                  <tr>
-                    <td>{detail.apartmentId?.apartmentName ? detail.apartmentId?.apartmentName : 'N/A'}</td>
-                    <td>{detail.apartmentId?.apartmentCountry ? detail.apartmentId?.apartmentCountry : 'N/A'}</td>
-                    <td>{detail.apartmentId?.apartmentState ? detail.apartmentId?.apartmentState : 'N/A'}</td>
-                    <td>{detail.apartmentId?.address ? detail.apartmentId?.address : 'N/A'}</td>
-                    <td>{detail.apartmentId?.typeOfApartment ? detail.apartmentId?.typeOfApartment : 'N/A'}</td>
-                    <td className='status'>{detail.apartmentId?.status ? detail.apartmentId?.status : 'N/A'}</td>
-                    <td className="options" onClick={() => setOption(!option)}>
-                      <img src={options} alt="options" />
-                      {option && <Options />}
-                    </td>
-                  </tr>
-                </tbody>
-              )
-            })}
-          </table>
+          {details ?
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <span>Apartment Name</span>
+                    <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Country</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>State</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Address</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Type</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Status</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Options</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {details.map((detail, id) => {
+                  return (
+                    <tr key={id}>
+                      <td>{detail.apartmentId?.apartmentName ? detail.apartmentId?.apartmentName : 'N/A'}</td>
+                      <td>{detail.apartmentId?.apartmentCountry ? detail.apartmentId?.apartmentCountry : 'N/A'}</td>
+                      <td>{detail.apartmentId?.apartmentState ? detail.apartmentId?.apartmentState : 'N/A'}</td>
+                      <td>{detail.apartmentId?.address ? detail.apartmentId?.address : 'N/A'}</td>
+                      <td>{detail.apartmentId?.typeOfApartment ? detail.apartmentId?.typeOfApartment : 'N/A'}</td>
+                      <td className='status'>{detail.apartmentId?.status ? detail.apartmentId?.status : 'N/A'}</td>
+                      <td className="options" onClick={(e) => handleClick(e, detail)}>
+                        <img src={options} alt="options" />
+                        {option[detail._id] && <div className='option-details'>
+                          <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
+                          {/* <span onClick={deleteApartment}>Delete</span> */}
+                        </div>}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table> : <h2>No booking list found</h2>
+          }
         </section>
       </section>
     </>

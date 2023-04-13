@@ -9,15 +9,18 @@ import BookingList from './pages/@bookinglist/bookinglist';
 import Users from './pages/@users/users';
 import Analytics from './pages/@analytics/analytics';
 import UserDetails from './pages/@userdetails/userDetails';
+import BookingDetails from './pages/@bookinglist/bookingDetails/details';
 
 function App() {
 
   const authenticated = isAuthenticated();
   const [showNav, setShowNav] = useState(true)
+  const [mainClass, setMainClass] = useState('main')
 
   useEffect(() => {
     if (!authenticated) {
       setShowNav(false)
+      setMainClass('')
     }
   }, [authenticated]);
 
@@ -25,7 +28,7 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <SideNav />
-        <main>
+        <main className={mainClass}>
           <Routes>
             <Route path='/' element={<Overview />} />
             <Route path="/login" element={<Login />} />
@@ -33,6 +36,7 @@ function App() {
             <Route path='users' element={<Users />} />
             <Route path='analytics' element={<Analytics />} />
             <Route path='user-details' element={<UserDetails />} />
+            <Route path='booking-detail' element={<BookingDetails />} />
           </Routes>
         </main>
       </div>

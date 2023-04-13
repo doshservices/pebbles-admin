@@ -37,7 +37,6 @@ const LoginForm = () => {
     const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
 
     if (authToken && ID !== "") {
-      // console.log("NOT EMPTY!!!");
       navigate("/");
     }
     return;
@@ -59,7 +58,7 @@ const LoginForm = () => {
           console.log(response);
           const authToken = response.data.data.token;
           const authID = response.data.data.userDetails._id;
-
+          window.location.reload(true)
           handleSaveAuth(authID, authToken);
         })
         .catch((error) => {
