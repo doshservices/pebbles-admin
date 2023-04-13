@@ -11,7 +11,7 @@
     position: fixed;
     width: 260px;
     height: 100%;
-    transition: 0.5s;
+    transition: all 0.3s ease;
     overflow-x: hidden;
     z-index: 1000;
     background: white;

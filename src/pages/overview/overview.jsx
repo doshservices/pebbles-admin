@@ -9,6 +9,8 @@ import Revenue from "../../components/totalamounts/revenue/revenue";
 import { isAuthenticated } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import TotalUsers from "../../components/totalamounts/totalusers/users";
+import TotalHosts from "../../components/totalamounts/totalhosts/hosts";
 
 const Overview = () => {
   const navigate = useNavigate()
@@ -40,6 +42,8 @@ const Overview = () => {
           </div>
         </div>
         <section className="total_amount">
+          <TotalUsers />
+          <TotalHosts />
           <TotalBookings />
           <TotalCheckins />
           <Checkouts />

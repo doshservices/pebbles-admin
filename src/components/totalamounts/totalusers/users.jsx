@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { RespLoader } from "../../spinner/spinner";
 
-const TotalBookings = () => {
+const TotalUsers = () => {
     const [details, setDetails] = useState([]);
-    const [apiError, setApiError] = useState("");
     const [isloading, setIsLoading] = useState(false);
-    const buisLength = details.length;
+    const [apiError, setApiError] = useState("");
+    const usersLength = details.length;
 
-    const totalBookings =
-        "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
+    const users = 'https://pubblessignature-production.up.railway.app/api/users/all';
     const authToken = JSON.parse(
         localStorage.getItem("Pebbles__Super_Admin___toKen")
     );
     const fetchData = async () => {
         setIsLoading(true)
         await axios
-            .get(totalBookings, {
+            .get(users, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -24,7 +23,7 @@ const TotalBookings = () => {
             .then((res) => {
                 setIsLoading(false)
                 console.log(res);
-                setDetails(res.data.message);
+                setDetails(res.data.data.users);
             })
             .catch((err) => {
                 setIsLoading(false)
@@ -38,11 +37,12 @@ const TotalBookings = () => {
 
     return (
         <div>
-            {isloading ? <RespLoader /> : <>
-                {buisLength > 0 ? <p>{buisLength}</p> : <p>0</p>}
-            </>}
-            <p>Total Bookings</p>
+            {isloading ? <RespLoader />
+                : <>
+                    {usersLength > 0 ? <p>{usersLength}</p> : <p>0</p>}
+                </>}
+            <p>Total Users</p>
         </div>
     )
 }
-export default TotalBookings;
+export default TotalUsers;

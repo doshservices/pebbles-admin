@@ -125,7 +125,7 @@ const LoginForm = () => {
         id="email"
         type="email"
         placeholder="Enter your email"
-        className={formErrors.email ? "input-error" : ""}
+        className={formErrors.email ? "input-error mail" : "mail"}
       />
       <>{formErrors.email && <p className="error">{formErrors.email}</p>}</>
       <label htmlFor="password">Password</label>
