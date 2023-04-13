@@ -1,10 +1,10 @@
 import "./bookinglist.css";
+import './options.css'
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
 import axios from "axios";
 import { Search } from "../../components/search/search";
-import { Options } from "../../components/options/options";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
@@ -56,7 +56,6 @@ const BookingList = () => {
 
   const [option, setOption] = useState({})
   // console.log(Object.keys(option));
-
 
   const handleClick = (e, data) => {
     const update = { ...option }

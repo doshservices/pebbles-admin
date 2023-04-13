@@ -10,6 +10,7 @@ import Users from './pages/@users/users';
 import Analytics from './pages/@analytics/analytics';
 import UserDetails from './pages/@userdetails/userDetails';
 import BookingDetails from './pages/@bookinglist/bookingDetails/details';
+import Apartment from './pages/apartment/apartment';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <Route path='analytics' element={<Analytics />} />
             <Route path='user-details' element={<UserDetails />} />
             <Route path='booking-detail' element={<BookingDetails />} />
+            <Route path='apartment' element={<Apartment />} />
           </Routes>
         </main>
       </div>
