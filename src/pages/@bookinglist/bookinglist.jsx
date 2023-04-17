@@ -58,7 +58,7 @@ const BookingList = () => {
   console.log(option);
   for (const key in option) {
     console.log(key);
-    sessionStorage.setItem("d_un_Id", JSON.stringify(key));
+    sessionStorage.setItem("book_un_Id", JSON.stringify(key));
   }
 
   const handleClick = (e, data) => {

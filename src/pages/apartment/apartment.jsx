@@ -40,7 +40,7 @@ const Apartment = () => {
             .catch((err) => {
                 setLoading(false)
                 console.log(err);
-                setError(err.message);
+                setError(err.response.data.message);
             });
     };
     useEffect(() => {
@@ -118,7 +118,7 @@ const Apartment = () => {
                                     )
                                 })}
                             </tbody>
-                        </table>) : (<h2>No booking list found</h2>)
+                        </table>) : (<h2>{error}</h2>)
                     }
                 </section>
             </section>

@@ -1,16 +1,16 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { isAuthenticated } from './utils/helpers';
 import { useState, useEffect } from 'react';
-import Login from './pages/login';
-import SideNav from './components/@navigation/sidenav/sidenav';
-import Overview from './pages/overview/overview';
-import BookingList from './pages/@bookinglist/bookinglist';
-import Users from './pages/@users/users';
-import Analytics from './pages/@analytics/analytics';
-import UserDetails from './pages/@userdetails/userDetails';
+import { isAuthenticated } from './utils/helpers';
 import BookingDetails from './pages/@bookinglist/bookingDetails/details';
+import BookingList from './pages/@bookinglist/bookinglist';
+import UserDetails from './pages/@userdetails/userDetails';
+import Analytics from './pages/@analytics/analytics';
 import Apartment from './pages/apartment/apartment';
+import Overview from './pages/overview/overview';
+import SideNav from './components/@navigation/sidenav/sidenav';
+import Login from './pages/login';
+import Users from './pages/@users/users';
 
 function App() {
 

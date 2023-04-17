@@ -105,3 +105,9 @@
     background: #3C79F2;
     color: white;
 }
+
+.users table tbody tr .options {
+    position: relative;
+    cursor: pointer;
+    padding-left: 2rem !important;
+}

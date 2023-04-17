@@ -21,7 +21,6 @@ const Users = () => {
   );
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
-  const [option, setOption] = useState(false)
   const [error, setError] = useState("");
   console.log(details);
 
@@ -60,6 +59,26 @@ const Users = () => {
       navigate("/login");
     }
   }, [authenticated]);
+
+  const [option, setOption] = useState({})
+  console.log(option);
+  for (const key in option) {
+    console.log(key);
+    sessionStorage.setItem("user_un_Id", JSON.stringify(key));
+  }
+
+  const handleClick = (e, data) => {
+    const update = { ...option }
+    update[data._id] = !option[data._id]
+    setOption(update)
+  };
+  const viewDetails = () => {
+    navigate('/user-details')
+  }
+
+  const suspendApartment = () => {
+
+  }
 
   return (
     <>
@@ -112,9 +131,9 @@ const Users = () => {
                   </th>
                 </tr>
               </thead>
-              {records.map((user) => {
+              {records.map((user, id) => {
                 return (
-                  <tbody key={user._id}>
+                  <tbody key={id}>
                     <tr>
                       <td>
                         <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
@@ -126,8 +145,12 @@ const Users = () => {
                       <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
                       <td>{user.role ? user.role : 'N/A'}</td>
                       <td>{user.status ? user.status : 'N/A'}</td>
-                      <td>
+                      <td className="options" onClick={(e) => handleClick(e, user)}>
                         <img src={options} alt="options" />
+                        {option[user._id] && <div className='option-details'>
+                          <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
+                          {/* <span onClick={deleteApartment}>Delete</span> */}
+                        </div>}
                       </td>
                     </tr>
                   </tbody>
