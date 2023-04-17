@@ -77,62 +77,66 @@ const Users = () => {
         </div>
         <section className="table-section">
           {loading && <CssLoader />}
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <span>Photo</span>
-                  <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Country</span>
-                  <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>State</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>City</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Email</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Phone</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Role</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Status</span> <img src={expand} alt="expand" />
-                </th>
-                <th>
-                  <span>Options</span> <img src={expand} alt="expand" />
-                </th>
-              </tr>
-            </thead>
-            {records.map((user) => {
-              return (
-                <tbody key={user._id}>
-                  <tr>
-                    <td>
-                      <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
-                    </td>
-                    <td>{user.country ? user.country : 'N/A'}</td>
-                    <td>{user.city ? user.city : 'N/A'}</td>
-                    <td>{user.state ? user.state : 'N/A'}</td>
-                    <td>{user.email ? user.email : 'N/A'}</td>
-                    <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
-                    <td>{user.role ? user.role : 'N/A'}</td>
-                    <td>{user.status ? user.status : 'N/A'}</td>
-                    <td>
-                      <img src={options} alt="options" />
-                    </td>
-                  </tr>
-                </tbody>
-              )
-            })}
-          </table>
+          {details?.length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <span>Photo</span>
+                    <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Country</span>
+                    <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>State</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>City</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Email</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Phone</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Role</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Status</span> <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Options</span> <img src={expand} alt="expand" />
+                  </th>
+                </tr>
+              </thead>
+              {records.map((user) => {
+                return (
+                  <tbody key={user._id}>
+                    <tr>
+                      <td>
+                        <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
+                      </td>
+                      <td>{user.country ? user.country : 'N/A'}</td>
+                      <td>{user.city ? user.city : 'N/A'}</td>
+                      <td>{user.state ? user.state : 'N/A'}</td>
+                      <td>{user.email ? user.email : 'N/A'}</td>
+                      <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
+                      <td>{user.role ? user.role : 'N/A'}</td>
+                      <td>{user.status ? user.status : 'N/A'}</td>
+                      <td>
+                        <img src={options} alt="options" />
+                      </td>
+                    </tr>
+                  </tbody>
+                )
+              })}
+            </table>
+          ) : (
+            <h2>No users Found</h2>
+          )}
         </section>
         {details && <div>
           <ul className="pagination">

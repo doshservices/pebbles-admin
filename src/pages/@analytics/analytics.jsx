@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import dropdown from "./assets/dropdown.svg";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
+import { MostBooked } from "./mostBooked/booked";
 
 const Analytics = () => {
   const [typeRange, setTypeRange] = useState("Monthly");
@@ -67,36 +68,7 @@ const Analytics = () => {
               {typeRange === "Daily" && <p>Daily</p>}
             </section>
           </div>
-          <div className="analytics-category-type">
-            <div className="analytics-category-heading">
-              <h3>Most Booked Listings </h3>
-              <div className="category-range">
-                <button
-                  onClick={() => setTypeRange("Monthly")}
-                  className={typeRange === "Monthly" ? "active-btn" : ""}
-                >
-                  Monthly
-                </button>
-                <button
-                  onClick={() => setTypeRange("Weekly")}
-                  className={typeRange === "Weekly" ? "active-btn" : ""}
-                >
-                  Weekly
-                </button>
-                <button
-                  onClick={() => setTypeRange("Daily")}
-                  className={typeRange === "Daily" ? "active-btn" : ""}
-                >
-                  Daily
-                </button>
-              </div>
-            </div>
-            <section>
-              {typeRange === "Monthly" && <p>Monthly</p>}
-              {typeRange === "Weekly" && <p>Weekly</p>}
-              {typeRange === "Daily" && <p>Daily</p>}
-            </section>
-          </div>
+          <MostBooked />
           <div className="analytics-category-type">
             <div className="analytics-category-heading">
               <h3>Trendy Listings</h3>

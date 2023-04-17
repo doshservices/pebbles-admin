@@ -7,7 +7,7 @@ const TotalHosts = () => {
     const [resp, setResp] = useState([])
     console.log(resp);
     const [apiError, setApiError] = useState("");
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const totalHosts = details.length + resp.length;
 
     const totalBiusnessHosts =

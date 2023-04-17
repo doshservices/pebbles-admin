@@ -6,6 +6,7 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { isAuthenticated } from "../../utils/helpers";
 import { CssLoader } from "../spinner/spinner";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -56,6 +57,16 @@ const LoginForm = () => {
         .then((response) => {
           setLoading(false);
           console.log(response);
+          toast.success("Login Successful", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
           const authToken = response.data.data.token;
           const authID = response.data.data.userDetails._id;
           window.location.reload(true)
@@ -65,6 +76,16 @@ const LoginForm = () => {
           setLoading(false);
           console.log(error);
           setErr(error);
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
     } else {
       setFormErrors(checkTextFields);

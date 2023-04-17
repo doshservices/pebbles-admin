@@ -55,7 +55,11 @@ const BookingList = () => {
   }, [authenticated]);
 
   const [option, setOption] = useState({})
-  // console.log(Object.keys(option));
+  console.log(option);
+  for (const key in option) {
+    console.log(key);
+    sessionStorage.setItem("d_un_Id", JSON.stringify(key));
+  }
 
   const handleClick = (e, data) => {
     const update = { ...option }
@@ -63,19 +67,11 @@ const BookingList = () => {
     setOption(update)
   };
   const viewDetails = () => {
-    // sessionStorage.setItem("detail_un_id", JSON.stringify(Object.keys(option[0])));
-    // navigate('/booking-detail')
+
   }
 
-  // const deleteApartment = () => {
-  //   console.log('deleted');
-  // }
   const suspendApartment = () => {
-    // const id = sessionStorage.setItem("detail_un_id", JSON.stringify(Object.keys(option)));
-    // const newId = JSON.stringify(id)
-    // console.log(newId);
-    // const ids = sessionStorage.getItem("detail_un_id")
-    // console.log(ids);
+
   }
 
   return (
@@ -95,7 +91,7 @@ const BookingList = () => {
         <section className="table-section">
           <p>{error.message}</p>
           {loading && <CssLoader />}
-          {details ?
+          {details?.length > 0 ? (
             <table>
               <thead>
                 <tr>
@@ -144,7 +140,8 @@ const BookingList = () => {
                   )
                 })}
               </tbody>
-            </table> : <h2>No booking list found</h2>
+            </table>
+          ) : (<h2>{error}</h2>)
           }
         </section>
       </section>
