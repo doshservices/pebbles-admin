@@ -2,8 +2,8 @@ import "./bookinglist.css";
 import './options.css'
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
-import expand from "./assets/expand.svg";
 import axios from "axios";
+import expand from "./assets/expand.svg";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +96,7 @@ const BookingList = () => {
               <thead>
                 <tr>
                   <th>
-                    <span>Apartment Name</span>
+                    <span>Booking Name</span>
                     <img src={expand} alt="expand" />
                   </th>
                   <th>
@@ -133,7 +133,6 @@ const BookingList = () => {
                         <img src={options} alt="options" />
                         {option[detail._id] && <div className='option-details'>
                           <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
-                          {/* <span onClick={deleteApartment}>Delete</span> */}
                         </div>}
                       </td>
                     </tr>

@@ -16,6 +16,8 @@ const Overview = () => {
   const navigate = useNavigate()
 
   const authenticated = isAuthenticated();
+  const authName = JSON.parse(localStorage.getItem('user-name'))
+  console.log(authName);
 
   useEffect(() => {
     if (!authenticated) {
@@ -31,7 +33,7 @@ const Overview = () => {
         <div className="overview-heading">
           <div>
             <h2>Overview</h2>
-            <p>Hello Admin, Welcome back!</p>
+            <p>Hello {authName}, Welcome back!</p>
           </div>
           <div className="overview-filter">
             <div>

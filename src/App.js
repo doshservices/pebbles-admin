@@ -11,6 +11,7 @@ import Overview from './pages/overview/overview';
 import SideNav from './components/@navigation/sidenav/sidenav';
 import Login from './pages/login';
 import Users from './pages/@users/users';
+import Hosts from './pages/@hosts/host';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <Route path='user-details' element={<UserDetails />} />
             <Route path='booking-detail' element={<BookingDetails />} />
             <Route path='apartment' element={<Apartment />} />
+            <Route path='hosts' element={<Hosts />} />
           </Routes>
         </main>
       </div>

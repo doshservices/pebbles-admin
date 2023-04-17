@@ -28,11 +28,12 @@ const LoginForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSaveAuth = (id, token) => {
+  const handleSaveAuth = (id, token, authname) => {
     // logic for localStorage
     // Once logic is complete/ Navigate
     localStorage.setItem("Pebbles__Super_Admin___iD", JSON.stringify(id));
     localStorage.setItem("Pebbles__Super_Admin___toKen", JSON.stringify(token));
+    localStorage.setItem("user-name", JSON.stringify(authname))
 
     const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
     const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
@@ -70,8 +71,9 @@ const LoginForm = () => {
           });
           const authToken = response.data.data.token;
           const authID = response.data.data.userDetails._id;
+          const authName = response.data.data.userDetails.firstName;
           window.location.reload(true)
-          handleSaveAuth(authID, authToken);
+          handleSaveAuth(authID, authToken, authName);
         })
         .catch((error) => {
           setLoading(false);

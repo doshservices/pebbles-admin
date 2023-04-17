@@ -67,7 +67,7 @@ const Users = () => {
     sessionStorage.setItem("user_un_Id", JSON.stringify(key));
   }
 
-  const handleClick = (e, data) => {
+  const handleClick = (data) => {
     const update = { ...option }
     update[data._id] = !option[data._id]
     setOption(update)
