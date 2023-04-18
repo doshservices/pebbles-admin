@@ -52,14 +52,43 @@ const Apartment = () => {
             navigate("/login");
         }
     }, [authenticated]);
+
+    const [option, setOption] = useState({})
+    console.log(option);
+    for (const key in option) {
+        console.log(key);
+        sessionStorage.setItem("apar_un_Id", JSON.stringify(key));
+    }
+
+    const handleClick = (e, data) => {
+        const update = { ...option }
+        update[data._id] = !option[data._id]
+        setOption(update)
+    };
+    const viewDetails = () => {
+        navigate('/apartment-details')
+    }
+    const hostId = JSON.parse(sessionStorage.getItem('apar_un_Id'))
+    console.log(hostId);
+    const suspendApartment = () => {
+        // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
+        // const api = `${buisness}${hostId}`
+        // console.log(api);
+    }
+    const deleteApartment = () => {
+        // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
+        // const api = `${buisness}${hostId}`
+        // console.log(api);
+    }
+
     return (
         <>
             <Search placeholder="Search here" />
             <section className="apartment">
                 <div className="apartment-heading">
                     <div>
-                        <h2>Bookings List</h2>
-                        <p>This is your bookings list data</p>
+                        <h2>Apartment List</h2>
+                        <p>This is your apartment list data</p>
                     </div>
                     <button>
                         <span>Filter</span>
@@ -107,12 +136,12 @@ const Apartment = () => {
                                             <td>{detail.address ? detail.address : 'N/A'}</td>
                                             <td>{detail.typeOfApartment ? detail.typeOfApartment : 'N/A'}</td>
                                             <td className='status'>{detail.status ? detail.status : 'N/A'}</td>
-                                            <td className="options">
+                                            <td className="options" onClick={(e) => handleClick(e, detail)}>
                                                 <img src={options} alt="options" />
-                                                {/* {option[detail._id] && <div className='option-details'>
+                                                {option[detail._id] && <div className='option-details'>
                                                     <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
                                                     <span onClick={deleteApartment}>Delete</span>
-                                                </div>} */}
+                                                </div>}
                                             </td>
                                         </tr>
                                     )

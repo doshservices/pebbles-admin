@@ -65,10 +65,6 @@
     margin-bottom: .7rem;
 }
 
-.overview .total_amount>div p:nth-child(2) {
-    font-size: .9rem;
-}
-
 .overview .total_amount div:nth-child(1) {
     background: linear-gradient(102.03deg, #046BA6 0%, #0096EB 100%);
 }

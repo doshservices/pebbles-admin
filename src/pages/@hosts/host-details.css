@@ -1,0 +1,122 @@
+.host-details {
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.host-details-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.host-details-filter {
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+}
+
+.host-details-info {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.host-details-info>div {
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    flex-grow: 1;
+    flex-basis: 350px;
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+.host-details-info>div h3 {
+    color: #2D2D2D;
+    font-size: 1.1rem;
+}
+
+.host-details-filter .profile {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: hsl(0, 0%, 60%);
+}
+
+.host-details-heading h2 {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.host-details-heading p {
+    color: #2D2D2D;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.host-details-profile {
+    display: flex;
+    gap: 1rem;
+}
+
+.host-details-profile>img {
+    height: 100px;
+}
+
+.host-details-profile .member {
+    color: #155EEF;
+    font-size: .9rem;
+    font-weight: 600;
+    margin: .4rem 0;
+}
+
+.host-details-profile .address {
+    color: rgba(45, 45, 45, 0.6);
+    font-size: .8rem;
+    font-weight: 600;
+    margin: .4rem 0;
+}
+
+.host-details-profile .contact {
+    color: #2D2D2D;
+    font-size: .9rem;
+    font-weight: 600;
+    margin: .4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.host-details-profile h4 {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+}
+
+.host-details .category-range {
+    background: #E7E7E7;
+    border-radius: 10px;
+    display: flex;
+    height: fit-content;
+}
+
+.host-details .category-range button {
+    background: transparent;
+    color: rgba(45, 45, 45, 0.8);
+    border-radius: 8px;
+    padding: .7rem 1rem;
+    font-size: .9rem;
+    font-weight: 600;
+    border: none;
+    flex-grow: 1;
+}
+
+.host-details .category-range .active-btn {
+    background: #155EEF;
+    color: white;
+}

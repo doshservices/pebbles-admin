@@ -1,6 +1,6 @@
 import { Search } from "../../components/search/search";
 import './host.css';
-import dropdown from "./assets/dropdown.svg";
+// import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
@@ -55,16 +55,16 @@ export const Individual = () => {
     console.log(option);
     for (const key in option) {
         console.log(key);
-        sessionStorage.setItem("user_un_Id", JSON.stringify(key));
+        sessionStorage.setItem("ind_un_Id", JSON.stringify(key));
     }
 
-    const handleClick = (data) => {
+    const handleClick = (e, data) => {
         const update = { ...option }
         update[data._id] = !option[data._id]
         setOption(update)
     };
     const viewDetails = () => {
-        navigate('/user-details')
+        navigate('/host-details')
     }
 
     const suspendApartment = () => {
@@ -87,12 +87,6 @@ export const Individual = () => {
                                     <th>
                                         <span>Name</span>
                                         <img src={expand} alt="expand" />
-                                    </th>
-                                    <th>
-                                        <span>State</span> <img src={expand} alt="expand" />
-                                    </th>
-                                    <th>
-                                        <span>City</span> <img src={expand} alt="expand" />
                                     </th>
                                     <th>
                                         <span>Email</span> <img src={expand} alt="expand" />
@@ -119,8 +113,6 @@ export const Individual = () => {
                                                 <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
                                             </td>
                                             <td>{user.firstName ? user.firstName : 'N/A'} {user.lastName ? user.lastName : 'N/A'}</td>
-                                            <td>{user.city ? user.city : 'N/A'}</td>
-                                            <td>{user.state ? user.state : 'N/A'}</td>
                                             <td>{user.email ? user.email : 'N/A'}</td>
                                             <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
                                             <td>{user.role ? user.role : 'N/A'}</td>
@@ -129,7 +121,6 @@ export const Individual = () => {
                                                 <img src={options} alt="options" />
                                                 {option[user._id] && <div className='option-details'>
                                                     <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
-                                                    {/* <span onClick={deleteApartment}>Delete</span> */}
                                                 </div>}
                                             </td>
                                         </tr>

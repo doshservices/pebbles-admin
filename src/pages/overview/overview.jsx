@@ -35,13 +35,6 @@ const Overview = () => {
             <h2>Overview</h2>
             <p>Hello {authName}, Welcome back!</p>
           </div>
-          <div className="overview-filter">
-            <div>
-              <h5>Filter</h5>
-              <p>10 Mar 2023 - 10 Apr 2023</p>
-            </div>
-            <img src={dropdown} alt="filter" />
-          </div>
         </div>
         <section className="total_amount">
           <TotalUsers />
@@ -61,9 +54,6 @@ const Overview = () => {
               <img src={download} alt="download" />
               <span>Download Report</span>
             </button>
-          </div>
-          <div>
-            <h3>Total Revenue</h3>
           </div>
           <div>
             <h3>Customer Map</h3>

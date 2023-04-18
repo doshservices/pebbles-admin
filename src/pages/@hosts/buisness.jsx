@@ -1,6 +1,4 @@
-import { Search } from "../../components/search/search";
 import './host.css';
-import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
@@ -55,7 +53,7 @@ export const Buisness = () => {
     console.log(option);
     for (const key in option) {
         console.log(key);
-        sessionStorage.setItem("user_un_Id", JSON.stringify(key));
+        sessionStorage.setItem("buis_un_Id", JSON.stringify(key));
     }
 
     const handleClick = (data) => {
@@ -64,11 +62,14 @@ export const Buisness = () => {
         setOption(update)
     };
     const viewDetails = () => {
-        navigate('/user-details')
+        navigate('/host-details')
     }
-
-    const suspendApartment = () => {
-
+    const hostId = JSON.parse(sessionStorage.getItem('buis_un_Id'))
+    // console.log(hostId);
+    const verify = () => {
+        const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
+        const api = `${buisness}${hostId}`
+        console.log(api);
     }
 
     return (
@@ -88,12 +89,6 @@ export const Buisness = () => {
                                         <span>Name</span>
                                         <img src={expand} alt="expand" />
                                     </th>
-                                    {/* <th>
-                                        <span>State</span> <img src={expand} alt="expand" />
-                                    </th>
-                                    <th>
-                                        <span>City</span> <img src={expand} alt="expand" />
-                                    </th> */}
                                     <th>
                                         <span>Email</span> <img src={expand} alt="expand" />
                                     </th>
@@ -119,8 +114,6 @@ export const Buisness = () => {
                                                 <img height='40px' src={buisnesshost.profilePicture ? buisnesshost.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
                                             </td>
                                             <td>{buisnesshost.firstName ? buisnesshost.firstName : 'N/A'} {buisnesshost.lastName ? buisnesshost.lastName : 'N/A'}</td>
-                                            {/* <td>{buisnesshost.city ? buisnesshost.city : 'N/A'}</td> */}
-                                            {/* <td>{buisnesshost.state ? buisnesshost.state : 'N/A'}</td> */}
                                             <td>{buisnesshost.email ? buisnesshost.email : 'N/A'}</td>
                                             <td>{buisnesshost.phoneNumber ? buisnesshost.phoneNumber : 'N/A'}</td>
                                             <td>{buisnesshost.role ? buisnesshost.role : 'N/A'}</td>
@@ -128,8 +121,7 @@ export const Buisness = () => {
                                             <td className="options" onClick={(e) => handleClick(e, buisnesshost)}>
                                                 <img src={options} alt="options" />
                                                 {option[buisnesshost._id] && <div className='option-details'>
-                                                    <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
-                                                    {/* <span onClick={deleteApartment}>Delete</span> */}
+                                                    <span onClick={viewDetails}>View Details</span><span onClick={verify}>Suspend</span>
                                                 </div>}
                                             </td>
                                         </tr>

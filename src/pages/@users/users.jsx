@@ -46,20 +46,11 @@ const Users = () => {
     fetchData();
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const recordsPerPage = 5;
-  const lastIndex = currentPage * recordsPerPage;
-  const firstIndex = lastIndex - recordsPerPage;
-  const records = details.slice(firstIndex, lastIndex)
-  const npage = Math.ceil(details.length / recordsPerPage)
-  const numbers = [...Array(npage + 1).keys()].slice(1)
-
   useEffect(() => {
     if (!authenticated) {
       navigate("/login");
     }
   }, [authenticated]);
-
   const [option, setOption] = useState({})
   console.log(option);
   for (const key in option) {
@@ -67,7 +58,7 @@ const Users = () => {
     sessionStorage.setItem("user_un_Id", JSON.stringify(key));
   }
 
-  const handleClick = (data) => {
+  const handleClick = (e, data) => {
     const update = { ...option }
     update[data._id] = !option[data._id]
     setOption(update)
@@ -131,7 +122,7 @@ const Users = () => {
                   </th>
                 </tr>
               </thead>
-              {records.map((user, id) => {
+              {details.map((user, id) => {
                 return (
                   <tbody key={id}>
                     <tr>
@@ -149,7 +140,6 @@ const Users = () => {
                         <img src={options} alt="options" />
                         {option[user._id] && <div className='option-details'>
                           <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
-                          {/* <span onClick={deleteApartment}>Delete</span> */}
                         </div>}
                       </td>
                     </tr>
@@ -161,37 +151,9 @@ const Users = () => {
             <h2>No users Found</h2>
           )}
         </section>
-        {details && <div>
-          <ul className="pagination">
-            <li className="page-item">
-              <span className="page-link" onClick={prePage}>Prev</span>
-            </li>
-            {numbers.map((number, i) => {
-              <li className={`page-item ${currentPage === number ? 'active-bg' : ''}`} key={i}>
-                <span className="page-link" onClick={() => changeCurrentPage(number)}>{number}</span>
-              </li>
-            })}
-            <li className="page-item">
-              <span className="page-link" onClick={nextPage}>Next</span>
-            </li>
-          </ul>
-        </div>}
       </section>
     </>
   );
-  function prePage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1)
-    }
-  }
-  function changeCurrentPage(id) {
-    setCurrentPage(id)
-  }
-  function nextPage() {
-    if (currentPage !== npage) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
 };
 
 export default Users;

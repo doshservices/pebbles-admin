@@ -60,6 +60,7 @@
 .individual-host .table-section,
 .buisness-host .table-section {
     overflow-x: scroll;
+    padding-bottom: 3rem;
 }
 
 .host table {
