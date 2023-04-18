@@ -1,0 +1,44 @@
+.apartment-details {
+    padding: 2rem 1rem;
+}
+
+.apartment-details h3 {
+    color: #2D2D2D;
+    font-size: 1.3rem;
+}
+
+.apartment-details h4 {
+    color: #2D2D2D;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}
+
+.apartment-details .images>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.apartment-details .images figure {
+    flex-grow: 1;
+    flex-basis: 200px;
+    margin: 2rem 0;
+}
+
+.apartment-details .images img {
+    border-radius: 10px;
+}
+
+.apartment-details .details p {
+    font-size: .9rem;
+    margin: .5rem 0;
+    color: #2D2D2D;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.apartment-details .details p span {
+    font-weight: 700;
+    margin-right: 10px;
+}

@@ -140,7 +140,6 @@ const Apartment = () => {
                                                 <img src={options} alt="options" />
                                                 {option[detail._id] && <div className='option-details'>
                                                     <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
-                                                    <span onClick={deleteApartment}>Delete</span>
                                                 </div>}
                                             </td>
                                         </tr>
