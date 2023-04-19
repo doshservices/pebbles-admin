@@ -86,8 +86,8 @@ const ApartmentDetails = () => {
                         <p><span>Number of Toilets:</span> {details.numberOfToilets}</p>
                         <p><span>Apartment Info:</span> {details.apartmentInfo}</p>
                         {/* <p>{details.latitude}</p>
-                        <p>{details.longitude}</p>
-                        <p>{details.isAvailable}</p> */}
+                        <p>{details.longitude}</p> */}
+                        <p>{details.isAvailable === true ? 'Available' : 'Not Available'}</p>
                         <h4>Facilities</h4>
                         <p>{details.facilities?.[0]}</p>
                         <p>{details.facilities?.[1]}</p>

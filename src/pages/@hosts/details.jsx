@@ -1,6 +1,7 @@
 import './host-details.css';
 import axios from "axios";
 import dropdown from "./assets/dropdown.svg";
+import demoDp from './assets/demo.webp';
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from '../../utils/helpers';
 import { useState, useEffect } from "react";
@@ -70,7 +71,7 @@ export default function Details() {
             </div>
             <section className="host-details-info">
                 <div className="host-details-profile">
-                    <img src={details.profilePicture ? details.profilePicture : ''} alt="profile" />
+                    <img src={details.profilePicture ? details.profilePicture : demoDp} alt="profile" className='profile-pic' />
                     <div>
                         <div>
                             <h4>{details.firstName ? details.firstName : ''} {details.lastName ? details.lastName : ''}</h4>
