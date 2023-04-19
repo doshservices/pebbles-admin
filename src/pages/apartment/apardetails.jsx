@@ -4,10 +4,10 @@ import { isAuthenticated } from "../../utils/helpers";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './apardetails.css';
-import dropdown from "./assets/dropdown.svg";
-import options from "./assets/options.svg";
-import expand from "./assets/expand.svg";
-import { CssLoader } from "../../components/spinner/spinner";
+// import dropdown from "./assets/dropdown.svg";
+// import options from "./assets/options.svg";
+// import expand from "./assets/expand.svg";
+// import { CssLoader } from "../../components/spinner/spinner";
 
 const ApartmentDetails = () => {
     const navigate = useNavigate()
@@ -15,8 +15,8 @@ const ApartmentDetails = () => {
     const authenticated = isAuthenticated();
 
     const [details, setDetails] = useState([]);
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("");
+    // const [loading, setLoading] = useState(false)
+    // const [error, setError] = useState("");
     console.log(details);
 
     const aparId = JSON.parse(sessionStorage.getItem("apar_un_Id"));
@@ -27,7 +27,7 @@ const ApartmentDetails = () => {
         localStorage.getItem("Pebbles__Super_Admin___toKen")
     );
     const fetchData = async () => {
-        setLoading(true)
+        // setLoading(true)
         await axios
             .get(`${apartmentDetails}${aparId}`, {
                 headers: {
@@ -35,14 +35,14 @@ const ApartmentDetails = () => {
                 },
             })
             .then((res) => {
-                setLoading(false)
-                console.log(res);
+                // setLoading(false)
+                // console.log(res);
                 setDetails(res.data.data.apartment);
             })
             .catch((err) => {
-                setLoading(false)
-                console.log(err);
-                setError(err.response.data.message);
+                // setLoading(false)
+                // console.log(err);
+                // setError(err.response.data.message);
             });
     };
     useEffect(() => {
@@ -64,10 +64,10 @@ const ApartmentDetails = () => {
                     <h3>Apartment Images</h3>
                     <div>
                         <figure>
-                            <img src={details.apartmentImages?.[0]} />
+                            <img src={details.apartmentImages?.[0]} alt='' />
                         </figure>
                         <figure>
-                            <img src={details.apartmentImages?.[1]} />
+                            <img src={details.apartmentImages?.[1]} alt="" />
                         </figure>
                     </div>
                 </section>

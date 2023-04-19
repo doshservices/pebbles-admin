@@ -1,4 +1,4 @@
-import { Search } from "../../components/search/search";
+// import { Search } from "../../components/search/search";
 import './host.css';
 // import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
@@ -21,7 +21,7 @@ export const Individual = () => {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const fetchData = async () => {
         setLoading(true)
@@ -32,12 +32,12 @@ export const Individual = () => {
         })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.data.individualHost)
             })
             .catch((err) => {
                 setLoading(false)
-                console.log(err);
+                // console.log(err);
                 setError(err.message);
             });
     }
@@ -52,10 +52,10 @@ export const Individual = () => {
     }, [authenticated]);
 
     const [option, setOption] = useState({})
-    console.log(option);
+    // console.log(option);
     for (const key in option) {
-        console.log(key);
-        sessionStorage.setItem("ind_un_Id", JSON.stringify(key));
+        // console.log(key);
+        sessionStorage.setItem("host_un_Id", JSON.stringify(key));
     }
 
     const handleClick = (e, data) => {
@@ -67,8 +67,24 @@ export const Individual = () => {
         navigate('/host-details')
     }
 
-    const suspendApartment = () => {
+    const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
+    const api = `'https://pubblessignature-production.up.railway.app/api/admin/suspendhost?id=${id}'`
+    console.log(api);
 
+    const suspendHost = async (e) => {
+        e.preventDefault()
+        const headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`,
+        }
+        if (window.confirm('Are you sure you want to suspend Host?')) {
+            try {
+                const response = await axios.patch(api, { headers })
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
     return (
@@ -110,7 +126,7 @@ export const Individual = () => {
                                     <tbody key={id}>
                                         <tr>
                                             <td>
-                                                <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
+                                                <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile" className="demo-dp" />
                                             </td>
                                             <td>{user.firstName ? user.firstName : 'N/A'} {user.lastName ? user.lastName : 'N/A'}</td>
                                             <td>{user.email ? user.email : 'N/A'}</td>
@@ -120,7 +136,7 @@ export const Individual = () => {
                                             <td className="options" onClick={(e) => handleClick(e, user)}>
                                                 <img src={options} alt="options" />
                                                 {option[user._id] && <div className='option-details'>
-                                                    <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
+                                                    <span onClick={viewDetails}>View Details</span><span onClick={suspendHost}>Suspend</span>
                                                 </div>}
                                             </td>
                                         </tr>
@@ -129,7 +145,7 @@ export const Individual = () => {
                             })}
                         </table>
                     ) : (
-                        <h2>No Individual Hosts Found</h2>
+                        <h2>{error}</h2>
                     )}
                 </section>
             </section>

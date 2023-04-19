@@ -18,37 +18,35 @@ export default function Details() {
     }, [authenticated]);
 
     const [details, setDetails] = useState([]);
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("");
+    // const [loading, setLoading] = useState(false)
+    // const [error, setError] = useState("");
     console.log(details);
 
-    const userId = JSON.parse(sessionStorage.getItem('ind_un_Id'))
-    console.log(userId);
+    const userId = JSON.parse(sessionStorage.getItem('host_un_Id'))
 
     const api = 'https://pubblessignature-production.up.railway.app/api/users/';
     const userDetails = `${api}${userId}`
-    console.log(userDetails);
 
     const authToken = JSON.parse(
         localStorage.getItem("Pebbles__Super_Admin___toKen")
     );
 
     const fetchData = async () => {
-        setLoading(true)
+        // setLoading(true)
         await axios.get(userDetails, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             },
         })
             .then((res) => {
-                setLoading(false)
-                console.log(res);
+                // setLoading(false)
+                // console.log(res);
                 setDetails(res.data.data.user)
             })
             .catch((err) => {
-                setLoading(false)
-                console.log(err);
-                setError(err.message);
+                // setLoading(false)
+                // console.log(err);
+                // setError(err.message);
             });
     }
     useEffect(() => {
@@ -72,19 +70,25 @@ export default function Details() {
             </div>
             <section className="host-details-info">
                 <div className="host-details-profile">
-                    <img src='' alt="profile" />
+                    <img src={details.profilePicture ? details.profilePicture : ''} alt="profile" />
                     <div>
                         <div>
                             <h4>{details.firstName ? details.firstName : ''} {details.lastName ? details.lastName : ''}</h4>
                         </div>
-                        <p className="member">{details.role ? details.role : ''}</p>
-                        <p className="address">
-                            {details.status ? details.status : ''}
-                        </p>
+                        <p>Country: {details.country ? details.country : ''}</p>
+                        <p>City: {details.city ? details.city : ''}</p>
+                        <p>State: {details.state ? details.state : ''}</p>
+                        {details.validId && <img src={details.validId} alt="" />}
+
+                        <p></p>
+                        <p></p>
+                        <p className="member">Role: {details.role ? details.role : ''}</p>
+                        <p className="address">Status: {details.status ? details.status : ''}</p>
                         <div className="contact">
                             <p>{details.email ? details.email : ''}</p>
                             <p>{details.phoneNumber ? details.phoneNumber : ''}</p>
                         </div>
+                        <p>{details.isVerified === true ? 'Verified' : ''}</p>
                     </div>
                 </div>
             </section>

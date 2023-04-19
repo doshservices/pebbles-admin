@@ -20,8 +20,8 @@ const UserDetails = () => {
   }, [authenticated]);
 
   const [details, setDetails] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState("");
   console.log(details);
 
   const userId = JSON.parse(sessionStorage.getItem('user_un_Id'))
@@ -36,21 +36,21 @@ const UserDetails = () => {
   );
 
   const fetchData = async () => {
-    setLoading(true)
+    // setLoading(true)
     await axios.get(userDetails, {
       headers: {
         Authorization: `Bearer ${authToken}`
       },
     })
       .then((res) => {
-        setLoading(false)
-        console.log(res);
+        // setLoading(false)
+        // console.log(res);
         setDetails(res.data.data.user)
       })
       .catch((err) => {
-        setLoading(false)
-        console.log(err);
-        setError(err.message);
+        // setLoading(false)
+        // console.log(err);
+        // setError(err.message);
       });
   }
   useEffect(() => {

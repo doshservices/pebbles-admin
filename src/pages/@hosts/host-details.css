@@ -73,24 +73,28 @@
     color: #155EEF;
     font-size: .9rem;
     font-weight: 600;
-    margin: .4rem 0;
 }
 
 .host-details-profile .address {
     color: rgba(45, 45, 45, 0.6);
     font-size: .8rem;
     font-weight: 600;
-    margin: .4rem 0;
 }
 
 .host-details-profile .contact {
     color: #2D2D2D;
     font-size: .9rem;
     font-weight: 600;
-    margin: .4rem 0;
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: 1rem;
+}
+
+.host-details-profile p {
+    color: #2D2D2D;
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.5rem;
 }
 
 .host-details-profile h4 {

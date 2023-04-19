@@ -5,7 +5,7 @@ import { RespLoader } from "../../spinner/spinner";
 const TotalHosts = () => {
     const [details, setDetails] = useState([]);
     const [resp, setResp] = useState([])
-    console.log(resp);
+    // console.log(resp);
     const [apiError, setApiError] = useState("");
     const [loading, setLoading] = useState(false);
     const totalHosts = details.length + resp.length;
@@ -27,12 +27,12 @@ const TotalHosts = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.message);
             })
             .catch((err) => {
                 setLoading(false)
-                console.log(err);
+                // console.log(err);
                 setApiError(err.message);
             });
     };
@@ -44,11 +44,11 @@ const TotalHosts = () => {
                 },
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setResp(res.data.data.individualHost);
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 setApiError(err.message);
             });
     };
@@ -60,7 +60,7 @@ const TotalHosts = () => {
     return (
         <div>
             <RespLoader />
-            {loading ? <RespLoader /> : <>{totalHosts > 0 ? <p>{totalHosts}</p> : <p>0</p>}</>}
+            {loading ? <RespLoader /> : <>{totalHosts > 0 ? <p>{totalHosts}</p> : <p>{apiError}</p>}</>}
             <p>Total Hosts</p>
         </div>
     )

@@ -22,12 +22,12 @@ const TotalUsers = () => {
             })
             .then((res) => {
                 setIsLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.data.users);
             })
             .catch((err) => {
                 setIsLoading(false)
-                console.log(err);
+                // console.log(err);
                 setApiError(err.message);
             });
     };
@@ -39,7 +39,7 @@ const TotalUsers = () => {
         <div>
             {isloading ? <RespLoader />
                 : <>
-                    {usersLength > 0 ? <p>{usersLength}</p> : <p>0</p>}
+                    {usersLength > 0 ? <p>{usersLength}</p> : <p>{apiError}</p>}
                 </>}
             <p>Total Users</p>
         </div>

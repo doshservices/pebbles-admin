@@ -1,5 +1,5 @@
 import "./overview.css";
-import dropdown from "./assets/dropdown.svg";
+// import dropdown from "./assets/dropdown.svg";
 import { Search } from "../../components/search/search";
 import download from "./assets/download-icon.svg";
 import TotalBookings from "../../components/totalamounts/bookings/bookings";
@@ -17,7 +17,7 @@ const Overview = () => {
 
   const authenticated = isAuthenticated();
   const authName = JSON.parse(localStorage.getItem('user-name'))
-  console.log(authName);
+  // console.log(authName);
 
   useEffect(() => {
     if (!authenticated) {

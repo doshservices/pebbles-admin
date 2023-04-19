@@ -19,7 +19,7 @@ export const Buisness = () => {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const fetchData = async () => {
         setLoading(true)
@@ -30,12 +30,12 @@ export const Buisness = () => {
         })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.data.businessHost)
             })
             .catch((err) => {
                 setLoading(false)
-                console.log(err);
+                // console.log(err);
                 setError(err.message);
             });
     }
@@ -49,14 +49,15 @@ export const Buisness = () => {
         }
     }, [authenticated]);
 
+
     const [option, setOption] = useState({})
-    console.log(option);
+    // console.log(option);
     for (const key in option) {
-        console.log(key);
-        sessionStorage.setItem("buis_un_Id", JSON.stringify(key));
+        // console.log(key);
+        sessionStorage.setItem("host_un_Id", JSON.stringify(key));
     }
 
-    const handleClick = (data) => {
+    const handleClick = (e, data) => {
         const update = { ...option }
         update[data._id] = !option[data._id]
         setOption(update)
@@ -64,13 +65,13 @@ export const Buisness = () => {
     const viewDetails = () => {
         navigate('/host-details')
     }
-    const hostId = JSON.parse(sessionStorage.getItem('buis_un_Id'))
+    // const hostId = JSON.parse(sessionStorage.getItem('buis_un_Id'))
     // console.log(hostId);
-    const verify = () => {
-        const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
-        const api = `${buisness}${hostId}`
-        console.log(api);
-    }
+    // const verify = () => {
+    //     const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
+    //     const api = `${buisness}${hostId}`
+    //     // console.log(api);
+    // }
 
     return (
         <>
@@ -111,7 +112,7 @@ export const Buisness = () => {
                                     <tbody key={id}>
                                         <tr>
                                             <td>
-                                                <img height='40px' src={buisnesshost.profilePicture ? buisnesshost.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
+                                                <img height='40px' src={buisnesshost.profilePicture ? buisnesshost.profilePicture : demoDp} alt="profile" className="demo-dp" />
                                             </td>
                                             <td>{buisnesshost.firstName ? buisnesshost.firstName : 'N/A'} {buisnesshost.lastName ? buisnesshost.lastName : 'N/A'}</td>
                                             <td>{buisnesshost.email ? buisnesshost.email : 'N/A'}</td>
@@ -121,7 +122,7 @@ export const Buisness = () => {
                                             <td className="options" onClick={(e) => handleClick(e, buisnesshost)}>
                                                 <img src={options} alt="options" />
                                                 {option[buisnesshost._id] && <div className='option-details'>
-                                                    <span onClick={viewDetails}>View Details</span><span onClick={verify}>Suspend</span>
+                                                    <span onClick={viewDetails}>View Details</span><span>Suspend</span>
                                                 </div>}
                                             </td>
                                         </tr>
@@ -130,7 +131,7 @@ export const Buisness = () => {
                             })}
                         </table>
                     ) : (
-                        <h2>No users Business Host Found</h2>
+                        <h2>{error}</h2>
                     )}
                 </section>
             </section>

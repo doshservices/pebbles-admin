@@ -17,7 +17,7 @@ const Apartment = () => {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const totalBookings =
         "https://pubblessignature-production.up.railway.app/api/apartments/all-apartments";
@@ -34,12 +34,12 @@ const Apartment = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.data.apartments);
             })
             .catch((err) => {
                 setLoading(false)
-                console.log(err);
+                // console.log(err);
                 setError(err.response.data.message);
             });
     };
@@ -54,9 +54,9 @@ const Apartment = () => {
     }, [authenticated]);
 
     const [option, setOption] = useState({})
-    console.log(option);
+    // console.log(option);
     for (const key in option) {
-        console.log(key);
+        // console.log(key);
         sessionStorage.setItem("apar_un_Id", JSON.stringify(key));
     }
 
@@ -68,18 +68,18 @@ const Apartment = () => {
     const viewDetails = () => {
         navigate('/apartment-details')
     }
-    const hostId = JSON.parse(sessionStorage.getItem('apar_un_Id'))
-    console.log(hostId);
+    // const hostId = JSON.parse(sessionStorage.getItem('apar_un_Id'))
+    // console.log(hostId);
     const suspendApartment = () => {
         // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
         // const api = `${buisness}${hostId}`
         // console.log(api);
     }
-    const deleteApartment = () => {
-        // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
-        // const api = `${buisness}${hostId}`
-        // console.log(api);
-    }
+    // const deleteApartment = () => {
+    // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
+    // const api = `${buisness}${hostId}`
+    // console.log(api);
+    // }
 
     return (
         <>

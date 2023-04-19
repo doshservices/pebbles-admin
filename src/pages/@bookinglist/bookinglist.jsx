@@ -18,7 +18,7 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  console.log(error);
+  // console.log(error);
 
   const totalBookings =
     "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
@@ -35,12 +35,12 @@ const BookingList = () => {
       })
       .then((res) => {
         setLoading(false)
-        console.log(res);
+        // console.log(res);
         setDetails(res.data.message);
       })
       .catch((err) => {
         setLoading(false)
-        console.log(err);
+        // console.log(err);
         setError(err.message);
       });
   };
@@ -55,9 +55,9 @@ const BookingList = () => {
   }, [authenticated]);
 
   const [option, setOption] = useState({})
-  console.log(option);
+  // console.log(option);
   for (const key in option) {
-    console.log(key);
+    // console.log(key);
     sessionStorage.setItem("book_un_Id", JSON.stringify(key));
   }
 
@@ -70,9 +70,9 @@ const BookingList = () => {
 
   }
 
-  const suspendApartment = () => {
+  // const suspendApartment = () => {
 
-  }
+  // }
 
   return (
     <>
@@ -132,7 +132,8 @@ const BookingList = () => {
                       <td className="options" onClick={(e) => handleClick(e, detail)}>
                         <img src={options} alt="options" />
                         {option[detail._id] && <div className='option-details'>
-                          <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
+                          <span onClick={viewDetails}>View Details</span>
+                          {/* <span onClick={suspendApartment}>Suspend</span> */}
                         </div>}
                       </td>
                     </tr>

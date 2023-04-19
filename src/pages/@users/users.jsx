@@ -22,7 +22,7 @@ const Users = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  console.log(details);
+  // console.log(details);
 
   const fetchData = async () => {
     setLoading(true)
@@ -33,12 +33,12 @@ const Users = () => {
     })
       .then((res) => {
         setLoading(false)
-        console.log(res);
+        // console.log(res);
         setDetails(res.data.data.users)
       })
       .catch((err) => {
         setLoading(false)
-        console.log(err);
+        // console.log(err);
         setError(err.message);
       });
   }
@@ -52,9 +52,9 @@ const Users = () => {
     }
   }, [authenticated]);
   const [option, setOption] = useState({})
-  console.log(option);
+  // console.log(option);
   for (const key in option) {
-    console.log(key);
+    // console.log(key);
     sessionStorage.setItem("user_un_Id", JSON.stringify(key));
   }
 
@@ -67,9 +67,9 @@ const Users = () => {
     navigate('/user-details')
   }
 
-  const suspendApartment = () => {
+  // const suspendApartment = () => {
 
-  }
+  // }
 
   return (
     <>
@@ -127,7 +127,7 @@ const Users = () => {
                   <tbody key={id}>
                     <tr>
                       <td>
-                        <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile-photo" className="demo-dp" />
+                        <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile" className="demo-dp" />
                       </td>
                       <td>{user.country ? user.country : 'N/A'}</td>
                       <td>{user.city ? user.city : 'N/A'}</td>
@@ -139,7 +139,8 @@ const Users = () => {
                       <td className="options" onClick={(e) => handleClick(e, user)}>
                         <img src={options} alt="options" />
                         {option[user._id] && <div className='option-details'>
-                          <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
+                          <span onClick={viewDetails}>View Details</span>
+                          {/* <span onClick={suspendApartment}>Suspend</span> */}
                         </div>}
                       </td>
                     </tr>
@@ -148,7 +149,7 @@ const Users = () => {
               })}
             </table>
           ) : (
-            <h2>No users Found</h2>
+            <h2>{error}</h2>
           )}
         </section>
       </section>

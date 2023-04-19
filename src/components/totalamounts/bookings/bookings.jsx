@@ -23,12 +23,12 @@ const TotalBookings = () => {
             })
             .then((res) => {
                 setIsLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.message);
             })
             .catch((err) => {
                 setIsLoading(false)
-                console.log(err);
+                // console.log(err);
                 setApiError(err.message);
             });
     };
@@ -39,7 +39,7 @@ const TotalBookings = () => {
     return (
         <div>
             {isloading ? <RespLoader /> : <>
-                {buisLength > 0 ? <p>{buisLength}</p> : <p>0</p>}
+                {buisLength > 0 ? <p>{buisLength}</p> : <p>{apiError}</p>}
             </>}
             <p>Total Bookings</p>
         </div>
