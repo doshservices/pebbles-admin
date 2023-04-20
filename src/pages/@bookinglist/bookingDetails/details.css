@@ -1,0 +1,106 @@
+.booking-details {
+    padding: 2rem .5rem;
+}
+
+.booking-details h2 {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.booking-details h3 {
+    color: #2d2d2d;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.booking-details p {
+    color: #2d2d2d;
+    font-size: .9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 1.5rem;
+}
+
+.booking-details .logo {
+    height: 3.5rem;
+}
+
+.booking-details .info {
+    background: white;
+    padding: 1rem;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+}
+
+.booking-details .owner-info>div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.booking-details .owner-info h4 {
+    color: rgba(45, 45, 45, 0.5);
+    font-size: .9rem;
+}
+
+.booking-details .owner-info p {
+    color: #2d2d2d;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.booking-details .facilities {
+    margin: 1rem 0;
+}
+
+.booking-details .facilities li {
+    color: #2d2d2d;
+    font-size: .9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 1.5rem;
+    list-style: circle;
+    list-style-position: inside;
+}
+
+.booking-details .images {
+    display: flex;
+    overflow-x: scroll;
+    gap: 1rem;
+    margin: 2rem 0;
+    transition: all .3s ease;
+}
+
+.booking-details .images figure {
+    flex-shrink: 0;
+    flex-basis: 300px;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.booking-details .images img {
+    border-radius: 10px;
+}
+
+.grow>div {
+    margin: 1rem 0;
+}
+
+.scroller {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}

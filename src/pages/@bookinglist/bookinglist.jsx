@@ -18,7 +18,7 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  // console.log(error);
+  console.log(details);
 
   const totalBookings =
     "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
@@ -67,7 +67,7 @@ const BookingList = () => {
     setOption(update)
   };
   const viewDetails = () => {
-
+    navigate('/booking-detail')
   }
 
   // const suspendApartment = () => {
