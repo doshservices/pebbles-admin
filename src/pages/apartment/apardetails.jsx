@@ -4,10 +4,6 @@ import { isAuthenticated } from "../../utils/helpers";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './apardetails.css';
-// import dropdown from "./assets/dropdown.svg";
-// import options from "./assets/options.svg";
-// import expand from "./assets/expand.svg";
-// import { CssLoader } from "../../components/spinner/spinner";
 
 const ApartmentDetails = () => {
     const navigate = useNavigate()
@@ -17,7 +13,7 @@ const ApartmentDetails = () => {
     const [details, setDetails] = useState([]);
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const aparId = JSON.parse(sessionStorage.getItem("apar_un_Id"));
     // console.log(aparId);

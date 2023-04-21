@@ -21,7 +21,7 @@ export default function Details() {
     const [details, setDetails] = useState([]);
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const userId = JSON.parse(sessionStorage.getItem('host_un_Id'))
 
@@ -57,8 +57,8 @@ export default function Details() {
         <section className="host-details">
             <div className="host-details-heading">
                 <div>
-                    <h2>User</h2>
-                    <p>User Profile</p>
+                    <h2>Host</h2>
+                    <p>Host Profile</p>
                 </div>
                 <div className="host-details-filter">
                     <img className="profile" src="" alt="" />

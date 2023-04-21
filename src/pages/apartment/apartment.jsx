@@ -75,11 +75,6 @@ const Apartment = () => {
         // const api = `${buisness}${hostId}`
         // console.log(api);
     }
-    // const deleteApartment = () => {
-    // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
-    // const api = `${buisness}${hostId}`
-    // console.log(api);
-    // }
 
     return (
         <>

@@ -29,7 +29,7 @@ const BookingDetails = () => {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    console.log(details, error);
+    // console.log(details, error);
     const unId = JSON.parse(sessionStorage.getItem("book_un_Id"));
 
     const bookingDetail =
@@ -48,12 +48,12 @@ const BookingDetails = () => {
             })
             .then((res) => {
                 setLoading(false);
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.data.booking);
             })
             .catch((err) => {
                 setLoading(false);
-                console.log(err);
+                // console.log(err);
                 setError(err.message);
             });
     };
@@ -112,6 +112,25 @@ const BookingDetails = () => {
                             </div>
                         </div>
                     </div>
+                    {details.apartmentId?.apartmentImages && (
+                        <section style={{ position: "relative" }}>
+                            <div id="images-row" className="images">
+                                {details.apartmentId?.apartmentImages.map((img, index) => {
+                                    return (
+                                        <figure key={index}>
+                                            <img src={img} />
+                                        </figure>
+                                    );
+                                })}
+                            </div>
+                            {details.apartmentId?.apartmentImages.length > 1 && (
+                                <>
+                                    <ScrollBtn className="scroller left" onClick={slideLeft} />
+                                    <ScrollBtn className="scroller right" onClick={slideRight} />
+                                </>
+                            )}
+                        </section>
+                    )}
                     <div className="facilities">
                         <h3>Facilities</h3>
                         <ul>
@@ -172,26 +191,6 @@ const BookingDetails = () => {
                             <Info head="Status" paragraph={details.apartmentId?.status} />
                         </div>
                     </div>
-                    {details.apartmentId?.apartmentImages && (
-                        <section style={{ position: "relative" }}>
-                            <div id="images-row" className="images">
-                                {details.apartmentId?.apartmentImages.map((img, index) => {
-                                    return (
-                                        <figure key={index}>
-                                            <img src={img} />
-                                        </figure>
-                                    );
-                                })}
-                            </div>
-                            {details.apartmentId?.apartmentImages.length > 1 && (
-                                <>
-                                    <ScrollBtn className="scroller left" onClick={slideLeft} />
-                                    <ScrollBtn className="scroller right" onClick={slideRight} />
-                                </>
-                            )}
-                        </section>
-                    )}
-
                     <div className="grow" style={{ margin: "2rem 0" }}>
                         <Info head="Booking Amount" paragraph={details.bookingAmount} />
                         <Info head="Booking Status" paragraph={details.bookingStatus} />

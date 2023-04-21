@@ -1,6 +1,6 @@
 import "./userdetails.css";
 import axios from "axios";
-import profile from "./assets/user-profile.png";
+import demo from './assets/demo.webp';
 import dropdown from "./assets/dropdown.svg";
 import { Search } from "../../components/search/search";
 import { useNavigate } from "react-router-dom";
@@ -22,14 +22,14 @@ const UserDetails = () => {
   const [details, setDetails] = useState([]);
   // const [loading, setLoading] = useState(false)
   // const [error, setError] = useState("");
-  console.log(details);
+  // console.log(details);
 
   const userId = JSON.parse(sessionStorage.getItem('user_un_Id'))
-  console.log(userId);
+  // console.log(userId);
 
   const api = 'https://pubblessignature-production.up.railway.app/api/users/';
   const userDetails = `${api}${userId}`
-  console.log(userDetails);
+  // console.log(userDetails);
 
   const authToken = JSON.parse(
     localStorage.getItem("Pebbles__Super_Admin___toKen")
@@ -77,7 +77,7 @@ const UserDetails = () => {
         </div>
         <section className="user-details-info">
           <div className="user-details-profile">
-            <img src={profile} alt="profile" />
+            <img src={details.profilePicture ? details.profilePicture : demo} alt="profile" />
             <div>
               <div>
                 <h4>{details.firstName ? details.firstName : ''} {details.lastName ? details.lastName : ''}</h4>
@@ -85,6 +85,15 @@ const UserDetails = () => {
               <p className="member">{details.role ? details.role : ''}</p>
               <p className="address">
                 {details.status ? details.status : ''}
+              </p>
+              <p className="address">Country:  {details.country ? details.country : ''}
+              </p>
+              <p className="address">State:  {details.state ? details.state : ''}
+              </p>
+              <p className="address">City:  {details.city ? details.city : ''}
+              </p>
+              <p className="address">
+                {details.isVerified === true ? 'Verified' : ''}
               </p>
               <div className="contact">
                 <p>{details.email ? details.email : ''}</p>

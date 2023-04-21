@@ -69,7 +69,7 @@ export const Individual = () => {
 
     const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
     const api = `'https://pubblessignature-production.up.railway.app/api/admin/suspendhost?id=${id}'`
-    console.log(api);
+    // console.log(api);
 
     const suspendHost = async (e) => {
         e.preventDefault()

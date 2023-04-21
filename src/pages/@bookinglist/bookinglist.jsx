@@ -18,7 +18,7 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  console.log(details);
+  // console.log(details);
 
   const totalBookings =
     "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
@@ -70,10 +70,6 @@ const BookingList = () => {
     navigate('/booking-detail')
   }
 
-  // const suspendApartment = () => {
-
-  // }
-
   return (
     <>
       <Search placeholder="Search here" />
@@ -83,10 +79,6 @@ const BookingList = () => {
             <h2>Bookings List</h2>
             <p>This is your bookings list data</p>
           </div>
-          <button>
-            <span>Filter</span>
-            <img src={dropdown} alt="dropdown" />
-          </button>
         </div>
         <section className="table-section">
           <p>{error.message}</p>
@@ -145,6 +137,7 @@ const BookingList = () => {
           }
         </section>
       </section>
+
     </>
   );
 };
