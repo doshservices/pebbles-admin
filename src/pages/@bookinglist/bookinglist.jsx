@@ -9,6 +9,7 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
+import { Pagination } from "../../components/pagination/pagination";
 
 const BookingList = () => {
   const navigate = useNavigate()
@@ -70,6 +71,14 @@ const BookingList = () => {
     navigate('/booking-detail')
   }
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postPerPage] = useState(5)
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = details.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
   return (
     <>
       <Search placeholder="Search here" />
@@ -83,7 +92,7 @@ const BookingList = () => {
         <section className="table-section">
           <p>{error.message}</p>
           {loading && <CssLoader />}
-          {details?.length > 0 ? (
+          {currentPosts?.length > 0 ? (
             <table>
               <thead>
                 <tr>
@@ -112,7 +121,7 @@ const BookingList = () => {
                 </tr>
               </thead>
               <tbody>
-                {details.map((detail, id) => {
+                {currentPosts.map((detail, id) => {
                   return (
                     <tr key={id}>
                       <td>{detail.apartmentId?.apartmentName ? detail.apartmentId?.apartmentName : 'N/A'}</td>
@@ -136,8 +145,8 @@ const BookingList = () => {
           ) : (<h2>{error}</h2>)
           }
         </section>
+        <Pagination postPerPage={postPerPage} totalPosts={details.length} paginate={paginate} />
       </section>
-
     </>
   );
 };
