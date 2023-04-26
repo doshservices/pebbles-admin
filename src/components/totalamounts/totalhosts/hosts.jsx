@@ -11,7 +11,7 @@ const TotalHosts = () => {
     const totalHosts = details.length + resp.length;
 
     const totalBiusnessHosts =
-        "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
+        "https://pubblessignature-production.up.railway.app/api/admin/allbusiness";
     const individualHosts =
         "https://pubblessignature-production.up.railway.app/api/admin/allindividual";
     const authToken = JSON.parse(
@@ -27,7 +27,7 @@ const TotalHosts = () => {
             })
             .then((res) => {
                 setLoading(false)
-                // console.log(res);
+                console.log(res);
                 setDetails(res.data.message);
             })
             .catch((err) => {
@@ -44,7 +44,7 @@ const TotalHosts = () => {
                 },
             })
             .then((res) => {
-                // console.log(res);
+                console.log(res);
                 setResp(res.data.data.individualHost);
             })
             .catch((err) => {

@@ -1,6 +1,4 @@
-// import { Search } from "../../components/search/search";
 import './host.css';
-// import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
@@ -9,6 +7,7 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 export const Individual = () => {
     const navigate = useNavigate()
@@ -68,23 +67,135 @@ export const Individual = () => {
     }
 
     const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
-    const api = `'https://pubblessignature-production.up.railway.app/api/admin/suspendhost?id=${id}'`
-    // console.log(api);
+    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
 
     const suspendHost = async (e) => {
+        setLoading(true)
         e.preventDefault()
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`,
-        }
+
         if (window.confirm('Are you sure you want to suspend Host?')) {
-            try {
-                const response = await axios.patch(api, { headers })
-                console.log(response);
-            } catch (error) {
-                console.log(error);
-            }
+            await axios.patch(`${api}suspendhost?id=${id}`, {
+                id: id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    setLoading(false)
+                    toast.success("Host Suspended", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
         }
+    }
+    const verifyHost = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to Verify Host?')) {
+            await axios.patch(`${api}verifyhost?id=${id}`, {
+                id: id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    setLoading(false)
+                    console.log(response);
+                    toast.success("Host Verified", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        console.log(authToken)
+        setLoading(true)
+        if (window.confirm('Do you want to delete Host?')) {
+            await axios.delete(`${api}deleteAccount?id=${id}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    setLoading(false)
+                    toast.success("Host Deleted!", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+        window.location.reload()
     }
 
     return (
@@ -121,6 +232,7 @@ export const Individual = () => {
                                     </th>
                                 </tr>
                             </thead>
+                            <br />
                             {details.map((user, id) => {
                                 return (
                                     <tbody key={id}>
@@ -132,14 +244,18 @@ export const Individual = () => {
                                             <td>{user.email ? user.email : 'N/A'}</td>
                                             <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
                                             <td>{user.role ? user.role : 'N/A'}</td>
-                                            <td>{user.status ? user.status : 'N/A'}</td>
+                                            <td className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</td>
                                             <td className="options" onClick={(e) => handleClick(e, user)}>
                                                 <img src={options} alt="options" />
                                                 {option[user._id] && <div className='option-details'>
-                                                    <span onClick={viewDetails}>View Details</span><span onClick={suspendHost}>Suspend</span>
+                                                    <span onClick={viewDetails}>View Details</span>
+                                                    <span onClick={suspendHost}>Suspend</span>
+                                                    <span onClick={verifyHost}>Verify</span>
+                                                    <span onClick={deleteAccount}>Delete Host</span>
                                                 </div>}
                                             </td>
                                         </tr>
+                                        <br />
                                     </tbody>
                                 )
                             })}

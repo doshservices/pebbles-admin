@@ -23,7 +23,6 @@ const Users = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  // console.log(details);
 
   const fetchData = async () => {
     setLoading(true)

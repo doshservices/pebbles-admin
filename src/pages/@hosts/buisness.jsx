@@ -7,6 +7,7 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 export const Buisness = () => {
     const navigate = useNavigate()
@@ -65,13 +66,139 @@ export const Buisness = () => {
     const viewDetails = () => {
         navigate('/host-details')
     }
-    // const hostId = JSON.parse(sessionStorage.getItem('buis_un_Id'))
-    // console.log(hostId);
-    // const verify = () => {
-    //     const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
-    //     const api = `${buisness}${hostId}`
-    //     // console.log(api);
-    // }
+
+    const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
+    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
+
+    const suspendHost = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to suspend Host?')) {
+            await axios.patch(`${api}suspendhost?id=${id}`, {
+                id: id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    setLoading(false)
+                    console.log(response);
+                    toast.success("Host Suspended", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+    const verifyHost = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to Verify Host?')) {
+            await axios.patch(`${api}verifyhost?id=${id}`, {
+                id: id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    setLoading(false)
+                    console.log(response);
+                    toast.success("Host Verified", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        console.log(authToken)
+        setLoading(true)
+        if (window.confirm('Do you want to delete Host?')) {
+            await axios.delete(`${api}deleteAccount?id=${id}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    setLoading(false)
+                    toast.success("Host Deleted!", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    console.error(error);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+        window.location.reload()
+    }
+
 
     return (
         <>
@@ -122,7 +249,10 @@ export const Buisness = () => {
                                             <td className="options" onClick={(e) => handleClick(e, buisnesshost)}>
                                                 <img src={options} alt="options" />
                                                 {option[buisnesshost._id] && <div className='option-details'>
-                                                    <span onClick={viewDetails}>View Details</span><span>Suspend</span>
+                                                    <span onClick={viewDetails}>View Details</span>
+                                                    <span onClick={suspendHost}>Suspend</span>
+                                                    <span onClick={verifyHost}>Verify</span>
+                                                    <span onClick={deleteAccount}>Delete Host</span>
                                                 </div>}
                                             </td>
                                         </tr>
