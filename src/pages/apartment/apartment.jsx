@@ -8,6 +8,7 @@ import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import expand from "./assets/expand.svg";
 import { CssLoader } from "../../components/spinner/spinner";
+import { toast } from "react-toastify";
 
 const Apartment = () => {
     const navigate = useNavigate()
@@ -68,12 +69,52 @@ const Apartment = () => {
     const viewDetails = () => {
         navigate('/apartment-details')
     }
-    // const hostId = JSON.parse(sessionStorage.getItem('apar_un_Id'))
-    // console.log(hostId);
-    const suspendApartment = () => {
-        // const buisness = 'https://pubblessignature-production.up.railway.app/api/verifyhost?id='
-        // const api = `${buisness}${hostId}`
-        // console.log(api);
+    const id = JSON.parse(sessionStorage.getItem('apar_un_Id'))
+    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
+
+    const suspendApartment = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to suspend Host?')) {
+            await axios.patch(`${api}suspendApartment?apartmentId=${id}`, {
+                id: id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // console.log(response);
+                    setLoading(false)
+                    toast.success("Apartment Suspended", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    // console.error(error);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+        // window.location.reload()
     }
 
     return (
@@ -130,7 +171,7 @@ const Apartment = () => {
                                             <td>{detail.apartmentState ? detail.apartmentState : 'N/A'}</td>
                                             <td>{detail.address ? detail.address : 'N/A'}</td>
                                             <td>{detail.typeOfApartment ? detail.typeOfApartment : 'N/A'}</td>
-                                            <td className='status'>{detail.status ? detail.status : 'N/A'}</td>
+                                            <td><span className={detail.status === 'ACTIVE' ? 'act' : 'sus'}>{detail.status ? detail.status : 'N/A'}</span></td>
                                             <td className="options" onClick={(e) => handleClick(e, detail)}>
                                                 <img src={options} alt="options" />
                                                 {option[detail._id] && <div className='option-details'>

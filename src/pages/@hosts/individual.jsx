@@ -51,7 +51,7 @@ export const Individual = () => {
     }, [authenticated]);
 
     const [option, setOption] = useState({})
-    // console.log(option);
+    console.log(option);
     for (const key in option) {
         // console.log(key);
         sessionStorage.setItem("host_un_Id", JSON.stringify(key));
@@ -83,7 +83,7 @@ export const Individual = () => {
                 }
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     setLoading(false)
                     toast.success("Host Suspended", {
                         position: "top-right",
@@ -98,7 +98,7 @@ export const Individual = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response, {
                         position: "top-right",
                         autoClose: 5000,
@@ -111,6 +111,7 @@ export const Individual = () => {
                     });
                 });
         }
+        window.location.reload()
     }
     const verifyHost = async (e) => {
         setLoading(true)
@@ -127,7 +128,7 @@ export const Individual = () => {
             })
                 .then(response => {
                     setLoading(false)
-                    console.log(response);
+                    // console.log(response);
                     toast.success("Host Verified", {
                         position: "top-right",
                         autoClose: 5000,
@@ -141,7 +142,7 @@ export const Individual = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response, {
                         position: "top-right",
                         autoClose: 5000,
@@ -154,10 +155,12 @@ export const Individual = () => {
                     });
                 });
         }
+        window.location.reload()
+
     }
     const deleteAccount = async (e) => {
         e.preventDefault()
-        console.log(authToken)
+        // console.log(authToken)
         setLoading(true)
         if (window.confirm('Do you want to delete Host?')) {
             await axios.delete(`${api}deleteAccount?id=${id}`, {
@@ -167,7 +170,7 @@ export const Individual = () => {
                 }
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     setLoading(false)
                     toast.success("Host Deleted!", {
                         position: "top-right",
@@ -182,7 +185,7 @@ export const Individual = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response.data.message, {
                         position: "top-right",
                         autoClose: 5000,
@@ -228,11 +231,13 @@ export const Individual = () => {
                                         <span>Status</span> <img src={expand} alt="expand" />
                                     </th>
                                     <th>
+                                        <span>Verification</span> <img src={expand} alt="expand" />
+                                    </th>
+                                    <th>
                                         <span>Options</span> <img src={expand} alt="expand" />
                                     </th>
                                 </tr>
                             </thead>
-                            <br />
                             {details.map((user, id) => {
                                 return (
                                     <tbody key={id}>
@@ -244,7 +249,8 @@ export const Individual = () => {
                                             <td>{user.email ? user.email : 'N/A'}</td>
                                             <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
                                             <td>{user.role ? user.role : 'N/A'}</td>
-                                            <td className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</td>
+                                            <td>{user.status ? user.status : 'N/A'}</td>
+                                            <td><span className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</span></td>
                                             <td className="options" onClick={(e) => handleClick(e, user)}>
                                                 <img src={options} alt="options" />
                                                 {option[user._id] && <div className='option-details'>
@@ -255,7 +261,6 @@ export const Individual = () => {
                                                 </div>}
                                             </td>
                                         </tr>
-                                        <br />
                                     </tbody>
                                 )
                             })}

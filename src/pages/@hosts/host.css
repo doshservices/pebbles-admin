@@ -60,7 +60,7 @@
 .individual-host .table-section,
 .buisness-host .table-section {
     overflow-x: scroll;
-    padding-bottom: 3rem;
+    padding-bottom: 7rem;
 }
 
 .host table {
@@ -70,7 +70,7 @@
 }
 
 .host table thead th {
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
     background: transparent;
     border: none;
     font-size: .8rem;
@@ -93,11 +93,11 @@
 }
 
 .host table tbody tr td {
-    padding: 0rem 1rem;
+    max-width: 180px;
     font-size: .8rem;
     text-transform: capitalize;
     font-weight: 500;
-    max-width: 180px;
+    padding-left: 1rem;
 }
 
 .host table tbody tr td .demo-dp {
@@ -114,6 +114,10 @@
     font-size: .9rem;
     font-weight: 500;
     border-radius: 16px;
+    margin: .5rem 0;
+    padding: .7rem 1rem;
+    display: inline-block;
+    width: 80%;
 }
 
 .host .pending {
@@ -123,6 +127,10 @@
     font-size: .9rem;
     font-weight: 500;
     border-radius: 16px;
+    margin: .5rem 0;
+    padding: .7rem 1rem;
+    display: inline-block;
+    width: 80%;
 }
 
 .host .pagination {

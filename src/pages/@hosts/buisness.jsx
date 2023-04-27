@@ -85,7 +85,7 @@ export const Buisness = () => {
             })
                 .then(response => {
                     setLoading(false)
-                    console.log(response);
+                    // console.log(response);
                     toast.success("Host Suspended", {
                         position: "top-right",
                         autoClose: 5000,
@@ -99,7 +99,7 @@ export const Buisness = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response, {
                         position: "top-right",
                         autoClose: 5000,
@@ -112,6 +112,8 @@ export const Buisness = () => {
                     });
                 });
         }
+        window.location.reload()
+
     }
     const verifyHost = async (e) => {
         setLoading(true)
@@ -128,7 +130,7 @@ export const Buisness = () => {
             })
                 .then(response => {
                     setLoading(false)
-                    console.log(response);
+                    // console.log(response);
                     toast.success("Host Verified", {
                         position: "top-right",
                         autoClose: 5000,
@@ -142,7 +144,7 @@ export const Buisness = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response, {
                         position: "top-right",
                         autoClose: 5000,
@@ -155,6 +157,8 @@ export const Buisness = () => {
                     });
                 });
         }
+        window.location.reload()
+
     }
     const deleteAccount = async (e) => {
         e.preventDefault()
@@ -168,7 +172,7 @@ export const Buisness = () => {
                 }
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     setLoading(false)
                     toast.success("Host Deleted!", {
                         position: "top-right",
@@ -183,7 +187,7 @@ export const Buisness = () => {
                 })
                 .catch(error => {
                     setLoading(false)
-                    console.error(error);
+                    // console.error(error);
                     toast.error(error.response.data.message, {
                         position: "top-right",
                         autoClose: 5000,
@@ -230,6 +234,9 @@ export const Buisness = () => {
                                         <span>Status</span> <img src={expand} alt="expand" />
                                     </th>
                                     <th>
+                                        <span>Verification</span> <img src={expand} alt="expand" />
+                                    </th>
+                                    <th>
                                         <span>Options</span> <img src={expand} alt="expand" />
                                     </th>
                                 </tr>
@@ -246,6 +253,7 @@ export const Buisness = () => {
                                             <td>{buisnesshost.phoneNumber ? buisnesshost.phoneNumber : 'N/A'}</td>
                                             <td>{buisnesshost.role ? buisnesshost.role : 'N/A'}</td>
                                             <td>{buisnesshost.status ? buisnesshost.status : 'N/A'}</td>
+                                            <td><span className={buisnesshost.isVerified === true ? 'verified' : 'pending'}>{buisnesshost.isVerified === true ? 'Verified' : 'Pending'}</span></td>
                                             <td className="options" onClick={(e) => handleClick(e, buisnesshost)}>
                                                 <img src={options} alt="options" />
                                                 {option[buisnesshost._id] && <div className='option-details'>
@@ -253,7 +261,8 @@ export const Buisness = () => {
                                                     <span onClick={suspendHost}>Suspend</span>
                                                     <span onClick={verifyHost}>Verify</span>
                                                     <span onClick={deleteAccount}>Delete Host</span>
-                                                </div>}
+                                                </div>
+                                                }
                                             </td>
                                         </tr>
                                     </tbody>

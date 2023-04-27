@@ -1,6 +1,5 @@
 import "./bookinglist.css";
 import './options.css'
-import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import axios from "axios";
 import expand from "./assets/expand.svg";
