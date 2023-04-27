@@ -1,7 +1,6 @@
 import "./users.css";
 import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
-import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
 import axios from "axios";
 import { Search } from "../../components/search/search";
@@ -10,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
 import { Pagination } from "../../components/pagination/pagination";
+import { toast } from 'react-toastify';
 
 const Users = () => {
 
@@ -21,6 +21,7 @@ const Users = () => {
     localStorage.getItem("Pebbles__Super_Admin___toKen")
   );
   const [details, setDetails] = useState([]);
+  // console.log(details);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
 
@@ -54,7 +55,7 @@ const Users = () => {
   const [option, setOption] = useState({})
   // console.log(option);
   for (const key in option) {
-    // console.log(key);
+    console.log(key);
     sessionStorage.setItem("user_un_Id", JSON.stringify(key));
   }
 
@@ -66,23 +67,164 @@ const Users = () => {
   const viewDetails = () => {
     navigate('/user-details')
   }
+  const id = JSON.parse(sessionStorage.getItem('user_un_Id'))
+  const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
 
-  // const suspendApartment = () => {
+  const suspendUser = async (e) => {
+    setLoading(true)
+    e.preventDefault()
 
-  // }
+    if (window.confirm('Are you sure you want to suspend User?')) {
+      await axios.patch(`${api}suspendhost?id=${id}`, {
+        id: id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          setLoading(false)
+          toast.success("User Suspended", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          setLoading(false)
+          // console.error(error);
+          toast.error(error.response, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+    const reload = () => {
+      window.location.reload()
+    }
+    setTimeout(reload, 5000)
+  }
+  const verifyUser = async (e) => {
+    setLoading(true)
+    e.preventDefault()
+
+    if (window.confirm('Are you sure you want to Verify User?')) {
+      await axios.patch(`${api}verifyhost?id=${id}`, {
+        id: id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          setLoading(false)
+          // console.log(response);
+          toast.success("User Verified", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          setLoading(false)
+          // console.error(error);
+          toast.error(error.response, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+    const reload = () => {
+      window.location.reload()
+    }
+    setTimeout(reload, 5000)
+
+  }
+  const deleteUser = async (e) => {
+    e.preventDefault()
+    // console.log(authToken)
+    setLoading(true)
+    if (window.confirm('Do you want to delete User?')) {
+      await axios.delete(`${api}deleteAccount?id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          setLoading(false)
+          toast.success("User Deleted!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          setLoading(false)
+          // console.error(error);
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+    const reload = () => {
+      window.location.reload()
+    }
+    setTimeout(reload, 5000)
+  }
 
   const [currentPage, setCurrentPage] = useState(1)
   const [postPerPage] = useState(5)
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = details.slice(indexOfFirstPost, indexOfLastPost)
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+
+  const [search, setSearch] = useState('')
 
 
   return (
     <>
-      <Search placeholder="Search here" />
+      <Search onChange={(e) => setSearch(e.target.value)} placeholder="Search Users" />
       <section className="users">
         <div className="users-list-heading">
           <div>
@@ -102,54 +244,60 @@ const Users = () => {
                 <tr>
                   <th>
                     <span>Photo</span>
-                    <img src={expand} alt="expand" />
+                  </th>
+                  <th>
+                    <span>Name</span>
                   </th>
                   <th>
                     <span>Country</span>
-                    <img src={expand} alt="expand" />
                   </th>
                   <th>
-                    <span>State</span> <img src={expand} alt="expand" />
+                    <span>State</span>
                   </th>
                   <th>
-                    <span>City</span> <img src={expand} alt="expand" />
+                    <span>Email</span>
                   </th>
                   <th>
-                    <span>Email</span> <img src={expand} alt="expand" />
+                    <span>Phone</span>
                   </th>
                   <th>
-                    <span>Phone</span> <img src={expand} alt="expand" />
+                    <span>Role</span>
                   </th>
                   <th>
-                    <span>Role</span> <img src={expand} alt="expand" />
+                    <span>Status</span>
                   </th>
                   <th>
-                    <span>Status</span> <img src={expand} alt="expand" />
+                    <span>Verified</span>
                   </th>
                   <th>
-                    <span>Options</span> <img src={expand} alt="expand" />
+                    <span>Options</span>
                   </th>
                 </tr>
               </thead>
-              {currentPosts.map((user, id) => {
+              {currentPosts.filter((user) => {
+                return search.toLowerCase() === '' ? user : user.firstName.toLowerCase().includes(search)
+              }).map((user, id) => {
                 return (
                   <tbody key={id}>
                     <tr>
                       <td>
                         <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile" className="demo-dp" />
                       </td>
+                      <td>{user.firstName ? user.firstName : 'N/A'} {user.lastName ? user.lastName : 'N/A'}</td>
                       <td>{user.country ? user.country : 'N/A'}</td>
-                      <td>{user.city ? user.city : 'N/A'}</td>
                       <td>{user.state ? user.state : 'N/A'}</td>
                       <td>{user.email ? user.email : 'N/A'}</td>
                       <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
                       <td>{user.role ? user.role : 'N/A'}</td>
                       <td>{user.status ? user.status : 'N/A'}</td>
+                      <td><span className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</span></td>
                       <td className="options" onClick={(e) => handleClick(e, user)}>
                         <img src={options} alt="options" />
                         {option[user._id] && <div className='option-details'>
                           <span onClick={viewDetails}>View Details</span>
-                          {/* <span onClick={suspendApartment}>Suspend</span> */}
+                          <span onClick={suspendUser}>Suspend</span>
+                          <span onClick={verifyUser}>Verify</span>
+                          <span onClick={deleteUser}>Delete</span>
                         </div>}
                       </td>
                     </tr>

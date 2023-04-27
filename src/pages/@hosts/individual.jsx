@@ -51,7 +51,7 @@ export const Individual = () => {
     }, [authenticated]);
 
     const [option, setOption] = useState({})
-    console.log(option);
+    // console.log(option);
     for (const key in option) {
         // console.log(key);
         sessionStorage.setItem("host_un_Id", JSON.stringify(key));
@@ -111,7 +111,10 @@ export const Individual = () => {
                     });
                 });
         }
-        window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
     }
     const verifyHost = async (e) => {
         setLoading(true)
@@ -155,8 +158,10 @@ export const Individual = () => {
                     });
                 });
         }
-        window.location.reload()
-
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
     }
     const deleteAccount = async (e) => {
         e.preventDefault()
@@ -198,7 +203,10 @@ export const Individual = () => {
                     });
                 });
         }
-        window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
     }
 
     return (

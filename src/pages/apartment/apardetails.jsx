@@ -13,7 +13,7 @@ const ApartmentDetails = () => {
     const [details, setDetails] = useState([]);
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
-    // console.log(details);
+    console.log(details);
 
     const aparId = JSON.parse(sessionStorage.getItem("apar_un_Id"));
     // console.log(aparId);
@@ -59,12 +59,13 @@ const ApartmentDetails = () => {
                 <section className="images">
                     <h3>Apartment Images</h3>
                     <div>
-                        <figure>
-                            <img src={details.apartmentImages?.[0]} alt='' />
-                        </figure>
-                        <figure>
-                            <img src={details.apartmentImages?.[1]} alt="" />
-                        </figure>
+                        {details.apartmentImages?.map((img, index) => {
+                            return (
+                                <figure key={index}>
+                                    <img src={img} />
+                                </figure>
+                            );
+                        })}
                     </div>
                 </section>
                 <section className="details">
@@ -81,13 +82,15 @@ const ApartmentDetails = () => {
                         <p><span>Number of Guests:</span> {details.numberOfGuests}</p>
                         <p><span>Number of Toilets:</span> {details.numberOfToilets}</p>
                         <p><span>Apartment Info:</span> {details.apartmentInfo}</p>
-                        {/* <p>{details.latitude}</p>
-                        <p>{details.longitude}</p> */}
                         <p>{details.isAvailable === true ? 'Available' : 'Not Available'}</p>
                         <h4>Facilities</h4>
-                        <p>{details.facilities?.[0]}</p>
-                        <p>{details.facilities?.[1]}</p>
-                        <p>{details.facilities?.[2]}</p>
+                        {
+                            details.facilities?.map((img, index) => {
+                                return (
+                                    <p key={index}>{img}</p>
+                                )
+                            })
+                        }
                     </div>
                 </section>
             </section>

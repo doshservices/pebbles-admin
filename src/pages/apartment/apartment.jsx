@@ -76,7 +76,7 @@ const Apartment = () => {
         setLoading(true)
         e.preventDefault()
 
-        if (window.confirm('Are you sure you want to suspend Host?')) {
+        if (window.confirm('Are you sure you want to suspend Apartment?')) {
             await axios.patch(`${api}suspendApartment?apartmentId=${id}`, {
                 id: id,
             }, {
@@ -114,7 +114,10 @@ const Apartment = () => {
                     });
                 });
         }
-        // window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
     }
 
     return (

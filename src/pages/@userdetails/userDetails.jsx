@@ -21,8 +21,7 @@ const UserDetails = () => {
 
   const [details, setDetails] = useState([]);
   // const [loading, setLoading] = useState(false)
-  // const [error, setError] = useState("");
-  // console.log(details);
+  const [error, setError] = useState("");
 
   const userId = JSON.parse(sessionStorage.getItem('user_un_Id'))
   // console.log(userId);
@@ -50,7 +49,7 @@ const UserDetails = () => {
       .catch((err) => {
         // setLoading(false)
         // console.log(err);
-        // setError(err.message);
+        setError(err.message);
       });
   }
   useEffect(() => {
@@ -66,41 +65,48 @@ const UserDetails = () => {
             <h2>User</h2>
             <p>User Profile</p>
           </div>
-          <div className="user-details-filter">
-            <img className="profile" src="" alt="" />
-            <div>
-              <h5>Filter Period</h5>
-              <p>10 March 2023 - 21 April 2023</p>
-            </div>
-            <img src={dropdown} alt="dropdown" />
-          </div>
         </div>
         <section className="user-details-info">
-          <div className="user-details-profile">
-            <img src={details.profilePicture ? details.profilePicture : demo} alt="profile" />
-            <div>
+          {details ? (
+            <div className="user-details-profile">
+              {details.profilePicture ? <img src={details.profilePicture} alt="profile" /> : <img src={demo} alt='demo' />}
               <div>
-                <h4>{details.firstName ? details.firstName : ''} {details.lastName ? details.lastName : ''}</h4>
-              </div>
-              <p className="member">{details.role ? details.role : ''}</p>
-              <p className="address">
-                {details.status ? details.status : ''}
-              </p>
-              <p className="address">Country:  {details.country ? details.country : ''}
-              </p>
-              <p className="address">State:  {details.state ? details.state : ''}
-              </p>
-              <p className="address">City:  {details.city ? details.city : ''}
-              </p>
-              <p className="address">
-                {details.isVerified === true ? 'Verified' : ''}
-              </p>
-              <div className="contact">
-                <p>{details.email ? details.email : ''}</p>
-                <p>{details.phoneNumber ? details.phoneNumber : ''}</p>
+                {details.firstName || details.lastName ? <div>
+                  <h4>{details.firstName} {details.lastName}</h4>
+                </div> : ''
+                }
+                {
+                  details.role ? <p className="member">{details.role}</p> : <></>
+                }
+                {
+                  details.status ? <p className="address">{details.status}</p> : <></>
+                }
+                {
+                  details.country ? <p className="address">Country:  {details.country}</p> : <></>
+                }
+                {
+                  details.state ? <p className="address">State:  {details.state}</p> : <></>
+                }
+                {
+                  details.city ? <p className="address">City:  {details.city} </p> : <></>
+                }
+                {
+                  details.isVerified ? <p className="address">{details.isVerified === true ? 'Verified' : 'Pending'}</p> : <></>
+                }
+                <div className="contact">
+                  {
+                    details.email ? <p>{details.email}</p> : <></>
+                  }
+                  {
+                    details.phoneNumber ? <p>{details.phoneNumber}</p> : <></>
+                  }
+
+
+                </div>
               </div>
             </div>
-          </div>
+
+          ) : (<h3>{error}</h3>)}
           <div>
             <div
               style={{
@@ -140,7 +146,7 @@ const UserDetails = () => {
             <h3>Current Booking</h3>
           </div>
         </section>
-      </section>
+      </section >
     </>
   );
 };

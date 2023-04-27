@@ -8,7 +8,6 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
-import { Pagination } from "../../components/pagination/pagination";
 
 const BookingList = () => {
   const navigate = useNavigate()
@@ -70,9 +69,11 @@ const BookingList = () => {
     navigate('/booking-detail')
   }
 
+  const [search, setSearch] = useState('')
+
   return (
     <>
-      <Search placeholder="Search here" />
+      <Search onChange={(e) => setSearch(e.target.value)} placeholder="Search Booking list" />
       <section className="booking-list">
         <div className="booking-list-heading">
           <div>
@@ -112,7 +113,9 @@ const BookingList = () => {
                 </tr>
               </thead>
               <tbody>
-                {details.map((detail, id) => {
+                {details.filter((detail) => {
+                  return search.toLowerCase() === '' ? detail : detail.apartmentId?.apartmentName.toLowerCase().includes(search)
+                }).map((detail, id) => {
                   return (
                     <tr key={id}>
                       <td>{detail.apartmentId?.apartmentName ? detail.apartmentId?.apartmentName : 'N/A'}</td>

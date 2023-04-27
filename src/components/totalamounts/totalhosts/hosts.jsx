@@ -26,7 +26,7 @@ const TotalHosts = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setDetails(res.data.message);
             })
             .catch((err) => {
@@ -43,7 +43,7 @@ const TotalHosts = () => {
                 },
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setResp(res.data.data.individualHost);
             })
             .catch((err) => {

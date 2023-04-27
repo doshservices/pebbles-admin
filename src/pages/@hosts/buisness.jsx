@@ -112,7 +112,10 @@ export const Buisness = () => {
                     });
                 });
         }
-        window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
 
     }
     const verifyHost = async (e) => {
@@ -157,12 +160,14 @@ export const Buisness = () => {
                     });
                 });
         }
-        window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
 
     }
     const deleteAccount = async (e) => {
         e.preventDefault()
-        console.log(authToken)
         setLoading(true)
         if (window.confirm('Do you want to delete Host?')) {
             await axios.delete(`${api}deleteAccount?id=${id}`, {
@@ -200,7 +205,10 @@ export const Buisness = () => {
                     });
                 });
         }
-        window.location.reload()
+        const reload = () => {
+            window.location.reload()
+        }
+        setTimeout(reload, 5000)
     }
 
 

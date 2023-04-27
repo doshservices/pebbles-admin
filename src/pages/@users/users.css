@@ -1,5 +1,5 @@
 .users {
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
 .users-list-heading {
@@ -35,13 +35,13 @@
 
 .users .table-section {
     margin: 1rem 0;
-    padding: 1rem 0 3rem 0;
+    padding: 1rem 0 7rem 0;
     overflow-x: scroll;
 }
 
 .users table {
     border-collapse: collapse;
-    min-width: 1000px;
+    min-width: 1050px;
     margin: 25px 0;
 }
 
@@ -69,11 +69,37 @@
 }
 
 .users table tbody tr td {
-    padding: .5rem 1rem;
+    max-width: 180px;
     font-size: .8rem;
     text-transform: capitalize;
     font-weight: 500;
-    max-width: 180px;
+    padding-left: 1rem;
+}
+
+.users .verified {
+    color: #219653;
+    background: #D5E8DD;
+    text-align: center;
+    font-size: .9rem;
+    font-weight: 500;
+    border-radius: 16px;
+    margin: .5rem 0;
+    padding: .7rem 1rem;
+    display: inline-block;
+    width: 80%;
+}
+
+.users .pending {
+    color: #F2994A;
+    background: #F5E8BD;
+    text-align: center;
+    font-size: .9rem;
+    font-weight: 500;
+    border-radius: 16px;
+    margin: .5rem 0;
+    padding: .7rem 1rem;
+    display: inline-block;
+    width: 80%;
 }
 
 .users table tbody tr td .demo-dp {
