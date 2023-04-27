@@ -26,6 +26,15 @@ function App() {
     }
   }, [authenticated]);
 
+  const clearStorage = () => {
+    localStorage.removeItem("Pebbles__Super_Admin___toKen")
+    localStorage.removeItem("Pebbles__Super_Admin___iD");
+  }
+
+  useEffect(() => {
+    setTimeout(clearStorage, 86400000)
+  }, [])
+
   return (
     <BrowserRouter>
       <div className='App'>
