@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { RespLoader } from "../../spinner/spinner";
 
 const TotalHosts = () => {
     const [details, setDetails] = useState([]);
@@ -59,8 +58,7 @@ const TotalHosts = () => {
 
     return (
         <div>
-            <RespLoader />
-            {loading ? <RespLoader /> : <>{totalHosts > 0 ? <p>{totalHosts}</p> : <p>{apiError}</p>}</>}
+            {totalHosts > 0 ? <p>{totalHosts}</p> : <p>{apiError}</p>}
             <p>Total Hosts</p>
         </div>
     )

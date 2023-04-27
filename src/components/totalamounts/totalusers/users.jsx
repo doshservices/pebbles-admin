@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { RespLoader } from "../../spinner/spinner";
 
 const TotalUsers = () => {
     const [details, setDetails] = useState([]);
@@ -37,10 +36,7 @@ const TotalUsers = () => {
 
     return (
         <div>
-            {isloading ? <RespLoader />
-                : <>
-                    {usersLength > 0 ? <p>{usersLength}</p> : <p>{apiError}</p>}
-                </>}
+            {usersLength > 0 ? <p>{usersLength}</p> : <p>{apiError}</p>}
             <p>Total Users</p>
         </div>
     )

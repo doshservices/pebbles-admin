@@ -44,7 +44,7 @@
 .overview .total_amount {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -53,8 +53,7 @@
     color: white;
     padding: 1.3rem;
     flex-grow: 1;
-    flex-basis: 180px;
-    margin: auto;
+    flex-basis: 200px;
     max-width: 300px;
     box-shadow: 1px 5px 10px rgba(45, 45, 45, 0.15);
     border-radius: 10px;

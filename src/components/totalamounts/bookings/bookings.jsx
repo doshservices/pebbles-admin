@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { RespLoader } from "../../spinner/spinner";
 
 const TotalBookings = () => {
     const [details, setDetails] = useState([]);
@@ -38,9 +37,7 @@ const TotalBookings = () => {
 
     return (
         <div>
-            {isloading ? <RespLoader /> : <>
-                {buisLength > 0 ? <p>{buisLength}</p> : <p>{apiError}</p>}
-            </>}
+            {buisLength > 0 ? <p>{buisLength}</p> : <p>{apiError}</p>}
             <p>Total Bookings</p>
         </div>
     )
