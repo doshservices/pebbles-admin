@@ -15,7 +15,7 @@ import Hosts from './pages/@hosts/host';
 import Details from './pages/@hosts/details';
 import ApartmentDetails from './pages/apartment/apardetails';
 import Events from './pages/events/events';
-import Addons from './pages/addons/addon';
+import Services from './pages/addons/services';
 
 function App() {
 
@@ -55,7 +55,7 @@ function App() {
             <Route path='host-details' element={<Details />} />
             <Route path='apartment-details' element={<ApartmentDetails />} />
             <Route path='events' element={<Events />} />
-            <Route path='addons' element={<Addons />} />
+            <Route path='services' element={<Services />} />
           </Routes>
         </main>
       </div>
