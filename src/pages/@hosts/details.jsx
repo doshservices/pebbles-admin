@@ -79,8 +79,7 @@ export default function Details() {
                         <p>Country: {details.country ? details.country : ''}</p>
                         <p>City: {details.city ? details.city : ''}</p>
                         <p>State: {details.state ? details.state : ''}</p>
-                        {details.validId && <img src={details.validId} alt="" />}
-
+                        {details.validId && <img height='200px' src={details.validId} alt="" />}
                         <p></p>
                         <p></p>
                         <p className="member">Role: {details.role ? details.role : ''}</p>

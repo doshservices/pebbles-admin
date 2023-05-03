@@ -9,7 +9,7 @@ import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 
-export const Buisness = () => {
+export const Buisness = ({ search }) => {
     const navigate = useNavigate()
     const authenticated = isAuthenticated();
 
@@ -249,7 +249,9 @@ export const Buisness = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            {details.map((buisnesshost, id) => {
+                            {details.filter((buisnesshost) => {
+                                return search.toLowerCase() === '' ? buisnesshost : buisnesshost.firstName.toLowerCase().includes(search)
+                            }).map((buisnesshost, id) => {
                                 return (
                                     <tbody key={id}>
                                         <tr>
