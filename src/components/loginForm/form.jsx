@@ -19,9 +19,9 @@ const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
-  console.log(err);
-  console.log(formErrors);
-  console.log(formValues);
+  // console.log(err);
+  // console.log(formErrors);
+  // console.log(formValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +58,7 @@ const LoginForm = () => {
         })
         .then((response) => {
           setLoading(false);
-          console.log(response);
+          // console.log(response);
           toast.success("Login Successful", {
             position: "top-right",
             autoClose: 5000,
@@ -77,7 +77,7 @@ const LoginForm = () => {
         })
         .catch((error) => {
           setLoading(false);
-          console.log(error);
+          // console.log(error);
           setErr(error);
           toast.error(error.response.data.message, {
             position: "top-right",
@@ -140,7 +140,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       {loading && <CssLoader />}
-      {/* <>{err && <p className="api-error">{err}</p>}</> */}
+      <>{err && <p className="api-error">{err}</p>}</>
       <label htmlFor="email">Email</label>
       <input
         value={formValues.email}

@@ -120,9 +120,11 @@ const Apartment = () => {
         setTimeout(reload, 5000)
     }
 
+    const [search, setSearch] = useState('')
+
     return (
         <>
-            <Search placeholder="Search here" />
+            <Search onChange={(e) => setSearch(e.target.value)} placeholder="Search Apartment" />
             <section className="apartment">
                 <div className="apartment-heading">
                     <div>
@@ -166,7 +168,9 @@ const Apartment = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {details.map((detail, id) => {
+                                {details.filter((detail) => {
+                                    return search.toLowerCase() === '' ? detail : detail.apartmentName.toLowerCase().includes(search)
+                                }).map((detail, id) => {
                                     return (
                                         <tr key={id}>
                                             <td>{detail.apartmentName ? detail.apartmentName : 'N/A'}</td>

@@ -13,7 +13,7 @@ const ApartmentDetails = () => {
     const [details, setDetails] = useState([]);
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
-    console.log(details);
+    // console.log(details);
 
     const aparId = JSON.parse(sessionStorage.getItem("apar_un_Id"));
     // console.log(aparId);
