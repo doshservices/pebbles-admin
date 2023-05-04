@@ -78,7 +78,7 @@ const LoginForm = () => {
         .catch((error) => {
           setLoading(false);
           // console.log(error);
-          setErr(error);
+          setErr(error.message);
           toast.error(error.response.data.message, {
             position: "top-right",
             autoClose: 5000,
@@ -140,7 +140,6 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       {loading && <CssLoader />}
-      <>{err && <p className="api-error">{err}</p>}</>
       <label htmlFor="email">Email</label>
       <input
         value={formValues.email}
@@ -166,9 +165,6 @@ const LoginForm = () => {
           <Icon icon={icon} size={18} />
         </span>
       </div>
-      <>
-        {formErrors.password && <p className="error">{formErrors.password}</p>}
-      </>
       <button type="submit">Sign In</button>
     </form>
   );
