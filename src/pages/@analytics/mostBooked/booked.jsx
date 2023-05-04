@@ -24,12 +24,12 @@ export const MostBooked = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setMostBooked(res.data.data.bookings);
             })
             .catch((err) => {
                 setLoading(false)
-                console.log(err);
+                // console.log(err);
                 setError(err.message);
             });
     };
