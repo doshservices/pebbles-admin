@@ -30,7 +30,7 @@ const Services = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setAddon(res.data.data.addOns);
             })
             .catch((err) => {

@@ -5,7 +5,7 @@ import { CssLoader } from "../../../components/spinner/spinner";
 export const MostBooked = () => {
     const [loading, setLoading] = useState(false)
     const [mostBooked, setMostBooked] = useState([]);
-    console.log(mostBooked);
+    // console.log(mostBooked);
     const [error, setError] = useState('')
     const authToken = JSON.parse(
         localStorage.getItem("Pebbles__Super_Admin___toKen")
