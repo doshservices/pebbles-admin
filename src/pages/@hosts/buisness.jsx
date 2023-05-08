@@ -1,13 +1,25 @@
 import './host.css';
-import options from "./assets/options.svg";
+import left from '../@bookinglist/assets/left.svg';
+import right from '../@bookinglist/assets/right.svg';
+import axios from "axios";
 import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
-import axios from "axios";
+import options from "./assets/options.svg";
+import { toast } from 'react-toastify';
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
+
+const renderData = (data) => {
+    return (
+        <ul>
+            {data.map((todo, index) => {
+                return <li key={index}>{todo.title}</li>
+            })}
+        </ul>
+    );
+};
 
 export const Buisness = ({ search }) => {
     const navigate = useNavigate()
@@ -20,7 +32,69 @@ export const Buisness = ({ search }) => {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
-    // console.log(details);
+
+    const [currentPage, setcurrentPage] = useState(1);
+    const [itemsPerPage, setitemsPerPage] = useState(10);
+    const [pageNumberLimit, setpageNumberLimit] = useState(10);
+    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(10);
+    const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+    const click = (event) => {
+        setcurrentPage(Number(event.target.id));
+    };
+
+    const pages = [];
+    for (let i = 1; i <= Math.ceil(details.length / itemsPerPage); i++) {
+        pages.push(i);
+    }
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = details.slice(indexOfFirstItem, indexOfLastItem);
+
+    const renderPageNumbers = pages.map((number) => {
+        if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    onClick={click}
+                    className={currentPage == number ? "active" : null}
+                >
+                    {number}
+                </li>
+            );
+        } else {
+            return null;
+        }
+    });
+    const handleNextbtn = () => {
+        setcurrentPage(currentPage + 1);
+
+        if (currentPage + 1 > maxPageNumberLimit) {
+            setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+            setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        }
+    };
+
+    const handlePrevbtn = () => {
+        setcurrentPage(currentPage - 1);
+
+        if ((currentPage - 1) % pageNumberLimit == 0) {
+            setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+            setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+        }
+    };
+
+    let pageIncrementBtn = null;
+    if (pages.length > maxPageNumberLimit) {
+        pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+    }
+
+    let pageDecrementBtn = null;
+    if (minPageNumberLimit >= 1) {
+        pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+    }
 
     const fetchData = async () => {
         setLoading(true)
@@ -283,6 +357,26 @@ export const Buisness = ({ search }) => {
                         <h2>{error}</h2>
                     )}
                 </section>
+                {
+                    details.length > 10 ? (
+                        <>
+                            {renderData(currentItems)}
+                            <ul className="pageNumbers">
+                                <li>
+                                    <img onClick={handlePrevbtn}
+                                        disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                                </li>
+                                {pageDecrementBtn}
+                                {renderPageNumbers}
+                                {pageIncrementBtn}
+                                <li>
+                                    <img onClick={handleNextbtn}
+                                        disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                                </li>
+                            </ul>
+                        </>
+                    ) : null
+                }
             </section>
         </>
     )

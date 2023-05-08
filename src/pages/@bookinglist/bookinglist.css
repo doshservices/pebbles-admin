@@ -83,9 +83,50 @@
     padding-left: 2rem !important;
 }
 
-/* .booking-list table tbody tr .status {
-    background: #D5E8DD;
-    border-radius: 10px;
-    color: #219653;
+.pageNumbers {
+    display: flex;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
+    border-radius: 8px;
+    max-width: fit-content;
+    margin: 0 1rem 0 auto;
 }
- */
+
+.pageNumbers li {
+    padding: .4rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #2D2D2D;
+}
+
+.pageNumbers li.active {
+    background-color: #3C79F2;
+    color: #FFFFFF;
+}
+
+.pageNumbers li button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.pageNumbers li button:hover {
+    background-color: white;
+    color: black;
+}
+
+.pageNumbers li button:focus {
+    outline: none;
+}
+
+.loadmore {
+    padding: 1rem;
+    background-color: transparent;
+    color: white;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    cursor: pointer;
+}

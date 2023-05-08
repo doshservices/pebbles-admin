@@ -1,15 +1,28 @@
 import "./bookinglist.css";
 import './options.css'
-import options from "./assets/options.svg";
+import left from './assets/left.svg';
+import right from './assets/right.svg';
 import axios from "axios";
 import expand from "./assets/expand.svg";
+import options from "./assets/options.svg";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
 
+const renderData = (data) => {
+  return (
+    <ul>
+      {data.map((todo, index) => {
+        return <li key={index}>{todo.title}</li>;
+      })}
+    </ul>
+  );
+};
+
 const BookingList = () => {
+
   const navigate = useNavigate()
 
   const authenticated = isAuthenticated();
@@ -17,6 +30,73 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
+
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
+  const [pageNumberLimit, setpageNumberLimit] = useState(10);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(10);
+  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+  const click = (event) => {
+    setcurrentPage(Number(event.target.id));
+  };
+
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(details.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = details.slice(indexOfFirstItem, indexOfLastItem);
+
+  const renderPageNumbers = pages.map((number) => {
+    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={click}
+          className={currentPage == number ? "active" : null}
+        >
+          {number}
+        </li>
+      );
+    } else {
+      return null;
+    }
+  });
+  const handleNextbtn = () => {
+    setcurrentPage(currentPage + 1);
+
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+    }
+  };
+
+  const handlePrevbtn = () => {
+    setcurrentPage(currentPage - 1);
+
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+    }
+  };
+
+  let pageIncrementBtn = null;
+  if (pages.length > maxPageNumberLimit) {
+    pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+  }
+
+  let pageDecrementBtn = null;
+  if (minPageNumberLimit >= 1) {
+    pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+  }
+
+  // const handleLoadMore = () => {
+  //   setitemsPerPage(itemsPerPage + 5);
+  // };
   // console.log(details);
 
   const totalBookings =
@@ -113,7 +193,7 @@ const BookingList = () => {
                 </tr>
               </thead>
               <tbody>
-                {details.filter((detail) => {
+                {currentItems.filter((detail) => {
                   return search.toLowerCase() === '' ? detail : detail.apartmentId?.apartmentName.toLowerCase().includes(search)
                 }).map((detail, id) => {
                   return (
@@ -128,7 +208,6 @@ const BookingList = () => {
                         <img src={options} alt="options" />
                         {option[detail._id] && <div className='option-details'>
                           <span onClick={viewDetails}>View Details</span>
-                          {/* <span onClick={suspendApartment}>Suspend</span> */}
                         </div>}
                       </td>
                     </tr>
@@ -139,6 +218,26 @@ const BookingList = () => {
           ) : (<h2>{error}</h2>)
           }
         </section>
+        {
+          details.length > 10 ? (
+            <>
+              {renderData(currentItems)}
+              <ul className="pageNumbers">
+                <li>
+                  <img onClick={handlePrevbtn}
+                    disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                </li>
+                {pageDecrementBtn}
+                {renderPageNumbers}
+                {pageIncrementBtn}
+                <li>
+                  <img onClick={handleNextbtn}
+                    disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                </li>
+              </ul>
+            </>
+          ) : null
+        }
       </section>
     </>
   );

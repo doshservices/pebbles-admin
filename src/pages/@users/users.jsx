@@ -8,8 +8,19 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useEffect, useState } from "react";
-import { Pagination } from "../../components/pagination/pagination";
 import { toast } from 'react-toastify';
+import left from '../@bookinglist/assets/left.svg';
+import right from '../@bookinglist/assets/right.svg';
+
+const renderData = (data) => {
+  return (
+    <ul>
+      {data.map((todo, index) => {
+        return <li key={index}>{todo.title}</li>
+      })}
+    </ul>
+  );
+};
 
 const Users = () => {
 
@@ -21,9 +32,71 @@ const Users = () => {
     localStorage.getItem("Pebbles__Super_Admin___toKen")
   );
   const [details, setDetails] = useState([]);
-  // console.log(details);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
+
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
+  const [pageNumberLimit, setpageNumberLimit] = useState(10);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(10);
+  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+  const click = (event) => {
+    setcurrentPage(Number(event.target.id));
+  };
+
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(details.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = details.slice(indexOfFirstItem, indexOfLastItem);
+
+  const renderPageNumbers = pages.map((number) => {
+    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={click}
+          className={currentPage == number ? "active" : null}
+        >
+          {number}
+        </li>
+      );
+    } else {
+      return null;
+    }
+  });
+  const handleNextbtn = () => {
+    setcurrentPage(currentPage + 1);
+
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+    }
+  };
+
+  const handlePrevbtn = () => {
+    setcurrentPage(currentPage - 1);
+
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+    }
+  };
+
+  let pageIncrementBtn = null;
+  if (pages.length > maxPageNumberLimit) {
+    pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+  }
+
+  let pageDecrementBtn = null;
+  if (minPageNumberLimit >= 1) {
+    pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+  }
 
   const fetchData = async () => {
     setLoading(true)
@@ -163,7 +236,6 @@ const Users = () => {
       window.location.reload()
     }
     setTimeout(reload, 5000)
-
   }
   const deleteUser = async (e) => {
     e.preventDefault()
@@ -210,13 +282,6 @@ const Users = () => {
     }
     setTimeout(reload, 5000)
   }
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postPerPage] = useState(5)
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = details.slice(indexOfFirstPost, indexOfLastPost)
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
   const [search, setSearch] = useState('')
@@ -274,7 +339,7 @@ const Users = () => {
                   </th>
                 </tr>
               </thead>
-              {currentPosts.filter((user) => {
+              {currentItems.filter((user) => {
                 return search.toLowerCase() === '' ? user : user.firstName.toLowerCase().includes(search)
               }).map((user, id) => {
                 return (
@@ -309,7 +374,26 @@ const Users = () => {
             <h2>{error}</h2>
           )}
         </section>
-        <Pagination postPerPage={postPerPage} totalPosts={details.length} paginate={paginate} />
+        {
+          details.length > 10 ? (
+            <>
+              {renderData(currentItems)}
+              <ul className="pageNumbers">
+                <li>
+                  <img onClick={handlePrevbtn}
+                    disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                </li>
+                {pageDecrementBtn}
+                {renderPageNumbers}
+                {pageIncrementBtn}
+                <li>
+                  <img onClick={handleNextbtn}
+                    disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                </li>
+              </ul>
+            </>
+          ) : null
+        }
       </section>
     </>
   );
