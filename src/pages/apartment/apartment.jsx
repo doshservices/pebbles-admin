@@ -4,7 +4,6 @@ import right from '../@bookinglist/assets/right.svg';
 import axios from "axios";
 import expand from "./assets/expand.svg";
 import options from "./assets/options.svg";
-import dropdown from "./assets/dropdown.svg";
 import { toast } from "react-toastify";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
@@ -205,10 +204,6 @@ const Apartment = () => {
                         <h2>Apartment List</h2>
                         <p>This is your apartment list data</p>
                     </div>
-                    <button>
-                        <span>Filter</span>
-                        <img src={dropdown} alt="dropdown" />
-                    </button>
                 </div>
                 <section className="table-section">
                     <p>{error.message}</p>

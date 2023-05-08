@@ -1,5 +1,4 @@
 import "./users.css";
-import dropdown from "./assets/dropdown.svg";
 import options from "./assets/options.svg";
 import demoDp from './assets/demo.webp';
 import axios from "axios";
@@ -296,10 +295,6 @@ const Users = () => {
             <h2>Users</h2>
             <p>List of all Users</p>
           </div>
-          <button>
-            <span>Filter</span>
-            <img src={dropdown} alt="dropdown" />
-          </button>
         </div>
         <section className="table-section">
           {loading && <CssLoader />}
