@@ -50,7 +50,7 @@
     padding: 1rem;
     background: transparent;
     border: none;
-    font-size: .8rem;
+    font-size: .9rem;
     font-weight: 500;
 }
 
@@ -71,7 +71,8 @@
 
 .apartment table tbody tr td {
     max-width: 180px;
-    font-size: .8rem;
+    font-size: .9rem;
+    line-height: 1.5rem;
     text-transform: capitalize;
     font-weight: 500;
     padding-left: 1rem;
