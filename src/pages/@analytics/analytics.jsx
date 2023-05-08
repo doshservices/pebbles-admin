@@ -1,12 +1,13 @@
 import "./analytics.css";
-import { Search } from "../../components/search/search";
-import { useState, useEffect } from "react";
 import dropdown from "./assets/dropdown.svg";
+import { Search } from "../../components/search/search";
+import { MostBooked } from "./mostBooked/booked";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { MostBooked } from "./mostBooked/booked";
+import { useState, useEffect } from "react";
 
 const Analytics = () => {
+
   const [typeRange, setTypeRange] = useState("Monthly");
 
   const navigate = useNavigate()

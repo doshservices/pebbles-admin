@@ -5,7 +5,7 @@
 .events h2 {
     color: #2D2D2D;
     font-size: 1.5rem;
-    margin-bottom: .5rem;
+    margin-bottom: 1.5rem;
 }
 
 .events>p {
@@ -32,4 +32,27 @@
     font-weight: 600;
     color: #3d3d3d;
     margin-bottom: .5rem;
+}
+
+.events-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.events-heading button {
+    color: #2D2D2D;
+    background: #E7E7E7;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .7rem 1.5rem;
+    border-radius: 8px;
+}
+
+.events-heading .events-active {
+    color: white;
+    background-color: #155EEF;
 }
