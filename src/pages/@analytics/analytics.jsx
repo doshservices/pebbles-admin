@@ -21,7 +21,7 @@ const Analytics = () => {
 
   return (
     <>
-      <Search />
+      <Search placeholder='Search' />
       <section className="analytics">
         <div className="analytics-heading">
           <div>
@@ -74,20 +74,20 @@ const Analytics = () => {
               <h3>Trendy Listings</h3>
               <div className="category-range">
                 <button
-                  onClick={() => setTypeRange("Monthly")}
-                  className={typeRange === "Monthly" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Monthly")}
+                // className={typeRange === "Monthly" ? "active-btn" : ""}
                 >
                   Monthly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Weekly")}
-                  className={typeRange === "Weekly" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Weekly")}
+                // className={typeRange === "Weekly" ? "active-btn" : ""}
                 >
                   Weekly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Daily")}
-                  className={typeRange === "Daily" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Daily")}
+                // className={typeRange === "Daily" ? "active-btn" : ""}
                 >
                   Daily
                 </button>
@@ -104,29 +104,29 @@ const Analytics = () => {
               <h3>Revenues</h3>
               <div className="category-range">
                 <button
-                  onClick={() => setTypeRange("Monthly")}
-                  className={typeRange === "Monthly" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Monthly")}
+                // className={typeRange === "Monthly" ? "active-btn" : ""}
                 >
                   Monthly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Weekly")}
-                  className={typeRange === "Weekly" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Weekly")}
+                // className={typeRange === "Weekly" ? "active-btn" : ""}
                 >
                   Weekly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Daily")}
-                  className={typeRange === "Daily" ? "active-btn" : ""}
+                // onClick={() => setTypeRange("Daily")}
+                // className={typeRange === "Daily" ? "active-btn" : ""}
                 >
                   Daily
                 </button>
               </div>
             </div>
             <section>
-              {typeRange === "Monthly" && <p>Monthly</p>}
+              {/* {typeRange === "Monthly" && <p>Monthly</p>}
               {typeRange === "Weekly" && <p>Weekly</p>}
-              {typeRange === "Daily" && <p>Daily</p>}
+              {typeRange === "Daily" && <p>Daily</p>} */}
             </section>
           </div>
         </div>
