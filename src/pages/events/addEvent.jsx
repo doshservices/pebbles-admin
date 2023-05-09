@@ -2,7 +2,7 @@ import "./form.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CssLoader } from "../../components/spinner/spinner";
-import { useState, useRef, ChangeEvent } from "react";
+import { useState } from "react";
 
 const AddEvent = () => {
     const [loading, setLoading] = useState(false);
