@@ -172,8 +172,8 @@ const AddEvent = () => {
                     accept="image/*"
                 />
                 <button type="submit">Create Event</button>
-            </form>
-        </section>
+            </form >
+        </section >
     );
 };
 
