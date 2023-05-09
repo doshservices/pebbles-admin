@@ -164,7 +164,7 @@ const BookingList = () => {
         <section className="table-section">
           <p>{error.message}</p>
           {loading && <CssLoader />}
-          {details?.length > 0 ? (
+          {details ?
             <table>
               <thead>
                 <tr>
@@ -214,8 +214,7 @@ const BookingList = () => {
                   )
                 })}
               </tbody>
-            </table>
-          ) : (<h2>{error}</h2>)
+            </table> : <h2>No booking list found</h2>
           }
         </section>
         {

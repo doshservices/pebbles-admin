@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Icon } from "react-icons-kit";
-import { eye } from "react-icons-kit/feather/eye";
-import { eyeOff } from "react-icons-kit/feather/eyeOff";
-import { isAuthenticated } from "../../utils/helpers";
-import { CssLoader } from "../spinner/spinner";
 import axios from "axios";
+import { eye } from "react-icons-kit/feather/eye";
+import { Icon } from "react-icons-kit";
 import { toast } from 'react-toastify';
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { CssLoader } from "../spinner/spinner";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../utils/helpers";
+import { useEffect, useState } from "react";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -19,9 +19,6 @@ const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
-  // console.log(err);
-  // console.log(formErrors);
-  // console.log(formValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

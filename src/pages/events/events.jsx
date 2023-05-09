@@ -1,5 +1,6 @@
 import './events.css';
 import axios from 'axios';
+import AddEvent from './addEvent';
 import { Search } from '../../components/search/search';
 import { CssLoader } from '../../components/spinner/spinner';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +11,11 @@ const Events = () => {
     const navigate = useNavigate()
     const authenticated = isAuthenticated();
 
+    const [tab, setTab] = useState(1)
+
     const [events, setEvents] = useState([])
-    // console.log(events);
     const [loading, setLoading] = useState(false)
+
     const api =
         "https://pubblessignature-production.up.railway.app/api/events/";
     const authToken = JSON.parse(
@@ -53,9 +56,12 @@ const Events = () => {
             <Search placeholder='Search Events' />
             <section className="events">
                 <h2>Events</h2>
-                <p>List of all Events</p>
+                <div className="events-heading">
+                    <button className={tab === 1 ? 'events-active' : ''} onClick={() => setTab(1)}>List of all Events</button>
+                    <button className={tab === 2 ? 'events-active' : ''} onClick={() => setTab(2)}>Add Event</button>
+                </div>
                 {loading && <CssLoader />}
-                {events.map((allEvents, id) => {
+                {tab === 1 && <>{events.map((allEvents, id) => {
                     return (
                         <div key={id} className='event'>
                             {allEvents.eventName && <h3><span>Event Name: </span>{allEvents.eventName}</h3>}
@@ -77,7 +83,8 @@ const Events = () => {
                             })}
                         </div>
                     )
-                })}
+                })}</>}
+                {tab === 2 && <AddEvent />}
             </section>
         </>
     )

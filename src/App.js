@@ -20,10 +20,12 @@ import Services from './pages/addons/services';
 function App() {
 
   const authenticated = isAuthenticated();
+  const [showNav, setShowNav] = useState(true)
   const [mainClass, setMainClass] = useState('main')
 
   useEffect(() => {
     if (!authenticated) {
+      setShowNav(false)
       setMainClass('')
     }
   }, [authenticated]);
