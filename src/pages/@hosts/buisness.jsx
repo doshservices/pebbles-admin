@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const renderData = (data) => {
     return (
@@ -130,6 +130,28 @@ export const Buisness = ({ search }) => {
     for (const key in option) {
         // console.log(key);
         sessionStorage.setItem("host_un_Id", JSON.stringify(key));
+    }
+
+    const ref = useRef();
+
+    useOnClickOutside(ref, () => setOption(false));
+
+    function useOnClickOutside(ref, handler) {
+        useEffect(() => {
+            const listener = (event) => {
+                // Do nothing if clicking ref's element or descendent elements
+                if (!ref.current || ref.current.contains(event.target)) {
+                    return;
+                }
+                handler(event);
+            };
+            document.addEventListener("mousedown", listener);
+            document.addEventListener("touchstart", listener);
+            return () => {
+                document.removeEventListener("mousedown", listener);
+                document.removeEventListener("touchstart", listener);
+            };
+        }, [ref, handler]);
     }
 
     const handleClick = (e, data) => {
@@ -340,7 +362,7 @@ export const Buisness = ({ search }) => {
                                             <td><span className={buisnesshost.isVerified === true ? 'verified' : 'pending'}>{buisnesshost.isVerified === true ? 'Verified' : 'Pending'}</span></td>
                                             <td className="options" onClick={(e) => handleClick(e, buisnesshost)}>
                                                 <img src={options} alt="options" />
-                                                {option[buisnesshost._id] && <div className='option-details'>
+                                                {option[buisnesshost._id] && <div ref={ref} className='option-details'>
                                                     <span onClick={viewDetails}>View Details</span>
                                                     <span onClick={suspendHost}>Suspend</span>
                                                     <span onClick={verifyHost}>Verify</span>

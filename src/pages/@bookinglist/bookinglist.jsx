@@ -3,13 +3,13 @@ import './options.css'
 import left from './assets/left.svg';
 import right from './assets/right.svg';
 import axios from "axios";
-import expand from "./assets/expand.svg";
+// import expand from "./assets/expand.svg";
 import options from "./assets/options.svg";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const renderData = (data) => {
   return (
@@ -134,6 +134,28 @@ const BookingList = () => {
   }, [authenticated]);
 
   const [option, setOption] = useState({})
+
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => setOption(false));
+
+  function useOnClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    }, [ref, handler]);
+  }
   // console.log(option);
   for (const key in option) {
     // console.log(key);
@@ -170,22 +192,21 @@ const BookingList = () => {
                 <tr>
                   <th>
                     <span>Booking Name</span>
-                    <img src={expand} alt="expand" />
                   </th>
                   <th>
-                    <span>Country</span> <img src={expand} alt="expand" />
+                    <span>Country</span>
                   </th>
                   <th>
-                    <span>State</span> <img src={expand} alt="expand" />
+                    <span>State</span>
                   </th>
                   <th>
-                    <span>Address</span> <img src={expand} alt="expand" />
+                    <span>Address</span>
                   </th>
                   <th>
-                    <span>Type</span> <img src={expand} alt="expand" />
+                    <span>Type</span>
                   </th>
                   <th>
-                    <span>Status</span> <img src={expand} alt="expand" />
+                    <span>Status</span>
                   </th>
                   <th>
                     <span>Options</span>
@@ -206,7 +227,7 @@ const BookingList = () => {
                       <td className='status'>{detail.apartmentId?.status ? detail.apartmentId?.status : 'N/A'}</td>
                       <td className="options" onClick={(e) => handleClick(e, detail)}>
                         <img src={options} alt="options" />
-                        {option[detail._id] && <div className='option-details'>
+                        {option[detail._id] && <div ref={ref} className='option-details'>
                           <span onClick={viewDetails}>View Details</span>
                         </div>}
                       </td>

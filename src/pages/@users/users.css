@@ -79,14 +79,14 @@
 .users .verified {
     color: #219653;
     background: #D5E8DD;
-    text-align: center;
     font-size: .9rem;
     font-weight: 500;
     border-radius: 16px;
     margin: .5rem 0;
-    padding: .7rem 1.7rem .7rem 1rem;
+    padding: .7rem 1.5rem;
     display: inline-block;
-    width: 80%;
+    width: 100%;
+    text-align: center;
 }
 
 .users .pending {

@@ -1,12 +1,12 @@
 .option-details {
-    width: 110px;
+    width: 130px;
     position: absolute;
     z-index: 1;
     background: #FFFFFF;
     box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
     border-radius: 8px;
     right: 0;
-    top: 70%;
+    top: 10%;
     padding: 0rem 1rem;
     border-radius: 10px;
 }
@@ -14,9 +14,9 @@
 .option-details span {
     display: block;
     color: #2D2D2D;
-    font-size: .8rem;
+    font-size: .9rem;
     font-weight: 600;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     cursor: pointer;
 }
 

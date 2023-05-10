@@ -2,14 +2,14 @@ import './apartment.css';
 import left from '../@bookinglist/assets/left.svg';
 import right from '../@bookinglist/assets/right.svg';
 import axios from "axios";
-import expand from "./assets/expand.svg";
+// import expand from "./assets/expand.svg";
 import options from "./assets/options.svg";
 import { toast } from "react-toastify";
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const renderData = (data) => {
     return (
@@ -128,6 +128,29 @@ const Apartment = () => {
     }, [authenticated]);
 
     const [option, setOption] = useState({})
+
+
+    const ref = useRef();
+
+    useOnClickOutside(ref, () => setOption(false));
+
+    function useOnClickOutside(ref, handler) {
+        useEffect(() => {
+            const listener = (event) => {
+                // Do nothing if clicking ref's element or descendent elements
+                if (!ref.current || ref.current.contains(event.target)) {
+                    return;
+                }
+                handler(event);
+            };
+            document.addEventListener("mousedown", listener);
+            document.addEventListener("touchstart", listener);
+            return () => {
+                document.removeEventListener("mousedown", listener);
+                document.removeEventListener("touchstart", listener);
+            };
+        }, [ref, handler]);
+    }
     // console.log(option);
     for (const key in option) {
         // console.log(key);
@@ -214,22 +237,22 @@ const Apartment = () => {
                                 <tr>
                                     <th>
                                         <span>Apartment Name</span>
-                                        <img src={expand} alt="expand" />
+
                                     </th>
                                     <th>
-                                        <span>Country</span> <img src={expand} alt="expand" />
+                                        <span>Country</span>
                                     </th>
                                     <th>
-                                        <span>State</span> <img src={expand} alt="expand" />
+                                        <span>State</span>
                                     </th>
                                     <th>
-                                        <span>Address</span> <img src={expand} alt="expand" />
+                                        <span>Address</span>
                                     </th>
                                     <th>
-                                        <span>Type</span> <img src={expand} alt="expand" />
+                                        <span>Type</span>
                                     </th>
                                     <th>
-                                        <span>Status</span> <img src={expand} alt="expand" />
+                                        <span>Status</span>
                                     </th>
                                     <th>
                                         <span>Options</span>
@@ -250,7 +273,7 @@ const Apartment = () => {
                                             <td><span className={detail.status === 'ACTIVE' ? 'act' : 'sus'}>{detail.status ? detail.status : 'N/A'}</span></td>
                                             <td className="options" onClick={(e) => handleClick(e, detail)}>
                                                 <img src={options} alt="options" />
-                                                {option[detail._id] && <div className='option-details'>
+                                                {option[detail._id] && <div ref={ref} className='option-details'>
                                                     <span onClick={viewDetails}>View Details</span><span onClick={suspendApartment}>Suspend</span>
                                                 </div>}
                                             </td>

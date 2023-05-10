@@ -1,15 +1,15 @@
 import "./users.css";
-import options from "./assets/options.svg";
-import demoDp from './assets/demo.webp';
+import left from '../@bookinglist/assets/left.svg';
+import right from '../@bookinglist/assets/right.svg';
 import axios from "axios";
+import demoDp from './assets/demo.webp';
+import options from "./assets/options.svg";
+import { toast } from 'react-toastify';
 import { Search } from "../../components/search/search";
 import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
-import { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
-import left from '../@bookinglist/assets/left.svg';
-import right from '../@bookinglist/assets/right.svg';
+import { useEffect, useState, useRef } from "react";
 
 const renderData = (data) => {
   return (
@@ -126,6 +126,29 @@ const Users = () => {
   }, [authenticated]);
   const [option, setOption] = useState({})
   // console.log(option);
+
+
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => setOption(false));
+
+  function useOnClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    }, [ref, handler]);
+  }
   for (const key in option) {
     // console.log(key);
     sessionStorage.setItem("user_un_Id", JSON.stringify(key));
@@ -353,7 +376,7 @@ const Users = () => {
                       <td><span className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</span></td>
                       <td className="options" onClick={(e) => handleClick(e, user)}>
                         <img src={options} alt="options" />
-                        {option[user._id] && <div className='option-details'>
+                        {option[user._id] && <div ref={ref} className='option-details'>
                           <span onClick={viewDetails}>View Details</span>
                           <span onClick={suspendUser}>Suspend</span>
                           <span onClick={verifyUser}>Verify</span>

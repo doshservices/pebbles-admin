@@ -1,9 +1,9 @@
 import "./sidenav.css";
 import logo from "../../../assets/logo.svg";
+import { isAuthenticated } from "../../../utils/helpers";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { addedServicesUrl, sideNavLinks } from "./navlinks";
-import { isAuthenticated } from "../../../utils/helpers";
 
 export const Hamburger = (props) => {
   return (

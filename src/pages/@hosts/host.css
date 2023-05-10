@@ -117,7 +117,7 @@
     margin: .5rem 0;
     padding: .7rem 1rem;
     display: inline-block;
-    width: 80%;
+    width: 100%;
 }
 
 .host .pending {
@@ -130,7 +130,7 @@
     margin: .5rem 0;
     padding: .7rem 1rem;
     display: inline-block;
-    width: 80%;
+    width: 100%;
 }
 
 .host .pagination {
