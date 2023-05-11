@@ -4,16 +4,14 @@ import axios from "axios";
 const Revenue = () => {
     // const [details, setDetails] = useState([]);
     const [apiError, setApiError] = useState("");
-    // console.log(apiError);
 
-    const revenue =
-        "https://pubblessignature-production.up.railway.app/api/transactions";
+    const revenue = process.env.REACT_APP_URL
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         await axios
-            .get(revenue, {
+            .get(`${revenue}/transactions`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

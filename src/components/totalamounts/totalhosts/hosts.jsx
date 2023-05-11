@@ -4,47 +4,42 @@ import axios from "axios";
 const TotalHosts = () => {
     const [details, setDetails] = useState([]);
     const [resp, setResp] = useState([])
-    // console.log(resp);
     const [apiError, setApiError] = useState("");
-    const [loading, setLoading] = useState(false)
     const totalHosts = details.length + resp.length;
 
-    const totalBiusnessHosts =
-        "https://pubblessignature-production.up.railway.app/api/admin/allbusiness";
-    const individualHosts =
-        "https://pubblessignature-production.up.railway.app/api/admin/allindividual";
+    const hosts = process.env.REACT_APP_URL;
+
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
+
     const fetchIndividualData = async () => {
-        setLoading(true)
         await axios
-            .get(totalBiusnessHosts, {
+            .get(`${hosts}/admin/allindividual`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
             })
             .then((res) => {
-                setLoading(false)
                 // console.log(res);
-                setDetails(res.data.message);
+                setDetails(res.data.data.individualHost);
             })
             .catch((err) => {
-                setLoading(false)
                 // console.log(err);
                 setApiError(err.message);
             });
     };
+
     const fetchBuisnessData = async () => {
         await axios
-            .get(individualHosts, {
+            .get(`${hosts}/admin/allbusiness`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
             })
             .then((res) => {
                 // console.log(res);
-                setResp(res.data.data.individualHost);
+                setResp(res.data.data.businessHost);
             })
             .catch((err) => {
                 // console.log(err);

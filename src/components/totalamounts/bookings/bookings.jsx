@@ -7,15 +7,14 @@ const TotalBookings = () => {
     const [isloading, setIsLoading] = useState(false);
     const buisLength = details.length;
 
-    const totalBookings =
-        "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
+    const totalBookings = process.env.REACT_APP_URL;
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         setIsLoading(true)
         await axios
-            .get(totalBookings, {
+            .get(`${totalBookings}/bookings/all-bookings`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

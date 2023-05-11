@@ -28,20 +28,22 @@ const LoginForm = () => {
   const handleSaveAuth = (id, token, authname) => {
     // logic for localStorage
     // Once logic is complete/ Navigate
-    localStorage.setItem("Pebbles__Super_Admin___iD", JSON.stringify(id));
-    localStorage.setItem("Pebbles__Super_Admin___toKen", JSON.stringify(token));
+    localStorage.setItem("psid", JSON.stringify(id));
+    localStorage.setItem("pstk", JSON.stringify(token));
     localStorage.setItem("user-name", JSON.stringify(authname))
 
-    const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
-    const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
+    const authToken = localStorage.getItem("pstk");
+    const ID = localStorage.getItem("psid");
 
     if (authToken && ID !== "") {
       navigate("/");
     }
     return;
   };
-  const api = "https://pubblessignature-production.up.railway.app/api/users/login";
-  // const api = process.env.REACT_APP_BASE_URL;
+
+  const api = process.env.REACT_APP_URL
+  console.log(api);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -49,7 +51,7 @@ const LoginForm = () => {
 
     if (JSON.stringify(checkTextFields) === "{}") {
       axios
-        .post(api, {
+        .post(`${api}/users/login`, {
           loginId: formValues.loginId,
           password: formValues.password,
         })
@@ -136,6 +138,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
+      <h2>{process.env.PEBBLES_BASE_URL}</h2>
       {loading && <CssLoader />}
       <label htmlFor="email">Email</label>
       <input

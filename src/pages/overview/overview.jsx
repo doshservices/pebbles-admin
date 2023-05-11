@@ -1,16 +1,15 @@
 import "./overview.css";
-// import dropdown from "./assets/dropdown.svg";
-import { Search } from "../../components/search/search";
-import download from "./assets/download-icon.svg";
-import TotalBookings from "../../components/totalamounts/bookings/bookings";
-import TotalCheckins from "../../components/totalamounts/totalchecks/checkins";
-import Checkouts from "../../components/totalamounts/totalchecks/checkouts";
 import Revenue from "../../components/totalamounts/revenue/revenue";
-import { isAuthenticated } from "../../utils/helpers";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import TotalUsers from "../../components/totalamounts/totalusers/users";
+import download from "./assets/download-icon.svg";
+import Checkouts from "../../components/totalamounts/totalchecks/checkouts";
 import TotalHosts from "../../components/totalamounts/totalhosts/hosts";
+import TotalUsers from "../../components/totalamounts/totalusers/users";
+import TotalCheckins from "../../components/totalamounts/totalchecks/checkins";
+import TotalBookings from "../../components/totalamounts/bookings/bookings";
+import { Search } from "../../components/search/search";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../utils/helpers";
 
 const Overview = () => {
   const navigate = useNavigate()

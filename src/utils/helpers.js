@@ -1,7 +1,7 @@
 export const isAuthenticated = () => {
 
-    const authToken = localStorage.getItem("Pebbles__Super_Admin___toKen");
-    const ID = localStorage.getItem("Pebbles__Super_Admin___iD");
+    const authToken = localStorage.getItem("pstk");
+    const ID = localStorage.getItem("psid");
 
     if (authToken && ID !== "") {
         return true;

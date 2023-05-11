@@ -26,9 +26,9 @@ const Users = () => {
   const navigate = useNavigate()
   const authenticated = isAuthenticated();
 
-  const users = 'https://pubblessignature-production.up.railway.app/api/users/all';
+  const api = process.env.REACT_APP_URL;
   const authToken = JSON.parse(
-    localStorage.getItem("Pebbles__Super_Admin___toKen")
+    localStorage.getItem("pstk")
   );
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
@@ -99,7 +99,7 @@ const Users = () => {
 
   const fetchData = async () => {
     setLoading(true)
-    await axios.get(users, {
+    await axios.get(`${api}/users/all`, {
       headers: {
         Authorization: `Bearer ${authToken}`
       },
@@ -163,14 +163,13 @@ const Users = () => {
     navigate('/user-details')
   }
   const id = JSON.parse(sessionStorage.getItem('user_un_Id'))
-  const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
 
   const suspendUser = async (e) => {
     setLoading(true)
     e.preventDefault()
 
     if (window.confirm('Are you sure you want to suspend User?')) {
-      await axios.patch(`${api}suspendhost?id=${id}`, {
+      await axios.patch(`${api}/admin/suspendhost?id=${id}`, {
         id: id,
       }, {
         headers: {
@@ -217,7 +216,7 @@ const Users = () => {
     e.preventDefault()
 
     if (window.confirm('Are you sure you want to Verify User?')) {
-      await axios.patch(`${api}verifyhost?id=${id}`, {
+      await axios.patch(`${api}/admin/verifyhost?id=${id}`, {
         id: id,
       }, {
         headers: {
@@ -227,7 +226,7 @@ const Users = () => {
       })
         .then(response => {
           setLoading(false)
-          // console.log(response);
+          console.log(response);
           toast.success("User Verified", {
             position: "top-right",
             autoClose: 5000,
@@ -264,7 +263,7 @@ const Users = () => {
     // console.log(authToken)
     setLoading(true)
     if (window.confirm('Do you want to delete User?')) {
-      await axios.delete(`${api}deleteAccount?id=${id}`, {
+      await axios.delete(`${api}/admin/deleteAccount?id=${id}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
           'Content-Type': 'application/json'
@@ -304,7 +303,6 @@ const Users = () => {
     }
     setTimeout(reload, 5000)
   }
-
 
   const [search, setSearch] = useState('')
 

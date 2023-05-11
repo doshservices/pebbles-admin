@@ -99,15 +99,15 @@ const BookingList = () => {
   // };
   // console.log(details);
 
-  const totalBookings =
-    "https://pubblessignature-production.up.railway.app/api/bookings/all-bookings";
+  const api = process.env.REACT_APP_URL
+
   const authToken = JSON.parse(
-    localStorage.getItem("Pebbles__Super_Admin___toKen")
+    localStorage.getItem("pstk")
   );
   const fetchData = async () => {
     setLoading(true)
     await axios
-      .get(totalBookings, {
+      .get(`${api}/bookings/all-bookings`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

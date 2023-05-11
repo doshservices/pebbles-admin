@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const TotalUsers = () => {
     const [details, setDetails] = useState([]);
@@ -7,14 +7,15 @@ const TotalUsers = () => {
     const [apiError, setApiError] = useState("");
     const usersLength = details.length;
 
-    const users = 'https://pubblessignature-production.up.railway.app/api/users/all';
+    const users = process.env.REACT_APP_URL;
+    // console.log(users);
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         setIsLoading(true)
         await axios
-            .get(users, {
+            .get(`${users}/users/all`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -36,7 +37,7 @@ const TotalUsers = () => {
 
     return (
         <div>
-            {usersLength > 0 ? <p>{usersLength}</p> : <p>{apiError}</p>}
+            {usersLength > 0 ? <p>{usersLength}</p> : <p style={{ fontSize: '1.1rem' }}>{apiError}</p>}
             <p>Total Users</p>
         </div>
     )
