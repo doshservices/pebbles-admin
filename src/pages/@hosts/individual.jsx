@@ -25,9 +25,8 @@ export const Individual = ({ search }) => {
     const navigate = useNavigate()
     const authenticated = isAuthenticated();
 
-    const users = 'https://pubblessignature-production.up.railway.app/api/admin/allindividual';
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -96,9 +95,12 @@ export const Individual = ({ search }) => {
         pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
     }
 
+    const api = process.env.REACT_APP_URL
+
+
     const fetchData = async () => {
         setLoading(true)
-        await axios.get(users, {
+        await axios.get(`${api}/admin/allindividual`, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             },
@@ -164,14 +166,13 @@ export const Individual = ({ search }) => {
     }
 
     const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
-    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
 
     const suspendHost = async (e) => {
         setLoading(true)
         e.preventDefault()
 
         if (window.confirm('Are you sure you want to suspend Host?')) {
-            await axios.patch(`${api}suspendhost?id=${id}`, {
+            await axios.patch(`${api}/admin/suspendhost?id=${id}`, {
                 id: id,
             }, {
                 headers: {
@@ -218,7 +219,7 @@ export const Individual = ({ search }) => {
         e.preventDefault()
 
         if (window.confirm('Are you sure you want to Verify Host?')) {
-            await axios.patch(`${api}verifyhost?id=${id}`, {
+            await axios.patch(`${api}/admin/verifyhost?id=${id}`, {
                 id: id,
             }, {
                 headers: {
@@ -265,7 +266,7 @@ export const Individual = ({ search }) => {
         // console.log(authToken)
         setLoading(true)
         if (window.confirm('Do you want to delete Host?')) {
-            await axios.delete(`${api}deleteAccount?id=${id}`, {
+            await axios.delete(`${api}/admin/deleteAccount?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json'

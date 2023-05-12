@@ -24,7 +24,6 @@ const SideNav = () => {
   function useOnClickOutside(ref, handler) {
     useEffect(() => {
       const listener = (event) => {
-        // Do nothing if clicking ref's element or descendent elements
         if (!ref.current || ref.current.contains(event.target)) {
           return;
         }
@@ -41,8 +40,8 @@ const SideNav = () => {
 
   const changeRoute = useNavigate()
   const clearStorage = (e) => {
-    localStorage.removeItem('Pebbles__Super_Admin___iD')
-    localStorage.removeItem('Pebbles__Super_Admin___toKen')
+    localStorage.removeItem('psid')
+    localStorage.removeItem('pstk')
     changeRoute('/login')
     window.location.reload(true)
   }

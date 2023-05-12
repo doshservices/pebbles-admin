@@ -27,7 +27,7 @@ export const Buisness = ({ search }) => {
 
     const buisness = 'https://pubblessignature-production.up.railway.app/api/admin/allbusiness';
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false)

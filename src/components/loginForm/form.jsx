@@ -3,10 +3,9 @@ import { eye } from "react-icons-kit/feather/eye";
 import { Icon } from "react-icons-kit";
 import { toast } from 'react-toastify';
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { useState } from "react";
 import { CssLoader } from "../spinner/spinner";
 import { useNavigate } from "react-router-dom";
-import { isAuthenticated } from "../../utils/helpers";
-import { useEffect, useState } from "react";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -42,7 +41,6 @@ const LoginForm = () => {
   };
 
   const api = process.env.REACT_APP_URL
-  console.log(api);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,14 +91,6 @@ const LoginForm = () => {
       setFormErrors(checkTextFields);
     }
   };
-
-  const authenticated = isAuthenticated();
-
-  useEffect(() => {
-    if (authenticated) {
-      navigate("/");
-    }
-  }, [authenticated]);
 
   const validate = (values) => {
     const errors = {};
