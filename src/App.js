@@ -36,7 +36,7 @@ function App() {
   }
 
   useEffect(() => {
-    setTimeout(clearStorage, 86400000)
+    setTimeout(clearStorage, 1000 * 60 * 60 * 6)
   }, [])
 
   return (
