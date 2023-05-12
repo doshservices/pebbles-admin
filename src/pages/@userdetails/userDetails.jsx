@@ -31,7 +31,7 @@ const UserDetails = () => {
   // console.log(userDetails);
 
   const authToken = JSON.parse(
-    localStorage.getItem("Pebbles__Super_Admin___toKen")
+    localStorage.getItem("pstk")
   );
 
   const fetchData = async () => {
