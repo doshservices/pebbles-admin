@@ -1,5 +1,5 @@
 .host-details {
-    padding: 4rem 2rem;
+    padding: 4rem 1rem;
 }
 
 .host-details-heading {
@@ -8,6 +8,19 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+}
+
+.host-details .redirect {
+    color: #155EEF;
+    border: 2px solid #155EEF;
+    background-color: white;
+    border-radius: 8px;
+    padding: .5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    max-width: fit-content;
+    margin: 1rem 0;
 }
 
 .host-details-filter {
@@ -21,7 +34,7 @@
 }
 
 .host-details-info {
-    margin: 2rem 0;
+    margin: 1rem 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -41,6 +54,48 @@
 .host-details-info>div h3 {
     color: #2D2D2D;
     font-size: 1.1rem;
+}
+
+.host-details .username {
+    display: flex;
+    align-items: center;
+    row-gap: 1rem;
+    column-gap: 3rem;
+    flex-wrap: wrap-reverse;
+}
+
+.host-details .username>div {
+    max-width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.host-details .action-btn {
+    padding: .6rem 1rem;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.host-details .suspend {
+    color: #F2994A;
+    border: 2px solid #F2994A;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.host-details .delete {
+    color: #FF3B30;
+    border: 2px solid #FF3B30;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.host-details .veri {
+    color: #219653;
+    border: 2px solid #219653;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .host-details-filter .profile {
@@ -72,15 +127,16 @@
     height: 100px;
 }
 
-.host-details-profile .member {
+.host-details-profile .role {
     color: #155EEF;
-    font-size: .9rem;
+    font-size: 1rem;
     font-weight: 600;
+    margin: .4rem 0;
 }
 
-.host-details-profile .address {
-    color: rgba(45, 45, 45, 0.6);
-    font-size: .8rem;
+.host-details-profile .status {
+    color: rgb(33, 32, 32);
+    font-size: .9rem;
     font-weight: 600;
 }
 
@@ -91,6 +147,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: .5rem;
 }
 
 .host-details-profile p {
@@ -130,9 +187,39 @@
 
 .profile-pic {
     min-height: 140px;
-    max-height: 140px;
-    width: 140px;
+    max-height: 150px;
+    width: 150px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 15px;
     border: 3px solid rgb(184, 177, 177);
+}
+
+.host-details .verified {
+    color: #219653;
+    font-size: 1rem;
+}
+
+.host-details .verified::before {
+    content: '';
+    display: inline-block;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background: #219653;
+    margin-right: 5px;
+}
+
+.host-details .pending {
+    color: #F2994A;
+    font-size: 1rem;
+}
+
+.host-details .pending::before {
+    content: '';
+    display: inline-block;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background: #F2994A;
+    margin-right: 5px;
 }

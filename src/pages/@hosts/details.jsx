@@ -1,10 +1,12 @@
 import './host-details.css';
 import axios from "axios";
-import dropdown from "./assets/dropdown.svg";
 import demoDp from './assets/demo.webp';
+// import dropdown from "./assets/dropdown.svg";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from '../../utils/helpers';
 import { useState, useEffect } from "react";
+import { CssLoader } from '../../components/spinner/spinner';
 
 export default function Details() {
 
@@ -19,10 +21,17 @@ export default function Details() {
     }, [authenticated]);
 
     const [details, setDetails] = useState([]);
-    // const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
     // console.log(details);
 
+    const reload = () => {
+        window.location.reload()
+    }
+
+    const redirect = () => {
+        navigate('/hosts')
+    }
     const userId = JSON.parse(sessionStorage.getItem('host_un_Id'))
 
     const api = process.env.REACT_APP_URL
@@ -51,6 +60,138 @@ export default function Details() {
     useEffect(() => {
         fetchData();
     }, []);
+
+    const suspendHost = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to suspend Host?')) {
+            await axios.patch(`${api}/admin/suspendhost?id=${userId}`, {
+                id: userId,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // console.log(response);
+                    setLoading(false)
+                    setTimeout(reload, 5000)
+                    toast.success("Host Suspended", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    // console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        if (window.confirm('Do you want to delete Host?')) {
+            await axios.delete(`${api}/admin/deleteAccount?id=${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // console.log(response);
+                    setLoading(false)
+                    toast.success("Host Deleted!", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    // console.error(error);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+        setTimeout(redirect, 3000)
+    }
+    const verifyHost = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to Verify Host?')) {
+            await axios.patch(`${api}/admin/verifyhost?id=${userId}`, {
+                id: userId,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    setLoading(false)
+                    // console.log(response);
+                    setTimeout(reload, 5000)
+                    toast.success("Host Verified", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    // console.error(error);
+                    toast.error(error.response, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+
     return (
         <section className="host-details">
             <div className="host-details-heading">
@@ -58,35 +199,40 @@ export default function Details() {
                     <h2>Host</h2>
                     <p>Host Profile</p>
                 </div>
-                <div className="host-details-filter">
+                {/* <div className="host-details-filter">
                     <img className="profile" src="" alt="" />
                     <div>
                         <h5>Filter Period</h5>
                         <p>10 March 2023 - 21 April 2023</p>
                     </div>
                     <img src={dropdown} alt="dropdown" />
-                </div>
+                </div> */}
             </div>
+            <button className='redirect' onClick={redirect}>Back</button>
+            {loading && <CssLoader />}
             <section className="host-details-info">
                 <div className="host-details-profile">
                     <img src={details.profilePicture ? details.profilePicture : demoDp} alt="profile" className='profile-pic' />
                     <div>
-                        <div>
+                        <div className='username'>
                             <h4>{details.firstName ? details.firstName : ''} {details.lastName ? details.lastName : ''}</h4>
+                            <div>
+                                <button className='action-btn veri' onClick={verifyHost}>Verify</button>
+                                <button className='action-btn suspend' onClick={suspendHost}>Suspend</button>
+                                <button className='action-btn delete' onClick={deleteAccount}>Delete</button>
+                            </div>
                         </div>
-                        <p>Country: {details.country ? details.country : ''}</p>
-                        <p>City: {details.city ? details.city : ''}</p>
-                        <p>State: {details.state ? details.state : ''}</p>
+                        {details.role && <p className="role">Role: {details.role}</p>}
+                        {details.country && <p>Country: {details.country}</p>}
+                        {details.state && <p>State: {details.state}</p>}
+                        {details.city && <p>City: {details.city}</p>}
                         {details.validId && <img height='200px' src={details.validId} alt="" />}
-                        <p></p>
-                        <p></p>
-                        <p className="member">Role: {details.role ? details.role : ''}</p>
-                        <p className="address">Status: {details.status ? details.status : ''}</p>
+                        {details.status && <p className="status">Status: {details.status}</p>}
                         <div className="contact">
-                            <p>{details.email ? details.email : ''}</p>
-                            <p>{details.phoneNumber ? details.phoneNumber : ''}</p>
+                            {details.email && <p>{details.email}</p>}
+                            {details.phoneNumber && <p>{details.phoneNumber}</p>}
                         </div>
-                        <p>{details.isVerified === true ? 'Verified' : ''}</p>
+                        {details.isVerified && <p className={details.isVerified === true ? 'verified' : 'pending'}>{details.isVerified === true ? <span>Verified</span> : <span>Pending</span>}</p>}
                     </div>
                 </div>
             </section>
