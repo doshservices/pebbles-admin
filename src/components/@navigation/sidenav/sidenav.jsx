@@ -46,6 +46,7 @@ const SideNav = () => {
     window.location.reload(true)
   }
   const authenticated = isAuthenticated();
+
   const [returnNav, setReturnNav] = useState('return-nav')
   useEffect(() => {
     if (!authenticated) {

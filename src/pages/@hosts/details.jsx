@@ -25,22 +25,20 @@ export default function Details() {
 
     const userId = JSON.parse(sessionStorage.getItem('host_un_Id'))
 
-    const api = 'https://pubblessignature-production.up.railway.app/api/users/';
-    const userDetails = `${api}${userId}`
+    const api = process.env.REACT_APP_URL
 
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
     const fetchData = async () => {
         // setLoading(true)
-        await axios.get(userDetails, {
+        await axios.get(`${api}/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             },
         })
             .then((res) => {
-                // setLoading(false)
                 // console.log(res);
                 setDetails(res.data.data.user)
             })

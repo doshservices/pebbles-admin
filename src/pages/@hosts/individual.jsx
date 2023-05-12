@@ -2,7 +2,6 @@ import './host.css';
 import left from '../@bookinglist/assets/left.svg';
 import right from '../@bookinglist/assets/right.svg';
 import axios from "axios";
-// import expand from "./assets/expand.svg";
 import demoDp from './assets/demo.webp';
 import options from "./assets/options.svg";
 import { toast } from 'react-toastify';
