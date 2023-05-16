@@ -2,6 +2,7 @@ import "./userdetails.css";
 import axios from "axios";
 import demo from './assets/demo.webp';
 import dropdown from "./assets/dropdown.svg";
+import { toast } from "react-toastify";
 import { Search } from "../../components/search/search";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
@@ -19,35 +20,37 @@ const UserDetails = () => {
     }
   }, [authenticated]);
 
+  const reload = () => {
+    window.location.reload()
+  }
+
+  const redirect = () => {
+    navigate('/users')
+  }
+
   const [details, setDetails] = useState([]);
-  // const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
 
   const userId = JSON.parse(sessionStorage.getItem('user_un_Id'))
-  // console.log(userId);
 
-  const api = 'https://pubblessignature-production.up.railway.app/api/users/';
-  const userDetails = `${api}${userId}`
-  // console.log(userDetails);
+  const api = process.env.REACT_APP_URL;
+  const userDetails = `${api}/users/${userId}`
 
   const authToken = JSON.parse(
     localStorage.getItem("pstk")
   );
 
   const fetchData = async () => {
-    // setLoading(true)
     await axios.get(userDetails, {
       headers: {
         Authorization: `Bearer ${authToken}`
       },
     })
       .then((res) => {
-        // setLoading(false)
         // console.log(res);
         setDetails(res.data.data.user)
       })
       .catch((err) => {
-        // setLoading(false)
         // console.log(err);
         setError(err.message);
       });
@@ -55,6 +58,128 @@ const UserDetails = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const suspendUser = async (e) => {
+    e.preventDefault()
+
+    if (window.confirm('Are you sure you want to suspend Host?')) {
+      await axios.patch(`${api}/admin/suspendhost?id=${userId}`, {
+        id: userId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          setTimeout(reload, 5000)
+          toast.success("Host Suspended", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          // console.error(error);
+          toast.error(error.response, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+  }
+
+  const deleteUser = async (e) => {
+    e.preventDefault()
+    if (window.confirm('Do you want to delete Host?')) {
+      await axios.delete(`${api}/admin/deleteAccount?id=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          toast.success("Host Deleted!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          // console.error(error);
+          toast.error(error.response.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+    setTimeout(redirect, 3000)
+  }
+  const verifyUser = async (e) => {
+    e.preventDefault()
+
+    if (window.confirm('Are you sure you want to Verify Host?')) {
+      await axios.patch(`${api}/admin/verifyhost?id=${userId}`, {
+        id: userId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          setTimeout(reload, 5000)
+          toast.success("Host Verified", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        })
+        .catch(error => {
+          // console.error(error);
+          toast.error(error.response, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    }
+  }
 
   return (
     <>
@@ -66,6 +191,7 @@ const UserDetails = () => {
             <p>User Profile</p>
           </div>
         </div>
+        <button className='redirect' onClick={redirect}>Back</button>
         <section className="user-details-info">
           {details ? (
             <div className="user-details-profile">
@@ -75,6 +201,11 @@ const UserDetails = () => {
                   <h4>{details.firstName} {details.lastName}</h4>
                 </div> : ''
                 }
+                <div className="actions">
+                  <button className='action-btn veri' onClick={verifyUser}>Verify</button>
+                  <button className='action-btn suspend' onClick={suspendUser}>Suspend</button>
+                  <button className='action-btn delete' onClick={deleteUser}>Delete</button>
+                </div>
                 {
                   details.role ? <p className="member">{details.role}</p> : <></>
                 }
@@ -91,7 +222,7 @@ const UserDetails = () => {
                   details.city ? <p className="address">City:  {details.city} </p> : <></>
                 }
                 {
-                  details.isVerified ? <p className="address">{details.isVerified === true ? 'Verified' : 'Pending'}</p> : <></>
+                  details.phoneNumber ? <p className="address">{details.phoneNumber}</p> : <></>
                 }
                 <div className="contact">
                   {
@@ -100,12 +231,9 @@ const UserDetails = () => {
                   {
                     details.phoneNumber ? <p>{details.phoneNumber}</p> : <></>
                   }
-
-
                 </div>
               </div>
             </div>
-
           ) : (<h3>{error}</h3>)}
           <div>
             <div

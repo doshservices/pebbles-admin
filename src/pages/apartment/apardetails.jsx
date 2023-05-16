@@ -1,9 +1,10 @@
+import './apardetails.css';
+import axios from "axios";
+import { toast } from 'react-toastify';
 import { Search } from "../../components/search/search"
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import './apardetails.css';
 
 const ApartmentDetails = () => {
     const navigate = useNavigate()
@@ -11,21 +12,21 @@ const ApartmentDetails = () => {
     const authenticated = isAuthenticated();
 
     const [details, setDetails] = useState([]);
-    // const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     // const [error, setError] = useState("");
     // console.log(details);
 
     const aparId = JSON.parse(sessionStorage.getItem("apar_un_Id"));
     // console.log(aparId);
-    const apartmentDetails =
-        "https://pubblessignature-production.up.railway.app/api/apartments/";
+    const api = process.env.REACT_APP_URL
+
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         // setLoading(true)
         await axios
-            .get(`${apartmentDetails}${aparId}`, {
+            .get(`${api}/apartments/${aparId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -51,12 +52,62 @@ const ApartmentDetails = () => {
         }
     }, [authenticated]);
 
+    const reload = () => {
+        window.location.reload()
+    }
+
+    const suspendApartment = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+
+        if (window.confirm('Are you sure you want to suspend Apartment?')) {
+            await axios.patch(`${api}/admin/suspendApartment?apartmentId=${aparId}`, {
+                id: aparId,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // console.log(response);
+                    setLoading(false)
+                    setTimeout(reload, 5000)
+                    toast.success("Apartment Suspended", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                })
+                .catch(error => {
+                    setLoading(false)
+                    // console.error(error);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                });
+        }
+    }
+
 
     return (
         <>
             <Search placeholder='search here' />
             <section className="apartment-details">
                 <section className="images">
+                    <button className='action-btn suspend' onClick={suspendApartment}>Suspend</button>
                     <h3>Apartment Images</h3>
                     <div>
                         {details.apartmentImages?.map((img, index) => {

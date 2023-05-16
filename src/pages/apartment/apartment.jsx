@@ -93,15 +93,14 @@ const Apartment = () => {
         pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
     }
 
-    const totalBookings =
-        "https://pubblessignature-production.up.railway.app/api/apartments/all-apartments";
+    const api = process.env.REACT_APP_URL
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         setLoading(true)
         await axios
-            .get(totalBookings, {
+            .get(`${api}/apartments/all-apartments`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -151,6 +150,10 @@ const Apartment = () => {
             };
         }, [ref, handler]);
     }
+
+    const reload = () => {
+        window.location.reload()
+    }
     // console.log(option);
     for (const key in option) {
         // console.log(key);
@@ -166,14 +169,13 @@ const Apartment = () => {
         navigate('/apartment-details')
     }
     const id = JSON.parse(sessionStorage.getItem('apar_un_Id'))
-    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
 
     const suspendApartment = async (e) => {
         setLoading(true)
         e.preventDefault()
 
         if (window.confirm('Are you sure you want to suspend Apartment?')) {
-            await axios.patch(`${api}suspendApartment?apartmentId=${id}`, {
+            await axios.patch(`${api}/admin/suspendApartment?apartmentId=${id}`, {
                 id: id,
             }, {
                 headers: {
@@ -184,6 +186,7 @@ const Apartment = () => {
                 .then(response => {
                     // console.log(response);
                     setLoading(false)
+                    setTimeout(reload, 5000)
                     toast.success("Apartment Suspended", {
                         position: "top-right",
                         autoClose: 5000,
@@ -210,10 +213,6 @@ const Apartment = () => {
                     });
                 });
         }
-        const reload = () => {
-            window.location.reload()
-        }
-        setTimeout(reload, 5000)
     }
 
     const [search, setSearch] = useState('')

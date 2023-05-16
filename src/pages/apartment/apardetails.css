@@ -42,3 +42,14 @@
     font-weight: 700;
     margin-right: 10px;
 }
+
+.apartment-details .suspend {
+    color: #F2994A;
+    border: 2px solid #F2994A;
+    background-color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .6rem 1.5rem;
+    margin: 1rem 0;
+}
