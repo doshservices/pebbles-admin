@@ -35,7 +35,7 @@ const BookingDetails = () => {
     const bookingDetail =
         "https://pubblessignature-production.up.railway.app/api/bookings/";
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
     const fetchData = async () => {

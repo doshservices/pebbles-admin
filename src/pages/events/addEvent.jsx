@@ -30,17 +30,16 @@ const AddEvent = () => {
     };
 
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
-    const api =
-        "https://pubblessignature-production.up.railway.app/api/events/create-event";
+    const api = process.env.REACT_APP_URL
 
     const handleSubmit = (e) => {
         setLoading(true)
         e.preventDefault()
         axios
-            .post(api, {
+            .post(`${api}/events/create-event`, {
                 eventName: formValues.eventName,
                 description: formValues.description,
                 eventCategory: formValues.eventCategory,

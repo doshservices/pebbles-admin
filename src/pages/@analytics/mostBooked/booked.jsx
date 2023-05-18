@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import { CssLoader } from "../../../components/spinner/spinner";
+import { useState, useEffect } from "react";
 
 export const MostBooked = () => {
     const [loading, setLoading] = useState(false)
@@ -8,16 +8,15 @@ export const MostBooked = () => {
     // console.log(mostBooked);
     const [error, setError] = useState('')
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
-    const mostBookedListing =
-        "https://pubblessignature-production.up.railway.app/api/bookings/most-booked";
+    const api = process.env.REACT_APP_URL
     const fetchListing = async () => {
         setLoading(true)
         setLoading(true)
         await axios
-            .get(mostBookedListing, {
+            .get(`${api}/bookings/most-booked`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -38,8 +37,7 @@ export const MostBooked = () => {
     }, []);
 
     return (
-        <div className="analytics-category-type">
-            <h3>Most Booked Listings </h3>
+        <div>
             {loading && <CssLoader />}
             <section>
             </section>

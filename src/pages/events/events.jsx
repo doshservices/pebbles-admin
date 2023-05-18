@@ -16,16 +16,16 @@ const Events = () => {
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const api =
-        "https://pubblessignature-production.up.railway.app/api/events/";
+    const api = process.env.REACT_APP_URL
+
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
     const getEvents = async () => {
         setLoading(true)
         await axios
-            .get(api, {
+            .get(`${api}/events/`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

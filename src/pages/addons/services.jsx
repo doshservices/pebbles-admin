@@ -14,16 +14,16 @@ const Services = () => {
     const [addon, setAddon] = useState([])
     // console.log(events);
     const [loading, setLoading] = useState(false)
-    const api =
-        "https://pubblessignature-production.up.railway.app/api/addons/";
+    const api = process.env.REACT_APP_URL
+
     const authToken = JSON.parse(
-        localStorage.getItem("Pebbles__Super_Admin___toKen")
+        localStorage.getItem("pstk")
     );
 
     const getEvents = async () => {
         setLoading(true)
         await axios
-            .get(api, {
+            .get(`${api}/addons/`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

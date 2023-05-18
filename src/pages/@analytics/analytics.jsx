@@ -1,12 +1,16 @@
 import "./analytics.css";
 import dropdown from "./assets/dropdown.svg";
+import moment from 'moment'
 import { Search } from "../../components/search/search";
 import { MostBooked } from "./mostBooked/booked";
 import { useNavigate } from "react-router-dom";
+import { getDaysInMonth } from "./bookingByDate/date";
 import { isAuthenticated } from "../../utils/helpers";
 import { useState, useEffect } from "react";
 
 const Analytics = () => {
+  const days = getDaysInMonth(moment().add(0, 'months'))
+  // console.log(days);
 
   const [typeRange, setTypeRange] = useState("Monthly");
 
@@ -64,9 +68,6 @@ const Analytics = () => {
               </div>
             </div>
             <section>
-              {typeRange === "Monthly" && <p>Monthly</p>}
-              {typeRange === "Weekly" && <p>Weekly</p>}
-              {typeRange === "Daily" && <p>Daily</p>}
             </section>
           </div>
           <div className="analytics-category-type">
@@ -74,29 +75,21 @@ const Analytics = () => {
               <h3>Most Booked Listings </h3>
               <div className="category-range">
                 <button
-                  onClick={() => setTypeRange("Monthly")}
-                  className={typeRange === "Monthly" ? "active-btn" : ""}
                 >
                   Monthly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Weekly")}
-                  className={typeRange === "Weekly" ? "active-btn" : ""}
                 >
                   Weekly
                 </button>
                 <button
-                  onClick={() => setTypeRange("Daily")}
-                  className={typeRange === "Daily" ? "active-btn" : ""}
                 >
                   Daily
                 </button>
               </div>
+              <MostBooked />
             </div>
             <section>
-              {typeRange === "Monthly" && <p>Monthly</p>}
-              {typeRange === "Weekly" && <p>Weekly</p>}
-              {typeRange === "Daily" && <p>Daily</p>}
             </section>
           </div>
           <div className="analytics-category-type">
@@ -104,21 +97,14 @@ const Analytics = () => {
               <h3>Trendy Listings</h3>
               <div className="category-range">
                 <button
-                // onClick={() => setTypeRange("Monthly")}
-                // className={typeRange === "Monthly" ? "active-btn" : ""}
                 >
                   Monthly
                 </button>
                 <button
-                // onClick={() => setTypeRange("Weekly")}
-                // className={typeRange === "Weekly" ? "active-btn" : ""}
                 >
                   Weekly
                 </button>
-                <button
-                // onClick={() => setTypeRange("Daily")}
-                // className={typeRange === "Daily" ? "active-btn" : ""}
-                >
+                <button>
                   Daily
                 </button>
               </div>
@@ -134,29 +120,18 @@ const Analytics = () => {
               <h3>Revenues</h3>
               <div className="category-range">
                 <button
-                // onClick={() => setTypeRange("Monthly")}
-                // className={typeRange === "Monthly" ? "active-btn" : ""}
                 >
                   Monthly
                 </button>
-                <button
-                // onClick={() => setTypeRange("Weekly")}
-                // className={typeRange === "Weekly" ? "active-btn" : ""}
-                >
+                <button>
                   Weekly
                 </button>
-                <button
-                // onClick={() => setTypeRange("Daily")}
-                // className={typeRange === "Daily" ? "active-btn" : ""}
-                >
+                <button>
                   Daily
                 </button>
               </div>
             </div>
             <section>
-              {/* {typeRange === "Monthly" && <p>Monthly</p>}
-              {typeRange === "Weekly" && <p>Weekly</p>}
-              {typeRange === "Daily" && <p>Daily</p>} */}
             </section>
           </div>
         </div>
