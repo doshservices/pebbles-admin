@@ -8,14 +8,14 @@ const TotalUsers = () => {
     const usersLength = details.length;
 
     const users = process.env.REACT_APP_URL;
-    // console.log(users);
+    console.log(users);
     const authToken = JSON.parse(
         localStorage.getItem("pstk")
     );
     const fetchData = async () => {
         setIsLoading(true)
         await axios
-            .get(`${users}/users/all`, {
+            .get(`${users}/api/users/all`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

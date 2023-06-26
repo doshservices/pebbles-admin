@@ -23,7 +23,7 @@ const Services = () => {
     const getEvents = async () => {
         setLoading(true)
         await axios
-            .get(`${api}/addons/`, {
+            .get(`${api}/api/addons/`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

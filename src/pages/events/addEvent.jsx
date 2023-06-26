@@ -39,7 +39,7 @@ const AddEvent = () => {
         setLoading(true)
         e.preventDefault()
         axios
-            .post(`${api}/events/create-event`, {
+            .post(`${api}/api/events/create-event`, {
                 eventName: formValues.eventName,
                 description: formValues.description,
                 eventCategory: formValues.eventCategory,

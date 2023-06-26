@@ -24,15 +24,19 @@ const LoginForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSaveAuth = (id, token, authname) => {
+  const handleSaveAuth = (id, token, authname, role) => {
     // logic for localStorage
     // Once logic is complete/ Navigate
-    localStorage.setItem("psid", JSON.stringify(id));
-    localStorage.setItem("pstk", JSON.stringify(token));
-    localStorage.setItem("user-name", JSON.stringify(authname))
 
     const authToken = localStorage.getItem("pstk");
     const ID = localStorage.getItem("psid");
+
+    if (role === "SUPER-ADMIN") {
+      localStorage.setItem("psid", JSON.stringify(id));
+      localStorage.setItem("pstk", JSON.stringify(token));
+      localStorage.setItem("user-name", JSON.stringify(authname))
+      localStorage.setItem("role", JSON.stringify(role))
+    }
 
     if (authToken && ID !== "") {
       navigate("/");
@@ -40,7 +44,7 @@ const LoginForm = () => {
     return;
   };
 
-  const api = process.env.REACT_APP_URL
+  const api = process.env.REACT_APP_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,28 +53,42 @@ const LoginForm = () => {
 
     if (JSON.stringify(checkTextFields) === "{}") {
       axios
-        .post(`${api}/users/login`, {
+        .post(`${api}/api/users/login`, {
           loginId: formValues.loginId,
           password: formValues.password,
         })
         .then((response) => {
           setLoading(false);
           // console.log(response);
-          toast.success("Login Successful", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
+          if (response.data.data.userDetails.role !== "SUPER-ADMIN") {
+            toast.error("You have to be a Super Admin to login!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } if (response.data.data.userDetails.role === "SUPER-ADMIN") {
+            toast.success("Login Successful", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            window.location.reload(true)
+          }
           const authToken = response.data.data.token;
           const authID = response.data.data.userDetails._id;
           const authName = response.data.data.userDetails.firstName;
-          window.location.reload(true)
-          handleSaveAuth(authID, authToken, authName);
+          const role = response.data.data.userDetails.role;
+          handleSaveAuth(authID, authToken, authName, role);
         })
         .catch((error) => {
           setLoading(false);
@@ -150,6 +168,7 @@ const LoginForm = () => {
           placeholder="Enter your password"
           value={formValues.password}
           onChange={handleChange}
+          autoComplete='on'
         />
         <span onClick={handleToggle}>
           <Icon icon={icon} size={18} />
