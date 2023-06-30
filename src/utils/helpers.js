@@ -7,6 +7,7 @@ export const isAuthenticated = () => {
     if (authToken && ID !== "") {
         return true;
     }
+
     return false;
 }
 

@@ -18,12 +18,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
+    margin: 2rem 0;
 }
 
 .apartment-details .images figure {
     flex-grow: 1;
     flex-basis: 200px;
-    margin: 2rem 0;
 }
 
 .apartment-details .images img {

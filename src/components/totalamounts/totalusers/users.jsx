@@ -8,7 +8,6 @@ const TotalUsers = () => {
     const usersLength = details.length;
 
     const users = process.env.REACT_APP_URL;
-    console.log(users);
     const authToken = JSON.parse(
         localStorage.getItem("pstk")
     );

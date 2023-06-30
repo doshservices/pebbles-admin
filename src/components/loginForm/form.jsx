@@ -92,7 +92,7 @@ const LoginForm = () => {
         })
         .catch((error) => {
           setLoading(false);
-          // console.log(error);
+          console.log(error);
           setErr(error.message);
           toast.error(error.response.data.message, {
             position: "top-right",
@@ -146,7 +146,6 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
-      <h2>{process.env.PEBBLES_BASE_URL}</h2>
       {loading && <CssLoader />}
       <label htmlFor="email">Email</label>
       <input
@@ -174,7 +173,7 @@ const LoginForm = () => {
           <Icon icon={icon} size={18} />
         </span>
       </div>
-      <button type="submit">Sign In</button>
+      <button disabled={formErrors === ""} type="submit">Sign In</button>
     </form>
   );
 };
