@@ -4,6 +4,7 @@ import axios from "axios";
 const TotalBookings = () => {
     const [details, setDetails] = useState([]);
     const [apiError, setApiError] = useState("");
+    console.log(apiError);
     const [isloading, setIsLoading] = useState(false);
     const buisLength = details.length;
 
@@ -27,7 +28,7 @@ const TotalBookings = () => {
             .catch((err) => {
                 setIsLoading(false)
                 // console.log(err);
-                setApiError(err.message);
+                setApiError(err.response.data.message);
             });
     };
     useEffect(() => {
