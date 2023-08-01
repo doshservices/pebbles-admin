@@ -92,7 +92,7 @@ const LoginForm = () => {
         })
         .catch((error) => {
           setLoading(false);
-          console.log(error);
+          // console.log(error);
           setErr(error.message);
           toast.error(error.response.data.message, {
             position: "top-right",

@@ -31,7 +31,6 @@ function App() {
   const clearStorage = () => {
     localStorage.removeItem("pstk")
     localStorage.removeItem("psid");
-
   }
 
   useEffect(() => {

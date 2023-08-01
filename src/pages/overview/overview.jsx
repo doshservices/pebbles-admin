@@ -16,7 +16,6 @@ const Overview = () => {
 
   const authenticated = isAuthenticated();
   const authName = JSON.parse(localStorage.getItem('user-name'))
-  // console.log(authName);
 
   useEffect(() => {
     if (!authenticated) {
