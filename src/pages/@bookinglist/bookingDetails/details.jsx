@@ -32,8 +32,9 @@ const BookingDetails = () => {
     // console.log(details, error);
     const unId = JSON.parse(sessionStorage.getItem("book_un_Id"));
 
-    const bookingDetail =
-        "https://pubblessignature-production.up.railway.app/api/bookings/";
+    const api = process.env.REACT_APP_URL
+
+    const bookingDetail = `${api}/api/bookings/`
     const authToken = JSON.parse(
         localStorage.getItem("pstk")
     );

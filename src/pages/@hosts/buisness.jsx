@@ -25,7 +25,8 @@ export const Buisness = ({ search }) => {
     const navigate = useNavigate()
     const authenticated = isAuthenticated();
 
-    const buisness = 'https://pubblessignature-production.up.railway.app/api/admin/allbusiness';
+    const business = process.env.REACT_APP_URL
+
     const authToken = JSON.parse(
         localStorage.getItem("pstk")
     );
@@ -98,7 +99,7 @@ export const Buisness = ({ search }) => {
 
     const fetchData = async () => {
         setLoading(true)
-        await axios.get(buisness, {
+        await axios.get(`${business}/admin/allbusiness`, {
             headers: {
                 Authorization: `Bearer ${authToken}`
             },
@@ -164,7 +165,7 @@ export const Buisness = ({ search }) => {
     }
 
     const id = JSON.parse(sessionStorage.getItem('host_un_Id'))
-    const api = 'https://pubblessignature-production.up.railway.app/api/admin/'
+    const api = `${business}/api/admin/`
 
     const suspendHost = async (e) => {
         setLoading(true)

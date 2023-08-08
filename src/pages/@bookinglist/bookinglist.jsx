@@ -30,6 +30,7 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
+  console.log(error);
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(10);
@@ -114,13 +115,13 @@ const BookingList = () => {
       })
       .then((res) => {
         setLoading(false)
-        // console.log(res);
+        console.log(res);
         setDetails(res.data.message);
       })
       .catch((err) => {
         setLoading(false)
-        // console.log(err);
-        setError(err.message);
+        console.log(err);
+        setError(err.response.data.message);
       });
   };
   useEffect(() => {
@@ -186,7 +187,7 @@ const BookingList = () => {
         <section className="table-section">
           <p>{error.message}</p>
           {loading && <CssLoader />}
-          {details ?
+          {details.length > 1 ?
             <table>
               <thead>
                 <tr>
@@ -235,7 +236,7 @@ const BookingList = () => {
                   )
                 })}
               </tbody>
-            </table> : <h2>No booking list found</h2>
+            </table> : (<h2>{error}</h2>)
           }
         </section>
         {
