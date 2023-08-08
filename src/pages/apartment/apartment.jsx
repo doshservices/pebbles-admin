@@ -230,7 +230,7 @@ const Apartment = () => {
                 <section className="table-section">
                     <p>{error.message}</p>
                     {loading && <CssLoader />}
-                    {details ?
+                    {details.length > 0 ?
                         <table>
                             <thead>
                                 <tr>
@@ -280,7 +280,7 @@ const Apartment = () => {
                                     )
                                 })}
                             </tbody>
-                        </table> : <h2>No booking list found</h2>
+                        </table> : <h2>{error}</h2>
                     }
                 </section>
                 {

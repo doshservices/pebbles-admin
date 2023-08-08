@@ -34,7 +34,7 @@ const Events = () => {
             })
             .then((res) => {
                 setLoading(false)
-                console.log(res);
+                // console.log(res);
                 setEvents(res.data.data);
             })
             .catch((err) => {

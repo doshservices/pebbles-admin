@@ -30,7 +30,7 @@ const BookingList = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
-  console.log(error);
+  // console.log(error);
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(10);
@@ -115,12 +115,12 @@ const BookingList = () => {
       })
       .then((res) => {
         setLoading(false)
-        console.log(res);
+        // console.log(res);
         setDetails(res.data.message);
       })
       .catch((err) => {
         setLoading(false)
-        console.log(err);
+        // console.log(err);
         setError(err.response.data.message);
       });
   };
@@ -187,7 +187,7 @@ const BookingList = () => {
         <section className="table-section">
           <p>{error.message}</p>
           {loading && <CssLoader />}
-          {details.length > 1 ?
+          {details.length > 0 ?
             <table>
               <thead>
                 <tr>
