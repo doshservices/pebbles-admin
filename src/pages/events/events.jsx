@@ -59,12 +59,12 @@ const Events = () => {
             <section className="events">
                 <h2>Events</h2>
                 {loading && <CssLoader />}
+                <div className="events-heading">
+                    <button className={tab === 1 ? 'events-active' : ''} onClick={() => setTab(1)}>List of all Events</button>
+                    <button className={tab === 2 ? 'events-active' : ''} onClick={() => setTab(2)}>Add Event</button>
+                </div>
                 {events > 0 ?
                     <>
-                        <div className="events-heading">
-                            <button className={tab === 1 ? 'events-active' : ''} onClick={() => setTab(1)}>List of all Events</button>
-                            <button className={tab === 2 ? 'events-active' : ''} onClick={() => setTab(2)}>Add Event</button>
-                        </div>
 
                         {tab === 1 &&
                             <>{events.map((allEvents, id) => {
@@ -91,7 +91,7 @@ const Events = () => {
                                 )
                             })}</>
                         }
-                    </> : <h3>{error}</h3>
+                    </> : <h3 style={{ marginTop: "3rem" }}>{error}</h3>
                 }
                 {tab === 2 && <AddEvent />}
             </section >
