@@ -59,6 +59,7 @@
     border-radius: 10px;
     text-align: left;
     color: white;
+    margin-bottom: 20px;
 }
 
 .users table th img {
@@ -67,7 +68,10 @@
     object-fit: cover;
     transform: translate(0, 4px);
 }
-
+.users table tbody tr{
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    margin-bottom: 2px;
+}
 .users table tbody tr td {
     max-width: 210px;
     font-size: .9rem;

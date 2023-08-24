@@ -64,7 +64,7 @@
     width: fit-content;
     position: fixed;
     z-index: 900;
-    top: .7rem;
+    top: 1.5625rem;
     left: 1rem;
     cursor: pointer;
     background: white;
