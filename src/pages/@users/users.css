@@ -40,11 +40,15 @@
 }
 
 .users table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    border-collapse: separate;
     min-width: 1050px;
     margin: 25px 0;
+    border-spacing: 0 6px;
 }
-
+.users table tbody {
+    background-color: white !important;
+}
 .users table thead th {
     padding: 1rem;
     background: transparent;
@@ -53,13 +57,16 @@
     font-weight: 500;
 }
 
+.users table thead tr:first-child td:first-child { 
+    border-top-left-radius: 10px; 
+}
 .users table thead tr {
     border: none;
     background-color: #3C79F2;
     border-radius: 10px;
     text-align: left;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .users table th img {
@@ -68,9 +75,16 @@
     object-fit: cover;
     transform: translate(0, 4px);
 }
+
 .users table tbody tr{
     border: 1px solid rgba(0, 0, 0, 0.10);
     margin-bottom: 2px;
+    border-collapse: collapse;
+    border-spacing: 0 1em;
+
+    border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
 }
 .users table tbody tr td {
     max-width: 210px;
@@ -78,8 +92,18 @@
     text-transform: capitalize;
     font-weight: 500;
     padding-left: 1rem;
+    background-color: white;
 }
-
+.users table tbody tr td:first-child {
+    border-left: 1px solid rgba(0, 0, 0, 0.10);;
+}
+.users table tbody tr td:last-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.10);;
+}
+.users table tbody tr td {
+    border-top: 1px solid rgba(0, 0, 0, 0.10);;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);;
+}
 .users .verified {
     color: #219653;
     background: #D5E8DD;

@@ -584,70 +584,70 @@ console.log(details);
           {loading && <CssLoader />}
           {details?.length > 0 ? (
             <table>
-              <thead>
-                <tr>
-                  <th>
-                    <span>Photo</span>
-                  </th>
-                  <th>
-                    <span>Name</span>
-                  </th>
-                  <th>
-                    <span>Country</span>
-                  </th>
-                  <th>
-                    <span>State</span>
-                  </th>
-                  <th>
-                    <span>Email</span>
-                  </th>
-                  <th>
-                    <span>Phone</span>
-                  </th>
-                  <th>
-                    <span>Role</span>
-                  </th>
-                  <th>
-                    <span>Status</span>
-                  </th>
-                  <th>
-                    <span>Verified</span>
-                  </th>
-                  <th>
-                    <span>Options</span>
-                  </th>
-                </tr>
-              </thead>
-              {currentItems.filter((user) => {
-                return search.toLowerCase() === '' ? user : user.firstName.toLowerCase().includes(search)
-              }).map((user, id) => {
-                return (
-                  <tbody key={id}>
-                    <tr>
-                      <td>
-                        <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile" className="demo-dp" />
-                      </td>
-                      <td>{user.firstName ? user.firstName : 'N/A'} {user.lastName ? user.lastName : 'N/A'}</td>
-                      <td>{user.country ? user.country : 'N/A'}</td>
-                      <td>{user.state ? user.state : 'N/A'}</td>
-                      <td>{user.email ? user.email : 'N/A'}</td>
-                      <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
-                      <td>{user.role ? user.role : 'N/A'}</td>
-                      <td>{user.status ? user.status : 'N/A'}</td>
-                      <td><span className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</span></td>
-                      <td className="options" onClick={(e) => handleClick(e, user)}>
-                        <img src={options} alt="options" />
-                        {option[user._id] && <div ref={ref} className='option-details'>
-                          <span onClick={viewDetails}>View Details</span>
-                          <span onClick={suspendUser}>Suspend</span>
-                          <span onClick={verifyUser}>Verify</span>
-                          <span onClick={deleteUser}>Delete</span>
-                        </div>}
-                      </td>
-                    </tr>
-                  </tbody>
-                )
-              })}
+                <thead>
+                  <tr>
+                    <th>
+                      <span>Photo</span>
+                    </th>
+                    <th>
+                      <span>Name</span>
+                    </th>
+                    <th>
+                      <span>Country</span>
+                    </th>
+                    <th>
+                      <span>State</span>
+                    </th>
+                    <th>
+                      <span>Email</span>
+                    </th>
+                    <th>
+                      <span>Phone</span>
+                    </th>
+                    <th>
+                      <span>Role</span>
+                    </th>
+                    <th>
+                      <span>Status</span>
+                    </th>
+                    <th>
+                      <span>Verified</span>
+                    </th>
+                    <th>
+                      <span>Options</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody key={id}>
+                {currentItems.filter((user) => {
+                  return search.toLowerCase() === '' ? user : user.firstName.toLowerCase().includes(search)
+                }).map((user, id) => {
+                  return (
+                      <tr key={id}>
+                        <td>
+                          <img height='40px' src={user.profilePicture ? user.profilePicture : demoDp} alt="profile" className="demo-dp" />
+                        </td>
+                        <td>{user.firstName ? user.firstName : 'N/A'} {user.lastName ? user.lastName : 'N/A'}</td>
+                        <td>{user.country ? user.country : 'N/A'}</td>
+                        <td>{user.state ? user.state : 'N/A'}</td>
+                        <td>{user.email ? user.email : 'N/A'}</td>
+                        <td>{user.phoneNumber ? user.phoneNumber : 'N/A'}</td>
+                        <td>{user.role ? user.role : 'N/A'}</td>
+                        <td>{user.status ? user.status : 'N/A'}</td>
+                        <td><span className={user.isVerified === true ? 'verified' : 'pending'}>{user.isVerified === true ? 'Verified' : 'Pending'}</span></td>
+                        <td className="options" onClick={(e) => handleClick(e, user)}>
+                          <img src={options} alt="options" />
+                          {option[user._id] && <div ref={ref} className='option-details'>
+                            <span onClick={viewDetails}>View Details</span>
+                            <span onClick={suspendUser}>Suspend</span>
+                            <span onClick={verifyUser}>Verify</span>
+                            <span onClick={deleteUser}>Delete</span>
+                          </div>}
+                        </td>
+                      </tr>
+                  )
+                })}
+                </tbody>
             </table>
           ) : (
             <h2>{error}</h2>
