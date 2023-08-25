@@ -2,15 +2,73 @@
     padding: 2rem;
 }
 
+.overview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding-inline: 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.overview-head .search-bar {
+    width: 100%;
+    max-width: 497px;
+}
+
+.overview-head .loggedin-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.overview-head .loggedin-user .notification-bell { 
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+}
+.overview-head .loggedin-user .notification-avatar { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px 1px 0 6px;
+}
 .overview-heading {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
     gap: 2rem;
 }
-
-.overview-heading p {
+.overview-heading.desktop {
+    display: block;
+}
+.overview-heading.mobile {
+    display: none;
+}
+@media (max-width: 1024px) {
+    
+    .overview-heading.desktop {
+        display: none;
+    }
+    .overview-heading.mobile {
+        display: flex;
+    }
+}
+@media (max-width: 650px) {
+    .overview-head {
+        margin-left: 1.5rem;
+    }
+}
+@media (max-width: 450px) {
+    .notification-avatar, .loggedin-user-details {
+        display: none !important;
+    }
+}
+.overview-heading.mobile p {
     margin: .6rem 0;
 }
 
@@ -50,44 +108,85 @@
 }
 
 .overview .total_amount>div {
-    color: white;
-    padding: 1.3rem;
+    display: flex;
     flex-grow: 1;
     flex-basis: 200px;
     max-width: 300px;
     box-shadow: 1px 5px 10px rgba(45, 45, 45, 0.15);
     border-radius: 10px;
+    padding: 29px 48px 28px 48px;
+}
+.overview .total_amount>div .icon-div {
+    background-color: #155EEF;
+    width: 50%;
+    min-width: 4.5625rem;
+    height: auto;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-.overview .total_amount>div p:nth-child(1) {
-    font-size: 1rem;
-    margin-bottom: .7rem;
+.overview .total_amount>div .details-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
 }
 
-.overview .total_amount div:nth-child(1) {
-    background: linear-gradient(102.03deg, #046BA6 0%, #0096EB 100%);
+.overview .total_amount>div .details-div p:nth-child(1) {
+    font-size: 1.75rem;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    margin-bottom: .6rem;
 }
-
-.overview .total_amount div:nth-child(2) {
-    background: linear-gradient(101.5deg, #0A9A50 0%, #00C861 101.34%);
+.overview .total_amount>div .details-div p:nth-child(2) {
+    color: #2D2D2D;
+    font-family: Raleway;
+    font-size: 0.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.2px;
 }
-
-.overview .total_amount div:nth-child(3) {
-    background: linear-gradient(101.74deg, #C69014 0%, #DBB252 102.07%);
+.overview .total_amount>div .details-div .stat-div {
+    display: flex;
+    align-items: center;
+    margin-top: 6.5px;
 }
-
-.overview .total_amount div:nth-child(4) {
-    background: linear-gradient(78.39deg, #FF5B3D 2.71%, rgba(233, 78, 50, 0.79) 98.86%);
+.overview .total_amount>div .details-div .red-dot {
+    background-color: #EB5757;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 6px;
 }
-
-.overview .total_amount div:nth-child(5) {
-    background: linear-gradient(102.03deg, #046BA6 0%, #0096EB 100%);
+.overview .total_amount>div .details-div .green-dot {
+    background-color: #219653;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 6px;
 }
-
-.overview .total_amount div:nth-child(6) {
-    background: linear-gradient(101.5deg, #0A9A50 0%, #00C861 101.34%);
+.overview .total_amount>div .details-div .stat-paragraph {
+    color: #2D2D2D;
+    font-family: Raleway;
+    font-size: 0.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
 }
-
+.overview .total_amount div {
+    background: white;
+    color: #2D2D2D;
+}
 
 .overview .total {
     display: flex;
