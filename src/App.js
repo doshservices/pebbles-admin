@@ -49,11 +49,11 @@ function App() {
             <Route path='users' element={<Users />} />
             <Route path='analytics' element={<Analytics />} />
             <Route path='user-details' element={<UserDetails />} />
-            <Route path='booking-detail' element={<BookingDetails />} />
+            <Route path='booking-list/details' element={<BookingDetails />} />
             <Route path='apartment' element={<Apartment />} />
             <Route path='hosts' element={<Hosts />} />
-            <Route path='host-details' element={<Details />} />
-            <Route path='apartment-details' element={<ApartmentDetails />} />
+            <Route path='hosts/details' element={<Details />} />
+            <Route path='apartment/details' element={<ApartmentDetails />} />
             <Route path='events' element={<Events />} />
             <Route path='services' element={<Services />} />
           </Routes>

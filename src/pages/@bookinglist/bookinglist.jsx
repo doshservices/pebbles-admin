@@ -169,7 +169,7 @@ const BookingList = () => {
     setOption(update)
   };
   const viewDetails = () => {
-    navigate('/booking-detail')
+    navigate('/booking-list/details')
   }
 
   const [search, setSearch] = useState('')

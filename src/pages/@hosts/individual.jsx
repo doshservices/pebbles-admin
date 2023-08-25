@@ -161,7 +161,7 @@ export const Individual = ({ search }) => {
         setOption(update)
     };
     const viewDetails = () => {
-        navigate('/host-details')
+        navigate('/hosts/details')
     }
 
     const id = JSON.parse(sessionStorage.getItem('host_un_Id'))

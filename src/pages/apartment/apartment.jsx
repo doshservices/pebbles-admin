@@ -166,7 +166,7 @@ const Apartment = () => {
         setOption(update)
     };
     const viewDetails = () => {
-        navigate('/apartment-details')
+        navigate('/apartment/details')
     }
     const id = JSON.parse(sessionStorage.getItem('apar_un_Id'))
 
