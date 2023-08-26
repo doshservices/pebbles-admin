@@ -7,7 +7,7 @@
 }
 
 .sidenav {
-    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    padding: 20px 22px;
     position: fixed;
     width: 260px;
     height: 100%;
@@ -17,16 +17,20 @@
     background: white;
 }
 
-.sidenav .logo {
-    margin-bottom: 1.5rem;
+.sidenav .logo-link {
+    margin: 0 !important;
+    padding: 0 !important;
 }
-
+.sidenav .logo {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
 .sidenav a {
-    color: hsla(0, 0%, 18%, 0.7);
+    color: #2D2D2D;
     font-weight: 600;
     font-size: .9rem;
-    margin-bottom: 1.3rem;
-    padding: .5rem 1rem;
+    margin-bottom: 10px;
+    padding: 0.625rem 1.25rem;
     display: block;
     display: flex;
     align-items: center;
@@ -44,21 +48,71 @@
 }
 
 .sidenav h3 {
-    color: rgba(45, 45, 45, 0.7);
-    font-size: 1.3rem;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: 'Raleway' sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.2px;
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .sidenav h4 {
-    color: hsl(220, 87%, 51%);
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    color: #2D2D2D;
+    font-family: 'Raleway' sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.0125rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 }
-
+.sidenav h4 span { 
+    display: inline-flex;
+    margin-left: 5px;
+}
 .sidenav-added-services {
-    margin: 3rem 0;
+    margin: 10px 0;
 }
-
+div.horizontal-divider {
+    background: rgba(45, 45, 45, 0.40);
+    width: 100%;
+    height: 1px;
+    margin: 20px auto;
+}
+div.upgrade-text {
+    color: #2D2D2D;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+div .host-button {
+    display: flex;
+    padding: 4px 34px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border-radius: 4px;
+    border: 1.5px solid var(--primary-60, #155EEF);
+    color: var(--primary-60, #155EEF);
+    font-family: 'Raleway' sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 228.571% */
+    letter-spacing: 0.15px;
+    margin: 10px 0;
+}
 .hamburger {
     display: none;
     width: fit-content;
@@ -84,7 +138,7 @@
     align-items: center;
     gap: 1rem;
     color: white;
-    background: hsl(220, 87%, 69%);
+    background: #EB5757;
     font-weight: 600;
     font-size: .9rem;
     margin-bottom: 1.3rem;

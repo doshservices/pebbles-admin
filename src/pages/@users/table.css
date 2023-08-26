@@ -1,0 +1,112 @@
+/* .table-head, .table-row {
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+}
+.table-head div:nth-child(1),.table-row div:nth-child(1) {
+  width: 2px;
+  justify-self: start;
+  align-self: start;
+}
+.table-head div:nth-child(2), .table-row div:nth-child(2) {
+  width: 100%;
+  overflow-x: auto;
+} */
+
+.users-table {
+  width: 100%;
+  display: table;
+}
+.users-table-head {
+  display: table-header-group;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  background: #3C79F2;
+  color: #f8f8f8;
+  border: none;
+  box-shadow: 1px 2px 4px 0px rgba(45, 45, 45, 0.15);
+  margin-bottom: 20px;
+}
+.users-table-head div span { 
+  display: inline-flex;
+  margin-top: -12px;
+}
+.users-table-head div { 
+  display: table-cell;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+}
+
+.users-table-head div:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.users-table-head div:last-child div {
+  padding: 10px;
+}
+.users-table-head div:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.users-table-body {
+  display: table-row-group;
+  /* border: 1px solid rgba(0, 0, 0, 0.10); */
+}
+.users-table-body .table-row {
+  display: table-row;
+  /* border: 1px solid rgba(0, 0, 0, 0.10); */
+  background-color: white;
+}
+.users-table-body .table-row div:first-child {
+  border-left: 1px solid rgba(0, 0, 0, 0.10);
+}
+.users-table-body .table-row div:last-child {
+  padding: 0 15px !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.10);
+}
+.users-table-body .table-row div:not(:first-child) {
+  padding-right: 5px;
+}
+.users-table-body .table-row div {
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.users-table-body .table-row  div {
+  display: table-cell;
+  text-align: center;
+}
+  .table-head-mb {
+    height: 20px;
+  }
+  .table-row-mb {
+    height: 5px;
+  }
+
+  .pageNumbers.users-pagination {
+    margin: 0;
+  }
+  .pagination-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+  }
+  .pagination-nav-button {
+    background-color: white;
+    border: none;
+  }
+  .pagination-nav-button.prev {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 0 5px;
+  }
+  .pagination-nav-button.next {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 0 5px;
+
+  }

@@ -58,7 +58,7 @@ const SideNav = () => {
     <div className={returnNav}>
       <Hamburger onClick={() => setShowNav(!showNav)} />
       <nav ref={ref} className={showNav ? "sidenav hide-side-nav" : "sidenav"}>
-        <Link to='/' onClick={() => setShowNav(!showNav)}>
+        <Link to='/' className="logo-link" onClick={() => setShowNav(!showNav)}>
           <img src={logo} alt="logo" className="logo" />
         </Link>
         <h3>Admin Dashboard</h3>
@@ -77,8 +77,15 @@ const SideNav = () => {
             </ul>
           );
         })}
+        <div className="horizontal-divider"></div>
         <div className="sidenav-added-services">
-          <h4>Add-on Services</h4>
+          <h4>Ad-On Services 
+            <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 8.99961L17 13.9746H7L12 8.99961Z" fill="#2D2D2D"/>
+            </svg>
+            </span>
+          </h4>
           {addedServicesUrl.map((serviceUrl) => {
             return (
               <ul key={serviceUrl.id}>
@@ -94,6 +101,15 @@ const SideNav = () => {
               </ul>
             );
           })}
+          <div className="horizontal-divider"></div>
+          <div>
+            <div className="upgrade-text">Upgrade your account</div>
+            <div>
+              <button className="host-button">
+                Become a Host
+              </button>
+            </div>
+          </div>
           <button className="logout" onClick={clearStorage}>
             <img height='20px' src={require('../icons/logout.png')} alt="logout" />
             <span>Logout</span>
