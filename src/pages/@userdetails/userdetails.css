@@ -1,5 +1,5 @@
 .user-details {
-    padding: 1rem 2rem 2rem 2rem;
+    padding: 20px 15px;
 }
 
 .user-details-heading {
@@ -32,13 +32,57 @@
 }
 
 .user-details-info {
-    margin: 2rem 0;
+    /* margin: 2rem 0; */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
 }
 
+.info-and-actions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.info-and-actions .info-name h2 {
+    display: flex;
+    color: #2D2D2D;
+    font-family: 'Raleway';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 100% */
+    margin-right: 22px;
+}
+
+@media (max-width: 1268px){
+    .info-and-actions {
+        flex-direction: column;
+        align-items: start;
+    }
+    .info-and-actions {
+        margin-bottom: 14px;
+    }
+    .info-and-actions .info-name h2 {
+        font-size: 1.125rem;
+        margin-bottom: 6px;
+    }
+}
+
+.info-and-actions .action-btns {
+    display: flex;
+    gap: 10px;
+}
+.info-type p {
+    color: #155EEF;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    margin-bottom: 14px;
+}
 .user-details-info>div {
     background: #FFFFFF;
     box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
@@ -46,7 +90,8 @@
     flex-grow: 1;
     flex-basis: 350px;
     padding: 1.5rem;
-    height: fit-content;
+    /* height: fit-content; */
+    min-height: 200px;
 }
 
 .user-details-info>div h3 {
@@ -61,12 +106,6 @@
     background: hsl(0, 0%, 60%);
 }
 
-.user-details-heading h2 {
-    color: #2D2D2D;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
 .user-details-heading p {
     color: #2D2D2D;
     font-size: 1rem;
@@ -77,9 +116,46 @@
     display: flex;
     gap: 1rem;
 }
+.recent-booking-outer-div {
+    min-height: 200px;
+}
+.recent-booking-div h3 {
+    margin: auto 0;
+}
+.recent-booking-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.recent-booking-div-head {
+    display: flex;
+    justify-content: center;
+}
+.recent-booking-div-head h3 {
+    color: #2D2D2D;
+    font-family: 'Raleway';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 400px){
+    .user-details-profile {
+        flex-direction: column;
+        align-items: center;
+    }
+    .recent-booking-div { 
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
 
 .user-details-profile>img {
-    height: 100px;
+    height: auto;
+    max-height: 100px;
+    width: auto;
 }
 
 .user-details-profile .member {
@@ -122,7 +198,7 @@
     background: transparent;
     color: rgba(45, 45, 45, 0.8);
     border-radius: 8px;
-    padding: .7rem 1rem;
+    padding: 8px 10px;
     font-size: .9rem;
     font-weight: 600;
     border: none;
@@ -138,12 +214,12 @@
     max-width: fit-content;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 10px;
+    /* margin: 1rem 0; */
 }
 
 .user-details .action-btn {
-    padding: .6rem 1rem;
+    padding: 6px 1rem;
     font-size: .9rem;
     font-weight: 600;
 }
@@ -167,4 +243,52 @@
     border: 2px solid #219653;
     background-color: white;
     border-radius: 8px;
+}
+
+.current-booking-div .blue-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #155EEF;
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1/1;
+}
+
+.current-booking-div h3 {
+    color: #2D2D2D;
+    font-family: 'Raleway';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    margin-bottom: 30px;
+}
+.current-booking-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.current-booking-details div:not(:nth-child(1)) div:nth-child(1) {
+    color: rgba(45, 45, 45, 0.90);
+    font-family: 'Raleway';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.11px;
+    margin-bottom: 10px;
+}
+.current-booking-details div:not(:nth-child(1)) div:nth-child(2) {
+    color: #2D2D2D;
+    font-family: 'Raleway';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.11px;
+}
+.current-booking-div .horizontal-divider {
+    margin-top: 10px;
 }
