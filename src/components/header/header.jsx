@@ -1,14 +1,14 @@
 import { Search } from "../search/search"
 const authName = JSON.parse(localStorage.getItem('user-name'))
 
-const Header = () => {
+const Header = ({title, subtitle}) => {
   return (
     <>
       <section className="users-head">
           <div className="users-heading desktop">
             <div>
-              <h2>User</h2>
-              <p>User Profile</p>
+              <h2>{title? title : "User"}</h2>
+              <p>{subtitle? subtitle : 'User Profile'}</p>
             </div>
           </div>
           <div className="search-bar">

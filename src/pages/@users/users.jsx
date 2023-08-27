@@ -637,29 +637,29 @@ console.log(details);
             <TableRow />
           </div>
         </div>
-          <div className="pagination-div">
-            <div>
-              Showing 10 out of 40
-            </div>
-            <div>
-              {renderData(currentItems)}
-              <ul className="pageNumbers users-pagination">
-                <button className="pagination-nav-button prev" onClick={handlePrevbtn} disabled={currentPage === 1} >
-                  <img
-                    // disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
-                    src={left} alt="left" />
-                </button>
-                {pageDecrementBtn}
-                {renderPageNumbers}
-                {pageIncrementBtn}
-                <button className="pagination-nav-button next" onClick={handleNextbtn} disabled={currentPage === 4}>
-                  <img
-                    // disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
-                     src={right} alt="right" />
-                </button>
-              </ul>
-            </div>
+        <div className="pagination-div">
+          <div>
+            Showing 10 out of 40
           </div>
+          <div>
+            {renderData(currentItems)}
+            <ul className="pageNumbers users-pagination">
+              <button className="pagination-nav-button prev" onClick={handlePrevbtn} disabled={currentPage === 1} >
+                <img
+                  // disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                  src={left} alt="left" />
+              </button>
+              {pageDecrementBtn}
+              {renderPageNumbers}
+              {pageIncrementBtn}
+              <button className="pagination-nav-button next" onClick={handleNextbtn} disabled={currentPage === 4}>
+                <img
+                  // disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                    src={right} alt="right" />
+              </button>
+            </ul>
+          </div>
+        </div>
       </section>
     </>
   );

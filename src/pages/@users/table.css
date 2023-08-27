@@ -67,6 +67,9 @@
   padding: 0 15px !important;
   border-right: 1px solid rgba(0, 0, 0, 0.10);
 }
+/* .users-table-body.apartment-table .table-row div:not(:first-child) {
+  padding: 10px;
+} */
 .users-table-body .table-row div:not(:first-child) {
   padding-right: 5px;
 }
@@ -75,7 +78,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.10);
 }
 
-.users-table-body .table-row  div {
+.users-table-body .table-row div {
   display: table-cell;
   text-align: center;
 }

@@ -69,7 +69,7 @@
 }
 @media (max-width: 650px) {
     .users-head {
-        margin-left: 1.5rem;
+        padding-left: 2.8rem;
     }
 }
 @media (max-width: 450px) {
