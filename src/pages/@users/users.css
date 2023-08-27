@@ -1,36 +1,84 @@
 .users {
-    padding: 2rem 1rem;
+    padding: 1.25rem;
 }
 
-.users-list-heading {
+
+.users-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
+    padding-inline: 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
 }
 
-.users-list-heading h2 {
-    color: #2D2D2D;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.users-head .search-bar {
+    width: 100%;
+    max-width: 497px;
 }
 
-.users-list-heading p {
-    color: #2D2D2D;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.users-list-heading button {
-    background: #FFFFFF;
-    box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
-    border-radius: 8px;
-    padding: .7rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border: none;
+.users-head .loggedin-user {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: .7rem;
+
+}
+.users-head .loggedin-user .notification-bell { 
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+}
+.users-head .loggedin-user .notification-avatar { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px 1px 0 6px;
+}
+.users-heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.users-heading div h2 {
+    color: #2D2D2D;
+    font-family: 'Raleway' sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem; /* 100% */
+}
+.users-heading.desktop {
+    display: block;
+}
+.users-heading.mobile {
+    display: none;
+}
+@media (max-width: 1024px) {
+    
+    .users-heading.desktop {
+        display: none;
+    }
+    .users-heading.mobile {
+        display: flex;
+    }
+}
+@media (max-width: 650px) {
+    .users-head {
+        padding-left: 2.8rem;
+    }
+}
+@media (max-width: 450px) {
+    .notification-avatar, .loggedin-user-details {
+        display: none !important;
+    }
+}
+.users-heading.mobile p {
+    margin: .6rem 0;
 }
 
 .users .table-section {
@@ -107,11 +155,11 @@
 .users .verified {
     color: #219653;
     background: #D5E8DD;
-    font-size: .9rem;
+    font-size: 0.875rem;
     font-weight: 500;
     border-radius: 16px;
     margin: .5rem 0;
-    padding: .7rem 1.5rem;
+    padding: 0.5rem 0.75rem;
     display: inline-block;
     width: 100%;
     text-align: center;

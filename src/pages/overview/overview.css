@@ -1,5 +1,5 @@
 .overview {
-    padding: 2rem;
+    padding: 1.25rem;
 }
 
 .overview-head {
@@ -102,26 +102,40 @@
 .overview .total_amount {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin: 2rem 0;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
 }
 
+@media (max-width: 1130px) {
+    .overview .total_amount {
+        gap: 2rem;
+        justify-content: center;
+    }
+}
 .overview .total_amount>div {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
     flex-basis: 200px;
-    max-width: 300px;
-    box-shadow: 1px 5px 10px rgba(45, 45, 45, 0.15);
-    border-radius: 10px;
-    padding: 29px 48px 28px 48px;
+    max-width: 200px;
+    padding: 25px;
+    border-radius: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.10);
+    border-right: 1px solid rgba(0, 0, 0, 0.10);
+    border-left: 1px solid rgba(0, 0, 0, 0.10);
+    background: #FFF;
+    box-shadow: 1px 2px 4px 0px rgba(45, 45, 45, 0.15);
+}
+.overview .total_amount>div .icon-div:nth-child(3) {
+    padding: 15px;
 }
 .overview .total_amount>div .icon-div {
     background-color: #155EEF;
-    width: 50%;
-    min-width: 4.5625rem;
-    height: auto;
-    aspect-ratio: 1/1;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    /* aspect-ratio: 1/1; */
     display: flex;
     justify-content: center;
     align-items: center;

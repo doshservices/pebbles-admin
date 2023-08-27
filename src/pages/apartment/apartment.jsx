@@ -10,6 +10,9 @@ import { CssLoader } from "../../components/spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/helpers";
 import { useState, useEffect, useRef } from "react";
+import Header from '../../components/header/header';
+import ApartmentTableHead from '../@users/apartment-table-head';
+import ApartmentTableRow from '../@users/apartment-table-row';
 
 const renderData = (data) => {
     return (
@@ -41,7 +44,7 @@ const Apartment = () => {
     };
 
     const pages = [];
-    for (let i = 1; i <= Math.ceil(details.length / itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(4); i++) {
         pages.push(i);
     }
 
@@ -116,9 +119,9 @@ const Apartment = () => {
                 setError(err.response.data.message);
             });
     };
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     useEffect(() => {
         if (!authenticated) {
@@ -219,15 +222,78 @@ const Apartment = () => {
 
     return (
         <>
-            <Search onChange={(e) => setSearch(e.target.value)} placeholder="Search Apartment" />
-            <section className="apartment">
-                <div className="apartment-heading">
-                    <div>
-                        <h2>Apartment List</h2>
-                        <p>This is your apartment list data</p>
-                    </div>
+        <section className="apartment users">
+            <Header title={"Apartment List"} subtitle={"This is your bookings list data"} />
+            <div className="apartment-table users-table">
+                <div className="users-table-head">
+                    <ApartmentTableHead />
                 </div>
-                <section className="table-section">
+                <div className="table-head-mb"></div>
+                <div className="users-table-body apartment-table">
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                    <ApartmentTableRow />
+                </div>
+            </div>
+            <div className="apartment-table pagination-div">
+            <div>
+                Showing 10 out of 40
+            </div>
+            <div>
+                {renderData(currentItems)}
+                <ul className="pageNumbers users-pagination">
+                <button className="pagination-nav-button prev" onClick={handlePrevbtn} disabled={currentPage === 1} >
+                    <img
+                    // disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                    src={left} alt="left" />
+                </button>
+                {pageDecrementBtn}
+                {renderPageNumbers}
+                {pageIncrementBtn}
+                <button className="pagination-nav-button next" onClick={handleNextbtn} disabled={currentPage === 4}>
+                    <img
+                    // disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                        src={right} alt="right" />
+                </button>
+                </ul>
+            </div>
+            </div>
+                    {
+                        details.length > 10 ? (
+                            <>
+                                {renderData(currentItems)}
+                                <ul className="pageNumbers">
+                                    <li>
+                                        <img onClick={handlePrevbtn}
+                                            disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
+                                    </li>
+                                    {pageDecrementBtn}
+                                    {renderPageNumbers}
+                                    {pageIncrementBtn}
+                                    <li>
+                                        <img onClick={handleNextbtn}
+                                            disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
+                                    </li>
+                                </ul>
+                            </>
+                        ) : null
+                    }
+        </section>
+        </>
+    )
+}
+
+export default Apartment;
+
+
+{/* <section className="table-section">
                     <p>{error.message}</p>
                     {loading && <CssLoader />}
                     {details.length > 0 ?
@@ -282,30 +348,4 @@ const Apartment = () => {
                             </tbody>
                         </table> : <h2>{error}</h2>
                     }
-                </section>
-                {
-                    details.length > 10 ? (
-                        <>
-                            {renderData(currentItems)}
-                            <ul className="pageNumbers">
-                                <li>
-                                    <img onClick={handlePrevbtn}
-                                        disabled={currentPage == pages[0] ? true : false} src={left} alt="left" />
-                                </li>
-                                {pageDecrementBtn}
-                                {renderPageNumbers}
-                                {pageIncrementBtn}
-                                <li>
-                                    <img onClick={handleNextbtn}
-                                        disabled={currentPage == pages[pages.length - 1] ? true : false} src={right} alt="right" />
-                                </li>
-                            </ul>
-                        </>
-                    ) : null
-                }
-            </section>
-        </>
-    )
-}
-
-export default Apartment
+</section> */}
