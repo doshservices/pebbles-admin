@@ -1,17 +1,3 @@
-/* .table-head, .table-row {
-  display: grid;
-  grid-template-columns: repeat(8, auto);
-}
-.table-head div:nth-child(1),.table-row div:nth-child(1) {
-  width: 2px;
-  justify-self: start;
-  align-self: start;
-}
-.table-head div:nth-child(2), .table-row div:nth-child(2) {
-  width: 100%;
-  overflow-x: auto;
-} */
-
 .users-table {
   width: 100%;
   display: table;
@@ -33,7 +19,7 @@
 }
 .users-table-head div { 
   display: table-cell;
-  padding: 10px;
+  padding: 10px 4px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -61,6 +47,7 @@
   background-color: white;
 }
 .users-table-body .table-row div:first-child {
+  padding: 0 15px !important;
   border-left: 1px solid rgba(0, 0, 0, 0.10);
 }
 .users-table-body .table-row div:last-child {
