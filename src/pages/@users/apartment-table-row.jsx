@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './table.css'
 import options from "./assets/options.svg";
+import useOnClickOutside from '../../utils/useOnClickOutside';
+import { Link } from 'react-router-dom';
 
 const ApartmentTableRow = () => {
+  const optionsRef = useRef();
   const [option, setOption] = useState(false)
   const [status, setStatus] = useState("Active");
+
+  const handleOptions = () => {
+    setOption(!option)
+  }
+  useOnClickOutside(optionsRef, ()=> {setOption(false)})
+
+
   return (
       <>
         <div className="table-row">
@@ -27,13 +37,13 @@ const ApartmentTableRow = () => {
             Self Con
           </div>
           <div><span className={status === 'Active' ? 'verified' : 'pending'}>{status}</span></div>
-          <div className="options">
-            <img src={options} alt="options" />
+          <div className="options" ref={optionsRef}>
+            <img src={options} alt="options" onClick={handleOptions} />
             {option && <div className='option-details'>
-              <span>View Details</span>
-              <span>Active</span>
-              <span>Pending</span>
+              <span><Link to="/user-details">View Details</Link></span>
+              <span>Edit</span>
               <span>Suspend</span>
+              <span>Delete</span>
             </div>}
           </div>
         </div>

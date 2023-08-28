@@ -1,12 +1,22 @@
+.options {
+    position: relative;
+}
+.options img {
+    width: 100%;
+    min-width: 15px;
+    max-width: 15px;
+    cursor: pointer;
+}
 .option-details {
     width: 130px;
+    height: fit-content;
     position: absolute;
     z-index: 1;
     background: #FFFFFF;
     box-shadow: 1px 2px 4px rgba(45, 45, 45, 0.15);
     border-radius: 8px;
-    right: 0;
-    top: 10%;
+    right: 10px;
+    top: 37px;
     padding: 0rem 1rem;
     border-radius: 10px;
 }
@@ -16,10 +26,11 @@
     color: #2D2D2D;
     font-size: .9rem;
     font-weight: 600;
-    margin: 1.5rem 0;
+    margin: 16px 0;
     cursor: pointer;
+    text-align: left;
 }
 
-.option-details span:nth-child(1) {
+.option-details span a {
     color: #155EEF;
 }
